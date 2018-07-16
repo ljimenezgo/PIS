@@ -15,7 +15,10 @@ class ProfesorController{
         require_once '../Vista/Profesor/lista-profesores.php';
 
     }
+	public function error(){
+        require_once '../Vista/error.php';
 
+    }
     public function Crud(){
         $pvd = new profesor();
 
