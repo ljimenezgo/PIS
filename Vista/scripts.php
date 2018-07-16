@@ -9,7 +9,7 @@
 
     <!-- DataTables JavaScript -->
     <script src="../plugins/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="../plugins/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="../plugins/bower_components/datatables-../plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <script src="../plugins/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
     
     <!-- Custom Theme JavaScript -->

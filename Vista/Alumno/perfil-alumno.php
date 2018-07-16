@@ -11,7 +11,7 @@
 							<br>
 							
                             <div class="panel-heading">
-                                <h3 class="panel-title"><?php echo $pvd->persona_nombres; ?> <?php echo $pvd->persona_apellido1; ?> <button type="button" class="btn btn-primary btn-xs">Generar Reporte</button></h3>
+                                <h3 class="panel-title"><?php echo $pvd->persona_nombres; ?> <?php echo $pvd->persona_apellido1; ?>  <!-- <button type="button" class="btn btn-primary btn-xs">Generar Reporte</button>--></h3>
 								
                             </div>
 							<div class="alert alert-success">
