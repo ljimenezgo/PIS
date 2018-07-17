@@ -9,30 +9,30 @@
     <title>Bienestar Social</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../plugins/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../plugins/dist/css/bootstrap-select.css">
 
     <!-- MetisMenu CSS -->
-    <link href="../plugins/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="../plugins/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
 	<!-- Timeline CSS -->
     <link href="../plugins/css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../plugins/dist/css/sb-admin-2.css" rel="stylesheet">
-	
+
 	<!-- DataTables CSS -->
-    <link href="../plugins/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-	
+    <link href="../plugins/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
 	<!-- Morris Charts CSS -->
-    <link href="../plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="../plugins/morrisjs/morris.css" rel="stylesheet">
 
 	<!-- DataTables Responsive CSS -->
-    <link href="../plugins/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <link href="../plugins/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../plugins/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+    <link href="../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
