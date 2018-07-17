@@ -1,6 +1,6 @@
 <?php
-	if(isset($_POST['submit'])) 
-	{ 
+	if(isset($_POST['submit']))
+	{
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 	}
@@ -29,10 +29,10 @@
 
     <!-- Custom CSS -->
     <link href="plugins/dist/css/sb-admin-2.css" rel="stylesheet">
-	
+
 	<!-- DataTables CSS -->
     <link href="plugins/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-	
+
 	<!-- Morris Charts CSS -->
     <link href="plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
 
@@ -41,7 +41,7 @@
 
     <!-- Custom Fonts -->
     <link href="plugins/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+
 </head>
 <body>
 
@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <input class="form-control" name="password" type="password" id="password" placeholder="Password">
                                 </div>
-                                
+
                                 <!-- Change this to a button or input when using this as a form -->
                                 <input type="submit" name="submit" value="Acceder" class="btn btn-primary btn-block btn-flat">
                             </fieldset>
