@@ -136,22 +136,24 @@ class AlumnoController{
         $i = 0;
         foreach ($lineas as $linea_num => $linea) { 
             if($i != 0) { 
-                $datos = explode(",",$linea);
-				$hash = password_hash($datos[4], PASSWORD_BCRYPT);
-                $pvd->persona_id = $datos[4];
-                $pvd->persona_nombres = utf8_encode($datos[0]);
-                $pvd->persona_apellido1 = utf8_encode($datos[1]);
-                $pvd->persona_apellido2 = utf8_encode($datos[2]);
+                $datos = explode(";",$linea);
+				$hash = password_hash($datos[1], PASSWORD_BCRYPT);
+                $pvd->persona_id = $datos[1];
+				
+                $pvd->persona_nombres = utf8_encode($datos[2]);
+                $pvd->persona_apellido1 = "";
+                $pvd->persona_apellido2 = "";
+				
                 $pvd->persona_tipo_id = 2;
-                $pvd->persona_cui = $datos[4];
-                $pvd->persona_direccion = utf8_encode($datos[5]);
-                $pvd->persona_email = utf8_encode($datos[6]);
-                $pvd->persona_telefono = $datos[7];
+                $pvd->persona_cui = $datos[1];
+                //$pvd->persona_direccion = utf8_encode($datos[5]);
+                $pvd->persona_email = utf8_encode($datos[5]);
+                //$pvd->persona_telefono = $datos[7];
                 $pvd->persona_estado = $datos[8];
-				$pc2->usuario_cuenta = $datos[4];
+				$pc2->usuario_cuenta = $datos[1];
 				$pc2->usuario_password = $hash;
 				$pc2->usuario_rol_id = 2;
-				$pc2->usuario_persona_id = $datos[4];
+				$pc2->usuario_persona_id = $datos[1];
 				$pc2->usuario_estado = 0;
                 $this->model->Registrar($pvd);
 				$this->model->RegistrarU($pc2);

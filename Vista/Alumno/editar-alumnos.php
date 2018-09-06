@@ -27,22 +27,15 @@
                                 <div class="tab-pane fade in active" id="Formulario">
 									<form role="form" id="frm-alumno" action="?c=alumno&a=Editar" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="persona_id" value="<?php echo $pvd->persona_id; ?>" />
+										<input type="hidden" name="persona_nombres" value="<?php echo $pvd->persona_nombres; ?>" />                                   
                                         <input type="hidden" name="persona_tipo_id" value="<?php echo $pvd->persona_tipo_id; ?>" />
+										<input type="hidden" name="persona_apellido1" value="<?php echo $pvd->persona_apellido1; ?>" />
+										<input type="hidden" name="persona_apellido2" value="<?php echo $pvd->persona_apellido2; ?>" />
+										<input type="hidden" name="persona_cui" value="<?php echo $pvd->persona_cui; ?>" />
 										<div class="form-group col-lg-12">
-                                            <label>Nombres</label>
-											<input type="text" name="persona_nombres" value="<?php echo $pvd->persona_nombres; ?>" class="form-control" placeholder="Ingrese Nombre" data-validacion-tipo="requerido|min:100" />                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Primer Apellido</label>
-                                            <input class="form-control" name="persona_apellido1" value="<?php echo $pvd->persona_apellido1; ?>"  placeholder="Ingrese Primer Apellido">
+                                            <label><?php echo $pvd->persona_nombres; ?> - <?php echo $pvd->persona_cui; ?></label>
                                         </div>
-										<div class="form-group col-lg-6">
-                                            <label>Segundo Apellido</label>
-                                            <input class="form-control" name="persona_apellido2" value="<?php echo $pvd->persona_apellido2; ?>"  placeholder="Ingrese Segundo Apellido">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>CUI</label>
-                                            <input class="form-control" name="persona_cui" value="<?php echo $pvd->persona_cui; ?>"  placeholder="Ingrese CUI">
-                                        </div>
+                                       
 										<div class="form-group col-lg-6">
                                             <label>Correo Electrónico</label>
                                             <input class="form-control" name="persona_email" value="<?php echo $pvd->persona_email; ?>"  placeholder="Ingrese Correo Electrónico">

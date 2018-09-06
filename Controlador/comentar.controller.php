@@ -80,7 +80,7 @@ class ComentarController{
         //"Location:" No solamente envía el encabezado al navegador, sino que
         //también devuelve el código de status (302) REDIRECT al
         //navegador
-        header('Location: ../Vista/alumnoVista.php?c=alumno&a=Perfil&persona_id='.$_REQUEST['persona_cui']);
+        header('Location: ../Vista/Accion.php?c=alumno&a=Perfil&persona_id='.$_REQUEST['persona_cui']);
     }
 
     //Método que modifica el modelo de un proveedor.
