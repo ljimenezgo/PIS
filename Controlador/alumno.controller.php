@@ -73,9 +73,9 @@ class AlumnoController{
 		$hash = password_hash($_REQUEST['persona_cui'], PASSWORD_BCRYPT);
         //Captura de los datos del formulario (vista).
         $pvd->persona_id = $_REQUEST['persona_cui'];
-        $pvd->persona_nombres = $_REQUEST['persona_nombres'];
-        $pvd->persona_apellido1 = $_REQUEST['persona_apellido1'];
-        $pvd->persona_apellido2 = $_REQUEST['persona_apellido2'];
+        $pvd->persona_nombres = ''.$_REQUEST['persona_apellido1'].'/'.$_REQUEST['persona_apellido2'].", ".$_REQUEST['persona_nombres'];
+        $pvd->persona_apellido1 = "";
+        $pvd->persona_apellido2 = "";
 		$pvd->persona_tipo_id = $_REQUEST['persona_tipo_id'];
         $pvd->persona_cui = $_REQUEST['persona_cui'];
         $pvd->persona_direccion = $_REQUEST['persona_direccion'];
