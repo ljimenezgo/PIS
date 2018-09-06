@@ -41,7 +41,7 @@
 
     <!-- Custom Fonts -->
     <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+	<link href="plugins/estilo.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
