@@ -253,4 +253,74 @@ if($_SESSION['rol']==3){
 
 <?php
 }
+if($_SESSION['rol']==4){
+?>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="bienvenida.php">Bienestar Social</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <?php
+							echo "<i>" . $_SESSION['nombre_persona']."</i>";
+						?>
+						<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="../Vista/Accion.php?c=contrasena&a=CambiarContrasena"><i class="fa fa-gear fa-fw"></i> Cambiar Contraseña</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+						<!-- /Alumnos -->
+						<li>
+                            <a href="../Vista/Accion.php?c=alumno"><i class="fa fa-wrench fa-fw"></i> Alumnos</a>
+                        </li>
+						
+						<!-- /Alumnos -->
+						<li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Libros<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=libro&a=Nuevo">Registro de Libros</a>
+                                </li>
+                                <li>
+                                    <a href="../Vista/Accion.php?c=libro">Lista de Alumnos</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+						<!-- /Alumnos -->	
+					
+						
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.Barra Desplegable Izquierda -->
+        </nav>
+		<!-- /.Barra Profesor -->
+
+<?php
+}
 ?>
