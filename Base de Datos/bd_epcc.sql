@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-07-2018 a las 20:18:18
+-- Tiempo de generación: 14-09-2018 a las 00:13:26
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -89,7 +89,8 @@ CREATE TABLE `libro` (
   `libro_pdf` longblob,
   `libro_enlace` varchar(100) DEFAULT NULL,
   `libro_estado` int(11) DEFAULT NULL,
-  `libro_cantidad_disponible` int(11) DEFAULT NULL
+  `libro_cantidad_disponible` int(11) DEFAULT NULL,
+  `libro_cantidad` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -144,7 +145,8 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`persona_id`, `persona_nombres`, `persona_apellido1`, `persona_apellido2`, `persona_tipo_id`, `persona_dni`, `persona_cui`, `persona_direccion`, `persona_email`, `persona_telefono`, `persona_malla`, `persona_seccion`, `persona_estado`) VALUES
-(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0);
+(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0),
+(72034062, 'Luis', 'Jimenez', 'Gonzales', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,8 @@ CREATE TABLE `prestamo` (
   `prestamo_persona_id` int(11) NOT NULL,
   `prestamo_fecha_entrega` timestamp NULL DEFAULT NULL,
   `prestamo_fecha_a_devolver` timestamp NULL DEFAULT NULL,
-  `prestamo_fecha_devolucion` timestamp NULL DEFAULT NULL
+  `prestamo_fecha_devolucion` timestamp NULL DEFAULT NULL,
+  `prestamo_estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -179,7 +182,8 @@ CREATE TABLE `rol` (
 INSERT INTO `rol` (`rol_id`, `rol_descripcion`) VALUES
 (1, 'Administrador'),
 (2, 'Alumno'),
-(3, 'Profesor');
+(3, 'Profesor'),
+(4, 'Biblioteca');
 
 -- --------------------------------------------------------
 
@@ -191,6 +195,14 @@ CREATE TABLE `tipo_libro` (
   `tipo_libro_id` int(11) NOT NULL,
   `tipo_libro_dsc` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_libro`
+--
+
+INSERT INTO `tipo_libro` (`tipo_libro_id`, `tipo_libro_dsc`) VALUES
+(1, 'Virtual'),
+(2, 'Fisico');
 
 -- --------------------------------------------------------
 
@@ -210,7 +222,8 @@ CREATE TABLE `tipo_persona` (
 INSERT INTO `tipo_persona` (`tipo_persona_id`, `tipo_persona_dsc`) VALUES
 (1, 'Administrador'),
 (2, 'Alumno'),
-(3, 'Profesor');
+(3, 'Profesor'),
+(4, 'Biblioteca');
 
 -- --------------------------------------------------------
 
@@ -232,7 +245,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usuario_id`, `usuario_cuenta`, `usuario_password`, `usuario_rol_id`, `usuario_persona_id`, `usuario_estado`) VALUES
-(36, '72034061', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 1, 72034061, 0);
+(36, '72034061', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 1, 72034061, 0),
+(53, '72034062', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 4, 72034062, 0);
 
 --
 -- Índices para tablas volcadas
@@ -356,13 +370,13 @@ ALTER TABLE `alumno_curso`
 -- AUTO_INCREMENT de la tabla `comentarios_docente`
 --
 ALTER TABLE `comentarios_docente`
-  MODIFY `comentarios_docente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `comentarios_docente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `docente_curso`
@@ -374,49 +388,49 @@ ALTER TABLE `docente_curso`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `malla_curricular`
 --
 ALTER TABLE `malla_curricular`
-  MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_promedio`
 --
 ALTER TABLE `nota_promedio`
-  MODIFY `nota_promedio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `nota_promedio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
-  MODIFY `prestamo_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `prestamo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_libro`
 --
 ALTER TABLE `tipo_libro`
-  MODIFY `tipo_libro_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tipo_libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_persona`
 --
 ALTER TABLE `tipo_persona`
-  MODIFY `tipo_persona_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tipo_persona_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=544;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Restricciones para tablas volcadas

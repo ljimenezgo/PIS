@@ -22,6 +22,7 @@
                         <div class="panel-heading">
                             Libros pendientes de devolver
                         </div>
+						
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
@@ -39,12 +40,27 @@
                                     <tbody>
                                     <?php foreach($this->model->Listar() as $r): ?>
                                         <tr class="odd gradeX">
-                                            <td><?php echo $r->libro_nombre; ?></td>
+										<?php
+											$hoy = date("Y-m-d");
+											if($hoy > $r->prestamo_fecha_a_devolver){
+										?>
+                                            <td bgcolor="red"><?php echo $r->libro_nombre; ?></td>
+                                            <td bgcolor="red"><?php echo $r->persona_nombres; ?></td>
+                                            <td bgcolor="red"><?php echo $r->prestamo_fecha_entrega; ?></td>
+                                            <td bgcolor="red"><?php echo $r->prestamo_fecha_a_devolver; ?></td>
+                                            <td bgcolor="red" class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>">Devuelto</a></td>
+										<?php
+											}else{
+										?>
+											<td><?php echo $r->libro_nombre; ?></td>
                                             <td><?php echo $r->persona_nombres; ?></td>
                                             <td><?php echo $r->prestamo_fecha_entrega; ?></td>
                                             <td><?php echo $r->prestamo_fecha_a_devolver; ?></td>
                                             <td class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>">Devuelto</a></td>
-
+										
+										<?php
+											}
+										?>
                                         </tr>                                        
                                     <?php endforeach; ?>    
                                     </tbody>
