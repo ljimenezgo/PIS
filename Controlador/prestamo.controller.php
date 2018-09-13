@@ -84,7 +84,8 @@ class PrestamoController{
 
         //Registro al modelo prestamo.
         $this->model->Registrar($pvd);
-
+		$this->model->DisminuirDisponible($_REQUEST['prestamo_libro_id']);
+		$this->model->AumentarEntregado($_REQUEST['prestamo_libro_id']);
         //header() es usado para enviar encabezados HTTP sin formato.
         //"Location:" No solamente envía el encabezado al navegador, sino que
         //también devuelve el código de status (302) REDIRECT al
@@ -109,6 +110,8 @@ class PrestamoController{
     //Método que elimina la tupla proveedor con el nit dado.
     public function Eliminar(){
         $this->model->Eliminar($_REQUEST['prestamo_id']);
+		$this->model->AumentarDisponible($_REQUEST['prestamo_libro_id']);
+		$this->model->DisminuirEntregado($_REQUEST['prestamo_libro_id']);
         header('Location: ../Vista/Accion.php?c=prestamo&a=lista');
     }
 

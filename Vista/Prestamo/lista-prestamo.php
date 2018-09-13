@@ -20,7 +20,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Alumnos Registrados
+                            Libros pendientes de devolver
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -43,7 +43,7 @@
                                             <td><?php echo $r->persona_nombres; ?></td>
                                             <td><?php echo $r->prestamo_fecha_entrega; ?></td>
                                             <td><?php echo $r->prestamo_fecha_a_devolver; ?></td>
-                                            <td class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>">Devuelto</a></td>
+                                            <td class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>">Devuelto</a></td>
 
                                         </tr>                                        
                                     <?php endforeach; ?>    

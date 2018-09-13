@@ -34,7 +34,6 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="Formulario">
 									<form role="form" id="frm-libro" action="?c=libro&a=Guardar" method="post" >
-                                        <input type="hidden" name="libro_tipo" value="1" />
 
 										<div class="form-group col-lg-12">
                                             <label>Codigo</label>
@@ -49,15 +48,21 @@
                                             <input class="form-control" name="libro_autor" value="<?php echo $pvd->libro_autor; ?>"  placeholder="Ingrese Autor">
                                         </div>
 										
-                                        <div class="form-group col-lg-6">
+                                        <div class="form-group col-lg-9">
                                             <label>Enlace</label>
                                             <input class="form-control" name="libro_enlace" value="<?php echo $pvd->libro_enlace; ?>"  placeholder="Ingrese Enlace">
                                         </div>
-										<div class="form-group col-lg-6">
+										<div class="form-group col-lg-3">
                                             <label>Cantidad</label>
-                                            <input class="form-control" name="libro_cantidad_disponible" value="<?php echo $pvd->libro_cantidad_disponible; ?>"  placeholder="Ingrese Cantidad">
+                                            <input class="form-control" name="libro_cantidad" value="<?php echo $pvd->libro_cantidad_disponible; ?>"  placeholder="Ingrese Cantidad">
                                         </div>
-										
+										 <div class="form-group col-lg-12">
+										<label>Tipo</label>
+											<select name= "libro_tipo" class="selectpicker col-lg-2" data-live-search="true">
+													<option value="1" >Virtual</option>
+													<option value="2" >Fisico</option>
+											</select>
+										 </div>
 										<br>
 										<div class="col-lg-12">
 											<button type="submit" class="btn btn-default ">Registrar</button>

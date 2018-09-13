@@ -12,6 +12,7 @@ class libro
     public $libro_enlace;
     public $libro_estado;
     public $libro_cantidad_disponible;
+    public $libro_cantidad;
 	
 	public function __CONSTRUCT()
 	{
@@ -128,7 +129,7 @@ class libro
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_cantidad) VALUES ( ?,?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 			$this->pdo->prepare($sql)
@@ -141,7 +142,8 @@ class libro
 						$data->libro_pdf,
 						$data->libro_enlace,
 						$data->libro_estado,
-						$data->libro_cantidad_disponible
+						$data->libro_cantidad_disponible,
+						$data->libro_cantidad
                 )
 			);
         header('Location: ../Vista/Accion.php?c=libro');

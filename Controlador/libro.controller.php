@@ -72,7 +72,8 @@ class LibroController{
         $pvd->libro_pdf = "";
         $pvd->libro_enlace = $_REQUEST['libro_enlace'];
         $pvd->libro_estado = 0;
-        $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad_disponible'];
+        $pvd->libro_cantidad = 0;
+        $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad'];
 
         //Registro al modelo libro.
         $this->model->Registrar($pvd);
@@ -90,7 +91,7 @@ class LibroController{
         $pvd->libro_enlace = $_REQUEST['libro_enlace'];
         $pvd->libro_estado = 0;
         $pvd->libro_id = $_REQUEST['libro_id'];
-        $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad_disponible'];
+        $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad_disponible']+$_REQUEST['cantidad'];
 
         $this->model->Actualizar($pvd);
 

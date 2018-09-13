@@ -15,7 +15,7 @@
 								
                             </div>
 							<?php
-                                if($pvd->libro_estado==0){
+                                if($pvd->libro_cantidad_disponible!=0 && $pvd->libro_estado==0){
                             ?>
                                             
 							<div class="alert alert-success">
@@ -42,7 +42,14 @@
                                                     <td>Tipo</td>
                                                     <td><?php echo $pvd->libro_tipo; ?></td>
                                                 </tr>
-                                                
+                                                <tr>
+                                                    <td>Cantidad Disponible</td>
+                                                    <td><?php echo $pvd->libro_cantidad_disponible; ?></td>
+                                                </tr>
+												<tr>
+                                                    <td>Cantidad Total</td>
+                                                    <td><?php echo $pvd->libro_cantidad_disponible+$pvd->libro_cantidad; ?></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -51,10 +58,7 @@
 							<div >
 							<canvas id="chart1" width="400" height="100"></canvas>
 							</div>
-							<div class="col-lg-12">
-							<a href="?c=libro&a=Prestar&libro_id=<?php echo $pvd->libro_id; ?>" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Prestar</a>
-
-                </div>
+							
                 <!-- /.col-lg-12 -->
 							
                 </div>

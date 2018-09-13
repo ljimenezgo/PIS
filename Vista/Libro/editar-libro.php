@@ -28,6 +28,7 @@
 									<form role="form" id="frm-libro" action="?c=libro&a=Editar" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="libro_tipo" value="1" />
                                         <input type="hidden" name="libro_id" value="<?php echo $pvd->libro_id; ?>" />
+                                        <input type="hidden" name="libro_cantidad_disponible" value="<?php echo $pvd->libro_cantidad_disponible; ?>" />
 
 										<div class="form-group col-lg-12">
                                             <label>Codigo</label>
@@ -47,8 +48,8 @@
                                             <input class="form-control" name="libro_enlace" value="<?php echo $pvd->libro_enlace; ?>"  placeholder="Ingrese Enlace">
                                         </div>
 										<div class="form-group col-lg-6">
-                                            <label>Cantidad</label>
-                                            <input class="form-control" name="libro_cantidad_disponible" value="<?php echo $pvd->libro_cantidad_disponible; ?>"  placeholder="Ingrese Cantidad">
+                                            <label>Cantidad Agregada</label>
+                                            <input class="form-control" name="cantidad" value="0"  placeholder="Ingrese Cantidad">
                                         </div>
 										
 										<br>

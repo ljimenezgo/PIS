@@ -86,7 +86,7 @@ class prestamo
 		{
 			$result = array();
 
-			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0");
+			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0 AND libro_cantidad_disponible>0");
 			$stm->execute();
 
 			return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -126,7 +126,70 @@ class prestamo
 			die($e->getMessage());
 		}
 	}
+	
+	public function AumentarDisponible($prestamo_libro_id)
+	{
+		try
+		{
+			//Sentencia SQL para eliminar una tupla utilizando
+			//la clausula Where.
+			$stm = $this->pdo
+			            ->prepare("UPDATE libro SET libro_cantidad_disponible = libro_cantidad_disponible + 1 WHERE libro_id = ?");
 
+			$stm->execute(array($prestamo_libro_id));
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	
+		public function DisminuirDisponible($prestamo_libro_id)
+	{
+		try
+		{
+			//Sentencia SQL para eliminar una tupla utilizando
+			//la clausula Where.
+			$stm = $this->pdo
+			            ->prepare("UPDATE libro SET libro_cantidad_disponible = libro_cantidad_disponible - 1 WHERE libro_id = ?");
+
+			$stm->execute(array($prestamo_libro_id));
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+		
+	public function AumentarEntregado($prestamo_libro_id)
+	{
+		try
+		{
+			//Sentencia SQL para eliminar una tupla utilizando
+			//la clausula Where.
+			$stm = $this->pdo
+			            ->prepare("UPDATE libro SET libro_cantidad = libro_cantidad + 1 WHERE libro_id = ?");
+
+			$stm->execute(array($prestamo_libro_id));
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	
+		public function DisminuirEntregado($prestamo_libro_id)
+	{
+		try
+		{
+			//Sentencia SQL para eliminar una tupla utilizando
+			//la clausula Where.
+			$stm = $this->pdo
+			            ->prepare("UPDATE libro SET libro_cantidad = libro_cantidad- 1 WHERE libro_id = ?");
+
+			$stm->execute(array($prestamo_libro_id));
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 	public function Actualizar($data)
 	{
 		try
@@ -158,7 +221,7 @@ class prestamo
 		{
 		$sql = "INSERT INTO prestamo (prestamo_id,prestamo_libro_id,prestamo_persona_id,prestamo_fecha_entrega,prestamo_fecha_a_devolver,prestamo_fecha_devolucion,prestamo_estado)
 		        VALUES (?, ?, ?, ?, ?,?,?)";
-
+			
 		$this->pdo->prepare($sql)
 		     ->execute(
 				array(
@@ -172,8 +235,8 @@ class prestamo
                     $data->prestamo_estado
                 )
 			);
-		} catch (Exception $e)
-		{
+			} catch (Exception $e)
+			{
 			die($e->getMessage());
 		}
 	}
