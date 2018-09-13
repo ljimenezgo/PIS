@@ -264,7 +264,7 @@ if($_SESSION['rol']==4){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="bienvenida.php">Bienestar Social</a>
+                <a class="navbar-brand" href="bienvenida.php">Biblioteca</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -292,10 +292,6 @@ if($_SESSION['rol']==4){
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-						<!-- /Alumnos -->
-						<li>
-                            <a href="../Vista/Accion.php?c=alumno"><i class="fa fa-wrench fa-fw"></i> Alumnos</a>
-                        </li>
 						
 						<!-- /Alumnos -->
 						<li>
