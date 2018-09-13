@@ -304,9 +304,24 @@ if($_SESSION['rol']==4){
                                     <a href="../Vista/Accion.php?c=libro">Lista de Libros</a>
                                 </li>
                             </ul>
+							
                             <!-- /.nav-second-level -->
                         </li>
-						<!-- /Alumnos -->	
+						<li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Prestamo<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=Nuevo">Agregar Prestamo</a>
+                                </li>
+                                 <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=lista">Pendiente</a>
+                                </li>
+								<li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=historial">Historial</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
 					
 						
                     </ul>
