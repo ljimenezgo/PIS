@@ -46,7 +46,7 @@ class libro
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM libro");
+			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
@@ -59,22 +59,7 @@ class libro
 			die($e->getMessage());
 		}
 	}
-	//Este método elimina la tupla alumno dado un id.
-	public function Eliminar($libro_codigo)
-	{
-		try
-		{
-			//Sentencia SQL para eliminar una tupla utilizando
-			//la clausula Where.
-			$stm = $this->pdo
-			            ->prepare("UPDATE libro SET libro_estado = 1 WHERE libro_codigo = ?");
 
-			$stm->execute(array($libro_codigo));
-		} catch (Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
 	public function Actualizar($data)
 	{
 
@@ -115,6 +100,23 @@ class libro
 		}
 		
 	}
+	
+	public function Eliminar($libro_id)
+	{
+		try
+		{
+			//Sentencia SQL para eliminar una tupla utilizando
+			//la clausula Where.
+			$stm = $this->pdo
+			            ->prepare("UPDATE libro SET libro_estado = 1 WHERE libro_id = ?");
+
+			$stm->execute(array($libro_id));
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	
 	public function Registrar(libro $data)
 	{
 		$consulta = "select count(*) as total from libro where libro_id = ?";
