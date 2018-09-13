@@ -38,7 +38,7 @@ class LibroController{
         }
 
         //Llamado de las vistas.
-        require_once '../Vista/libro/editar-libros.php';
+        require_once '../Vista/libro/editar-libro.php';
 	}
 
 	//Llamado a la vista libro-perfil
@@ -82,15 +82,15 @@ class LibroController{
     public function Editar(){
         $pvd = new libro();
 
+        $pvd->libro_codigo = $_REQUEST['libro_codigo'];
+        $pvd->libro_nombre = $_REQUEST['libro_nombre'];
+        $pvd->libro_autor = $_REQUEST['libro_autor'];
+		$pvd->libro_tipo = $_REQUEST['libro_tipo'];
+        $pvd->libro_pdf = "";
+        $pvd->libro_enlace = $_REQUEST['libro_enlace'];
+        $pvd->libro_estado = 0;
         $pvd->libro_id = $_REQUEST['libro_id'];
-        $pvd->persona_nombres = strtoupper($_REQUEST['persona_nombres']);
-        $pvd->persona_apellido1 = strtoupper($_REQUEST['persona_apellido1']);
-        $pvd->persona_apellido2 = strtoupper($_REQUEST['persona_apellido2']);
-		$pvd->persona_tipo_id = $_REQUEST['persona_tipo_id'];
-        $pvd->persona_cui = $_REQUEST['persona_cui'];
-        $pvd->persona_direccion = $_REQUEST['persona_direccion'];
-        $pvd->persona_email = $_REQUEST['persona_email'];
-        $pvd->persona_telefono = $_REQUEST['persona_telefono'];
+        $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad_disponible'];
 
         $this->model->Actualizar($pvd);
 

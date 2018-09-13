@@ -24,7 +24,22 @@ class libro
 			die($e->getMessage());
 		}
 	}
-	
+	public function Obtener($libro_id)
+	{
+		try
+		{
+			//Sentencia SQL para selección de datos utilizando
+			//la clausula Where para especificar el id del alumno.
+			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_id = ?");
+			//Ejecución de la sentencia SQL utilizando el parámetro id.
+			$stm->execute(array($libro_id));
+			return $stm->fetch(PDO::FETCH_OBJ);
+
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 	public function Listar()
 	{
 		try
@@ -60,7 +75,46 @@ class libro
 			die($e->getMessage());
 		}
 	}
-	
+	public function Actualizar($data)
+	{
+
+		try
+		{
+			//Sentencia SQL para actualizar los datos.
+			$sql = "UPDATE libro SET
+						libro_codigo          = ?,
+						libro_nombre        = ?,
+						libro_autor        = ?,
+						libro_tipo			 = ?,
+						libro_pdf				 = ?,
+						libro_enlace		 = ?,
+						libro_estado			 = ?,
+						libro_cantidad_disponible		 = ?
+						
+				    WHERE libro_id = ?";
+			//Ejecución de la sentencia a partir de un arreglo.
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+                        $data->libro_codigo,
+						$data->libro_nombre,
+						$data->libro_autor,
+						$data->libro_tipo,
+						$data->libro_pdf,
+						$data->libro_enlace,
+						$data->libro_estado,
+						$data->libro_cantidad_disponible,
+						$data->libro_id
+
+
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+		
+	}
 	public function Registrar(libro $data)
 	{
 		$consulta = "select count(*) as total from libro where libro_id = ?";

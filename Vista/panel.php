@@ -305,7 +305,7 @@ if($_SESSION['rol']==4){
                                     <a href="../Vista/Accion.php?c=libro&a=Nuevo">Registro de Libros</a>
                                 </li>
                                 <li>
-                                    <a href="../Vista/Accion.php?c=libro">Lista de Alumnos</a>
+                                    <a href="../Vista/Accion.php?c=libro">Lista de Libros</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
