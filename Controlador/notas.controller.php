@@ -112,7 +112,7 @@ class NotasController{
         $i = 0;
         foreach ($lineas as $linea_num => $linea) { 
             if($i != 0) { 
-                $datos = explode(",",$linea);
+                $datos = explode(";",$linea);
                 $pvd->nota_promedio_alumno_id = $datos[0];
                 $pvd->nota_promedio_semestre = $datos[1];
                 $pvd->nota_promedio_nota = $datos[2];
