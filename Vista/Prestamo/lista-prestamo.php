@@ -33,6 +33,7 @@
                                             <th>Alumno</th>
                                             <th>Fecha Entrega</th>
                                             <th>Fecha Devolución</th>
+                                            <th>Estado</th>
                                             <th>Accion</th>
                                             
                                         </tr>
@@ -48,6 +49,7 @@
                                             <td bgcolor="red"><?php echo $r->persona_nombres; ?></td>
                                             <td bgcolor="red"><?php echo $r->prestamo_fecha_entrega; ?></td>
                                             <td bgcolor="red"><?php echo $r->prestamo_fecha_a_devolver; ?></td>
+                                            <td bgcolor="red">ATRASADO</td>
                                             <td bgcolor="red" class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>">Devuelto</a></td>
 										<?php
 											}else{
@@ -56,6 +58,7 @@
                                             <td><?php echo $r->persona_nombres; ?></td>
                                             <td><?php echo $r->prestamo_fecha_entrega; ?></td>
                                             <td><?php echo $r->prestamo_fecha_a_devolver; ?></td>
+                                            <td bgcolor="green">EN ESPERA</td>
                                             <td class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>">Devuelto</a></td>
 										
 										<?php
