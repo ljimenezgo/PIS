@@ -61,7 +61,7 @@
 											</select>
 											<br><br>
 											<label>Nota</label>
-												<input type="number" class="form-control" name="nota_promedio_nota" value="<?php echo $pvd->nota_promedio_nota; ?>"  placeholder="Ingrese Nota">
+												<input class="form-control" name="nota_promedio_nota" value="<?php echo $pvd->nota_promedio_nota; ?>"  placeholder="Ingrese Nota">
  
 
 										</div>
