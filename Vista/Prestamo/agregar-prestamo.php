@@ -22,12 +22,6 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-pills">
-                                <li class="active"><a href="#Formulario" data-toggle="tab">Formulario</a>
-                                </li>
-                                
-                            </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -38,7 +32,7 @@
 										<div class="form-group col-lg-12"><br>
 											
                                             <label>Alumno</label>
-											<select name= "prestamo_persona_id" class="selectpicker col-lg-12" data-live-search="true">
+											<select name= "prestamo_persona_id" class="selectpicker col-lg-12" data-live-search="true" required>
 												<?php foreach($this->model->ListarAlumnos() as $r): ?>
 													<option value="<?php echo $r->persona_id; ?>"  data-tokens="<?php echo $r->persona_cui; ?> <?php echo $r->persona_apellido1; ?> <?php echo $r->persona_nombres; ?>"><?php echo $r->persona_cui; ?> <?php echo $r->persona_apellido1; ?> <?php echo $r->persona_nombres; ?></option>
 												<?php endforeach; ?> 
@@ -46,7 +40,7 @@
 											<br><br>
 											
 											<label>Libro</label>
-											<select name= "prestamo_libro_id" class="selectpicker col-lg-12" data-live-search="true">
+											<select name= "prestamo_libro_id" class="selectpicker col-lg-12" data-live-search="true" required>
 												<?php foreach($this->model->ListarLibros() as $rr): ?>
 													<option value="<?php echo $rr->libro_id; ?>"  data-tokens="<?php echo $rr->libro_nombre; ?>"><?php echo $rr->libro_nombre; ?></option>
 												<?php endforeach; ?> 

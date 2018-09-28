@@ -50,16 +50,16 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading center">
-                        <h3 class="panel-title center"><center>Bienestar Social</center></h3>
+                        <h3 class="panel-title center"><center>Escuela de Comunicacion</center></h3>
                     </div>
                     <div class="panel-body">
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" name="username" type="text" id="username" placeholder="Usuario">
+                                    <input class="form-control" name="username" type="text" id="username" placeholder="Usuario" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="password" type="password" id="password" placeholder="Password">
+                                    <input class="form-control" name="password" type="password" id="password" placeholder="Password" required>
                                 </div>
 
                                 <!-- Change this to a button or input when using this as a form -->

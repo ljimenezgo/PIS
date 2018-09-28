@@ -1,0 +1,15 @@
+Aumentar Año Publicacion, Editorial
+
+Agregar en prestamo
+telefono y direccion
+
+Definir cuantos días se puede prestar(estado: moroso,deudor,status)(porcentaje de eficiente)
+historial moroso(que salga el alumno en rojo) Indicador
+
+RE-PRESTAMO (ampliar)
+
+Premios en prestamos
+
+Enviar correo electrónico
+
+Alerta de libros pendientes

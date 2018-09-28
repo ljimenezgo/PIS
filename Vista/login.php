@@ -48,10 +48,10 @@
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" name="username" type="text" id="username" placeholder="Usuario">
+                                    <input class="form-control" name="username" type="text" id="username" placeholder="Usuario" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="password" type="password" id="password" placeholder="Password">
+                                    <input class="form-control" name="password" type="password" id="password" placeholder="Password" required>
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
