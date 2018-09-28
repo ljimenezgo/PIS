@@ -32,16 +32,19 @@
 
 										<div class="form-group col-lg-12">
                                             <label>Codigo</label>
-											<input type="text" name="libro_codigo" value="<?php echo $pvd->libro_codigo; ?>" class="form-control" placeholder="Ingrese Codigo" data-validacion-tipo="requerido|min:100" />                                        </div>
-                                        
+											<input type="text" name="libro_codigo" value="<?php echo $pvd->libro_codigo; ?>" class="form-control" placeholder="Ingrese Codigo" data-error="Llene este campo" required>                                        
+											<div class="help-block with-errors"></div>
+										</div>
 										<div class="form-group col-lg-6">
                                             <label>Nombre</label>
-                                            <input class="form-control" name="libro_nombre" value="<?php echo $pvd->libro_nombre; ?>"  placeholder="Ingrese Nombre">
-                                        </div>
+                                            <input class="form-control" name="libro_nombre" value="<?php echo $pvd->libro_nombre; ?>"  placeholder="Ingrese Nombre"data-error="Llene este campo" required>                                        
+											<div class="help-block with-errors"></div>
+										</div>
 										<div class="form-group col-lg-6">
                                             <label>Autor</label>
-                                            <input class="form-control" name="libro_autor" value="<?php echo $pvd->libro_autor; ?>"  placeholder="Ingrese Autor">
-                                        </div>
+                                            <input class="form-control" name="libro_autor" value="<?php echo $pvd->libro_autor; ?>"  placeholder="Ingrese Autor"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
+											<div class="help-block with-errors"></div>
+										</div>
 										
                                         <div class="form-group col-lg-6">
                                             <label>Enlace</label>
@@ -49,8 +52,9 @@
                                         </div>
 										<div class="form-group col-lg-6">
                                             <label>Cantidad Agregada</label>
-                                            <input class="form-control" name="cantidad" value="0"  placeholder="Ingrese Cantidad">
-                                        </div>
+                                            <input class="form-control" name="cantidad" value="0"  placeholder="Ingrese Cantidad"pattern="^[0-9]+$" data-error="Debe de contener solo numeros" required>
+											<div class="help-block with-errors"></div>
+										</div>
 										
 										<br>
 										<div class="col-lg-12">

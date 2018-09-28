@@ -20,15 +20,18 @@
     Cambiar contraseña
   </h4>
   <div style="padding: 20px;" id="form-olvidado">
-  <form accept-charset="UTF-8" role="form" id="login-form" action="?c=contrasena&a=Cambiar" method="post">
+  <form data-toggle="validator" accept-charset="UTF-8" role="form" id="login-form" action="?c=contrasena&a=Cambiar" method="post">
       <fieldset>
         <div class="form-group input-group">
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-lock">
             </i>
           </span>
-          <input name="usuario_password" value="<?php echo $pvd->usuario_password; ?>" />
-        </div>
+		 
+         <input name="usuario_password" value="<?php echo $pvd->usuario_password; ?>" data-error="Debe llenar este campo" required>                                        
+		<div class="help-block with-errors"></div>
+		</div>
+       
 		<input type="hidden" name="persona_id" value="<?php echo $_SESSION['usuario_id']; ?>" />
 
         <div class="form-group">

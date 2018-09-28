@@ -15,6 +15,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="../plugins/dist/js/sb-admin-2.js"></script>
 	<script src="../plugins/dist/js/bootstrap-select.js"></script>
+	<script src="../plugins/bootstrap-validator-master/js/validator.js"></script>
+
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {

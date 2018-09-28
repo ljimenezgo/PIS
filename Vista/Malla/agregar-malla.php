@@ -24,13 +24,14 @@
                             
                               
                                 <div lass="tab-pane fade" id="Archivo">
-                                    <form role="form" id="malla-archivo" enctype="multipart/form-data" action="?c=malla&a=GuardarArchivo" method="post">
+                                    <form data-toggle="validator"  role="form" id="malla-archivo" enctype="multipart/form-data" action="?c=malla&a=GuardarArchivo" method="post">
                                         
                                         <div class="form-group">
                                             <label>Subir Archivo</label> <br>
                                             <label>(OJO)  El nombre del archivo debe tener la siguiente estructura:</label>
                                             <label>año.iniciales_de_escuela.csv</label>
-                                            <input id="archivo" accept=".csv" name="archivo" type="file" /> 
+                                            <input id="archivo" accept=".csv" name="archivo" type="file" data-error="Selecciona un archivo" required> 
+											<div class="help-block with-errors"></div>
                                         </div>
                                   
                                         <button type="submit" class="btn btn-default">Subir</button>

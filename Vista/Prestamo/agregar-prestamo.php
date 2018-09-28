@@ -32,7 +32,7 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="Formulario">
-									<form role="form" id="frm-prestamo" action="?c=prestamo&a=Guardar" method="post" >
+									<form data-toggle="validator" role="form" id="frm-prestamo" action="?c=prestamo&a=Guardar" method="post" >
 										<input type="hidden" name="prestamo_fecha_entrega" value="<?php echo date("Y-m-d");?>" readonly>
 
 										<div class="form-group col-lg-12"><br>
@@ -52,9 +52,11 @@
 												<?php endforeach; ?> 
 											</select>
 											<br><br>
-											<label>Fecha de devolucion</label>
-											<input type="date" name="prestamo_fecha_a_devolver" step="1" min="<?php $hoy = getdate();?>" max="2019-12-31" value="<?php echo date("Y-m-d");?>">
-
+											<div class="form-group col-lg-9">
+												<label>Fecha de devolucion</label>
+												<input type="date" name="prestamo_fecha_a_devolver" step="1" min="<?php $hoy = getdate();?>" max="2019-12-31" value="<?php echo date("Y-m-d");?>"data-error="Llene este campo" required>                                        
+												<div class="help-block with-errors"></div>
+											</div>
 										</div>
 										
 										<br>

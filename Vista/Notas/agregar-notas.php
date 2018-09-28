@@ -33,7 +33,7 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="Formulario">
-									<form role="form" id="frm-notas" action="?c=notas&a=Guardar" method="post" >
+									<form data-toggle="validator" role="form" id="frm-notas" action="?c=notas&a=Guardar" method="post" >
                                         <input type="hidden" name="persona_id" value="<?php echo $pvd->persona_id; ?>" />
                                         <input type="hidden" name="persona_tipo_id" value="1" />
                                         <input type="hidden" name="persona_estado" value="0" />
@@ -60,10 +60,11 @@
 													<option value="III"  data-tokens="<?php echo $pvd->nota_promedio_semestre; ?>">III</option>
 											</select>
 											<br><br>
-											<label>Nota</label>
-												<input class="form-control" name="nota_promedio_nota" value="<?php echo $pvd->nota_promedio_nota; ?>"  placeholder="Ingrese Nota">
- 
-
+											<div class="form-group col-lg-12">
+												<label>Nota</label>
+													<input class="form-control" name="nota_promedio_nota" value="<?php echo $pvd->nota_promedio_nota; ?>"  placeholder="Ingrese Nota" pattern="^[0-9]+$" data-error="Debe de contener solo números" required>
+												<div class="help-block with-errors"></div>
+											</div>
 										</div>
 										
 										<br>
@@ -74,11 +75,12 @@
                                     </form>
 								</div>
                                 <div class="tab-pane fade" id="Archivo">
-                                    <form role="form" id="frm-nota-archivo" enctype="multipart/form-data" action="?c=notas&a=GuardarArchivo" method="post">
+                                    <form data-toggle="validator" role="form" id="frm-nota-archivo" enctype="multipart/form-data" action="?c=notas&a=GuardarArchivo" method="post">
                                         
                                         <div class="form-group">
                                             <label>Subir Archivo</label>
-                                            <input id="archivo" accept=".csv" name="archivo" type="file" />
+                                            <input id="archivo" accept=".csv" name="archivo" type="file" data-error="Selecciona un archivo" required> 
+											<div class="help-block with-errors"></div>
                                         </div>
                                   
                                         <button type="submit" class="btn btn-default">Registrar</button>

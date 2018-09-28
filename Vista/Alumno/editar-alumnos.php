@@ -25,7 +25,7 @@
                             <!-- Nav tabs -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="Formulario">
-									<form role="form" id="frm-alumno" action="?c=alumno&a=Editar" method="post" enctype="multipart/form-data">
+									<form data-toggle="validator" role="form" id="frm-alumno" action="?c=alumno&a=Editar" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="persona_id" value="<?php echo $pvd->persona_id; ?>" />
 										<input type="hidden" name="persona_nombres" value="<?php echo $pvd->persona_nombres; ?>" />                                   
                                         <input type="hidden" name="persona_tipo_id" value="<?php echo $pvd->persona_tipo_id; ?>" />
@@ -37,16 +37,17 @@
                                         </div>
                                        
 										<div class="form-group col-lg-6">
-                                            <label>Correo Electrónico</label>
-                                            <input class="form-control" name="persona_email" value="<?php echo $pvd->persona_email; ?>"  placeholder="Ingrese Correo Electrónico">
-                                        </div>
+                                            <label for="persona_email" class="control-label" >Correo Electrónico</label>
+                                            <input  id="persona_email" class="form-control" name="persona_email" value="<?php echo $pvd->persona_email; ?>"  type="email" data-error="Ingresa un correo válido" required>
+											<div class="help-block with-errors"></div>
+										</div>
 										<div class="form-group col-lg-12">
                                             <label>Dirección</label>
-                                            <input class="form-control" name="persona_direccion" value="<?php echo $pvd->persona_direccion; ?>"  placeholder="Ingrese Dirección">
+                                            <input class="form-control" name="persona_direccion" value="<?php echo $pvd->persona_direccion; ?>"  placeholder="Ingrese Dirección" >
                                         </div>
 										<div class="form-group col-lg-6">
                                             <label>Teléfono</label>
-                                            <input class="form-control" name="persona_telefono" value="<?php echo $pvd->persona_telefono; ?>"  placeholder="Ingrese Teléfono">
+                                            <input class="form-control" name="persona_telefono" value="<?php echo $pvd->persona_telefono; ?>"  placeholder="Ingrese Teléfono" >
                                         </div>
 										<br>
 										<div class="col-lg-12">
