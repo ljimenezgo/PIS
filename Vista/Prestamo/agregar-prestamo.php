@@ -29,29 +29,49 @@
 									<form data-toggle="validator" role="form" id="frm-prestamo" action="?c=prestamo&a=Guardar" method="post" >
 										<input type="hidden" name="prestamo_fecha_entrega" value="<?php echo date("Y-m-d");?>" readonly>
 
-										<div class="form-group col-lg-12"><br>
-											
+										<div class="form-group col-lg-12">
                                             <label>Alumno</label>
 											<select name= "prestamo_persona_id" class="selectpicker col-lg-12" data-live-search="true" required>
-												<?php foreach($this->model->ListarAlumnos() as $r): ?>
-													<option value="<?php echo $r->persona_id; ?>"  data-tokens="<?php echo $r->persona_cui; ?> <?php echo $r->persona_apellido1; ?> <?php echo $r->persona_nombres; ?>"><?php echo $r->persona_cui; ?> <?php echo $r->persona_apellido1; ?> <?php echo $r->persona_nombres; ?></option>
+												<?php foreach($this->model->ListarAlumnos() as $r): 
+													$porcentaje = ($r->persona_prestamo_deuda*100)/$r->persona_prestamo_total;
+													$porcentaje = 100-$porcentaje;
+												?>
+													
+													<option value="<?php echo $r->persona_id; ?>"  data-tokens="<?php echo $r->persona_cui; ?> <?php echo $r->persona_apellido1; ?> <?php echo $r->persona_nombres; ?>"><?php echo $r->persona_cui; ?> <?php echo $r->persona_apellido1; ?> <?php echo $r->persona_nombres; ?><?php  echo "\t"; echo "---------"; echo "\t";echo "STATUS: "; echo ''.$porcentaje.'%'; ?></option>
 												<?php endforeach; ?> 
 											</select>
-											<br><br>
-											
-											<label>Libro</label>
-											<select name= "prestamo_libro_id" class="selectpicker col-lg-12" data-live-search="true" required>
-												<?php foreach($this->model->ListarLibros() as $rr): ?>
-													<option value="<?php echo $rr->libro_id; ?>"  data-tokens="<?php echo $rr->libro_nombre; ?>"><?php echo $rr->libro_nombre; ?></option>
-												<?php endforeach; ?> 
-											</select>
-											<br><br>
-											<div class="form-group col-lg-9">
-												<label>Fecha de devolucion</label>
-												<input type="date" name="prestamo_fecha_a_devolver" step="1" min="<?php $hoy = getdate();?>" max="2019-12-31" value="<?php echo date("Y-m-d");?>"data-error="Llene este campo" required>                                        
+										</div>
+										<div class="form-group col-lg-12">
+                                            <label for="prestamo_direccion" class="control-label" >Dirección</label>
+                                            <input class="form-control" name="prestamo_direccion" placeholder="Ingrese Direccion" data-error="Debe llenar este campo"required>
+                                        	<div class="help-block with-errors"></div>
+										</div>
+										<div class="form-group col-lg-6">
+												<label>Libro</label>
+												<select name= "prestamo_libro_id" class="selectpicker col-lg-12" data-live-search="true" required>
+													<?php foreach($this->model->ListarLibros() as $rr): ?>
+														<option value="<?php echo $rr->libro_id; ?>"  data-tokens="<?php echo $rr->libro_nombre; ?>"><?php echo $rr->libro_nombre; ?></option>
+													<?php endforeach; ?> 
+												</select>
+											</div>
+										<div class="form-group col-lg-6">
+                                            <label for="prestamo_telefono" class="control-label" >Telefono</label>
+                                            <input class="form-control" pattern="^[0-9]+$" name="prestamo_telefono" placeholder="Ingrese Numero de Telefono" data-error="Debe llenar este campo"required>
+                                        	<div class="help-block with-errors"></div>
+										</div>
+										<div class="form-group col-lg-6">
+												<label for="prestamo_email" class="control-label" >Correo Electrónico</label>
+												<input type="email" id="prestamo_email" class="form-control" name="prestamo_email" placeholder="Ingrese Correo Electrónico"  data-error="Ingresa un correo válido" required>
 												<div class="help-block with-errors"></div>
 											</div>
-										</div>
+											<div class="form-group col-lg-3">
+												<label>Devolución</label>
+												<p>¿Cuántos días se prestará el libro?</p>
+												<input class="form-control" type="number" name="libro_cantidad" value="<?php echo $pvd->libro_cantidad; ?>"  placeholder="Ingrese dias" pattern="^[0-9]+$" data-error="Debe de contener solo números" required>
+												<div class="help-block with-errors"></div>
+											</div>
+											
+										
 										
 										<br>
 										<div class="col-lg-12">

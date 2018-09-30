@@ -13,6 +13,8 @@ class libro
     public $libro_estado;
     public $libro_cantidad_disponible;
     public $libro_cantidad;
+    public $libro_anio;
+    public $libro_editorial;
 	
 	public function __CONSTRUCT()
 	{
@@ -75,7 +77,9 @@ class libro
 						libro_pdf				 = ?,
 						libro_enlace		 = ?,
 						libro_estado			 = ?,
-						libro_cantidad_disponible		 = ?
+						libro_cantidad_disponible		 = ?,
+						libro_anio		 = ?,
+						libro_editorial		 = ?
 						
 				    WHERE libro_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
@@ -90,6 +94,8 @@ class libro
 						$data->libro_enlace,
 						$data->libro_estado,
 						$data->libro_cantidad_disponible,
+						$data->libro_anio,
+						$data->libro_editorial,
 						$data->libro_id
 
 
@@ -129,7 +135,7 @@ class libro
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_cantidad) VALUES ( ?,?, ?, ?, ?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_cantidad,libro_anio,libro_editorial) VALUES ( ?,?, ?, ?, ?, ?, ?, ?,?,?,?)";
 
 
 			$this->pdo->prepare($sql)
@@ -143,7 +149,9 @@ class libro
 						$data->libro_enlace,
 						$data->libro_estado,
 						$data->libro_cantidad_disponible,
-						$data->libro_cantidad
+						$data->libro_cantidad,
+						$data->libro_anio,
+						$data->libro_editorial
                 )
 			);
         header('Location: ../Vista/Accion.php?c=libro');
@@ -160,7 +168,7 @@ class libro
 		try {
 			$id_libro = 0;
 
-		    $sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+		    $sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_anio,libro_editorial) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 			$this->pdo->prepare($sql)
 		     ->execute(
 				array(
@@ -172,7 +180,8 @@ class libro
 						$data->libro_enlace,
 						$data->libro_estado,
 						$data->libro_cantidad_disponible,
-                        $id_libro
+						$data->libro_anio,
+						$data->libro_editorial
                 )
 			);
 		} catch (Exception $e) {

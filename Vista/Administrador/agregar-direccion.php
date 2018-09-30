@@ -40,6 +40,8 @@
                                         <input type="hidden" name="persona_id" value="<?php echo $pvd->persona_id; ?>" />
                                         <input type="hidden" name="persona_tipo_id" value="1" />
                                         <input type="hidden" name="persona_estado" value="0" />
+										<input type="hidden" name="persona_prestamo" value="0" />
+
 										<div class="form-group col-lg-12">
                                             <label>Nombres</label>
 											<input type="text" name="persona_nombres" value="<?php echo $pvd->persona_nombres; ?>" class="form-control" placeholder="Ingrese Nombre" pattern="^[a-zA-Za-zA-Z\s]+$" data-error="Debe de contener solo letras" required>                                        

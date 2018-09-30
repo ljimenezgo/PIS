@@ -10,10 +10,13 @@ class alumno
     public $persona_apellido1;
     public $persona_apellido2;
 	public $persona_tipo_id;
+	public $persona_prestamo;
 	public $persona_cui;
 	public $persona_direccion;
 	public $persona_email;
 	public $persona_telefono;
+	public $persona_prestamo_total;
+	public $persona_prestamo_deuda;
 	public $comentarios_docente_docente_id;
 	public $comentarios_docente_comentario;
 	public $comentarios_docente_fecha;
@@ -127,6 +130,7 @@ class alumno
 						persona_cui				 = ?,
 						persona_direccion		 = ?,
 						persona_email			 = ?,
+						persona_prestamo		 = ?,
 						persona_telefono		 = ?
 						
 				    WHERE persona_id = ?";
@@ -142,6 +146,7 @@ class alumno
                         $data->persona_direccion,
                         $data->persona_email,
                         $data->persona_telefono,
+                        $data->persona_prestamo,
 						$data->persona_id
 
 					)
@@ -165,8 +170,8 @@ class alumno
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO persona (persona_id, persona_nombres,persona_apellido1,persona_apellido2,persona_tipo_id,persona_cui,persona_direccion,persona_email,persona_telefono, persona_estado)
-		        VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO persona (persona_id, persona_nombres,persona_apellido1,persona_apellido2,persona_tipo_id,persona_cui,persona_direccion,persona_email,persona_telefono, persona_estado, persona_prestamo)
+		        VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
 			$this->pdo->prepare($sql)
 		     ->execute(
@@ -180,7 +185,8 @@ class alumno
                         $data->persona_direccion,
                         $data->persona_email,
                         $data->persona_telefono,
-                        $data->persona_estado
+                        $data->persona_estado,
+						$data->persona_prestamo
                 )
 			);
         header('Location: ../Vista/Accion.php?c=alumno');

@@ -1,7 +1,8 @@
 <?php include("restriccion.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include("head.php"); ?>
+<?php
+include("head.php"); ?>
 
 <body>
 
@@ -50,7 +51,7 @@
                                             <td bgcolor="red"><?php echo $r->prestamo_fecha_entrega; ?></td>
                                             <td bgcolor="red"><?php echo $r->prestamo_fecha_a_devolver; ?></td>
                                             <td bgcolor="red">ATRASADO</td>
-                                            <td bgcolor="red" class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>">Devuelto</a></td>
+                                            <td bgcolor="red" class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&persona_id=<?php echo $r->persona_id; ?>&tiempo=1&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>">Devuelto</a></td>
 										<?php
 											}else{
 										?>
@@ -59,7 +60,7 @@
                                             <td><?php echo $r->prestamo_fecha_entrega; ?></td>
                                             <td><?php echo $r->prestamo_fecha_a_devolver; ?></td>
                                             <td bgcolor="green">EN ESPERA</td>
-                                            <td class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>">Devuelto</a></td>
+                                            <td class="center"><a onclick="javascript:return confirm('¿Seguro de devolvieron este libro?');" href="?c=prestamo&a=Eliminar&prestamo_id=<?php echo $r->prestamo_id; ?>&persona_id=<?php echo $r->persona_id; ?>&prestamo_libro_id=<?php echo $r->prestamo_libro_id; ?>&tiempo=0">Devuelto</a></td>
 										
 										<?php
 											}

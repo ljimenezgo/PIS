@@ -70,20 +70,25 @@ class PrestamoController{
     //Método que registrar al modelo un nuevo proveedor.
     public function Guardar(){
         $pvd = new prestamo();
-		
+		$fecha = date('Y-m-j');
+		$dias = $_REQUEST['libro_cantidad'];
+		$nuevafecha = strtotime ( '+'.$dias.' day' , strtotime ( $fecha ) ) ;
+		$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
         //Captura de los datos del formulario (vista).
         $pvd->prestamo_id = $_REQUEST['prestamo_id'];
         $pvd->prestamo_libro_id = $_REQUEST['prestamo_libro_id'];
 		$pvd->prestamo_persona_id = $_REQUEST['prestamo_persona_id'];
         $pvd->prestamo_fecha_entrega = $_REQUEST['prestamo_fecha_entrega'];
-		$pvd->prestamo_fecha_a_devolver = $_REQUEST['prestamo_fecha_a_devolver'];
+        $pvd->prestamo_telefono = $_REQUEST['prestamo_telefono'];
+        $pvd->prestamo_direccion = $_REQUEST['prestamo_direccion'];
+		$pvd->prestamo_fecha_a_devolver = $nuevafecha;
         $pvd->prestamo_fecha_devolucion = "";
         $pvd->prestamo_estado = 0;
 
-
         //Registro al modelo prestamo.
         $this->model->Registrar($pvd);
+        $this->model->Prestamo_Persona($pvd);
 		$this->model->DisminuirDisponible($_REQUEST['prestamo_libro_id']);
 		$this->model->AumentarEntregado($_REQUEST['prestamo_libro_id']);
         //header() es usado para enviar encabezados HTTP sin formato.
@@ -110,6 +115,9 @@ class PrestamoController{
     //Método que elimina la tupla proveedor con el nit dado.
     public function Eliminar(){
         $this->model->Eliminar($_REQUEST['prestamo_id']);
+		if($_REQUEST['tiempo'] > 0 ){
+			$this->model->Deudor($_REQUEST['persona_id']);
+		}
 		$this->model->AumentarDisponible($_REQUEST['prestamo_libro_id']);
 		$this->model->DisminuirEntregado($_REQUEST['prestamo_libro_id']);
         header('Location: ../Vista/Accion.php?c=prestamo&a=lista');

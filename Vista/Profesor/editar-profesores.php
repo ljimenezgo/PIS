@@ -32,6 +32,8 @@
 										<input type="hidden" name="persona_apellido1" value="<?php echo $pvd->persona_apellido1; ?>" />
 										<input type="hidden" name="persona_apellido2" value="<?php echo $pvd->persona_apellido2; ?>" />
 										<input type="hidden" name="persona_dni" value="<?php echo $pvd->persona_dni; ?>" />
+										<input type="hidden" name="persona_prestamo" value="0" />
+										
 										<div class="form-group col-lg-12">
                                             <label><?php echo $pvd->persona_nombres; ?> - <?php echo $pvd->persona_dni; ?></label>
                                         </div>

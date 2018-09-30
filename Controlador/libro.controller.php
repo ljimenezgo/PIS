@@ -71,6 +71,8 @@ class LibroController{
 		$pvd->libro_tipo = $_REQUEST['libro_tipo'];
         $pvd->libro_pdf = "";
         $pvd->libro_enlace = $_REQUEST['libro_enlace'];
+        $pvd->libro_anio = $_REQUEST['libro_anio'];
+        $pvd->libro_editorial = $_REQUEST['libro_editorial'];
         $pvd->libro_estado = 0;
         $pvd->libro_cantidad = 0;
         $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad'];
@@ -90,6 +92,8 @@ class LibroController{
         $pvd->libro_pdf = "";
         $pvd->libro_enlace = $_REQUEST['libro_enlace'];
         $pvd->libro_estado = 0;
+		        $pvd->libro_anio = $_REQUEST['libro_anio'];
+        $pvd->libro_editorial = $_REQUEST['libro_editorial'];
         $pvd->libro_id = $_REQUEST['libro_id'];
         $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad_disponible']+$_REQUEST['cantidad'];
 
@@ -123,7 +127,8 @@ class LibroController{
                 $pvd->persona_nombres = utf8_encode($datos[2]);
                 $pvd->persona_apellido1 = "";
                 $pvd->persona_apellido2 = "";
-
+        $pvd->libro_anio = utf8_encode($datos[2]);
+        $pvd->libro_editorial = utf8_encode($datos[2]);
                 $pvd->persona_tipo_id = 2;
                 $pvd->persona_cui = $datos[1];
                 //$pvd->persona_direccion = utf8_encode($datos[5]);

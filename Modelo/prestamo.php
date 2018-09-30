@@ -10,6 +10,9 @@ class prestamo
     public $prestamo_fecha_a_devolver;
     public $prestamo_fecha_devolucion;
     public $prestamo_estado;
+    public $prestamo_telefono;
+    public $prestamo_direccion;
+    public $persona_prestamo_deuda;
     public $libro_nombre;
     public $persona_nombres;
 	
@@ -126,7 +129,21 @@ class prestamo
 			die($e->getMessage());
 		}
 	}
-	
+	public function Deudor($prestamo_id)
+	{
+		try
+		{
+			//Sentencia SQL para eliminar una tupla utilizando
+			//la clausula Where.
+			$stm = $this->pdo
+			            ->prepare("UPDATE persona SET persona_prestamo_deuda = persona_prestamo_deuda + 1 WHERE persona_id = ?");
+
+			$stm->execute(array($prestamo_id));
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 	public function AumentarDisponible($prestamo_libro_id)
 	{
 		try
@@ -215,12 +232,30 @@ class prestamo
 		}
 	}
 
+	public function Prestamo_Persona(prestamo $data){
+		try
+		{
+			$sql = "update persona set persona_prestamo_total=persona_prestamo_total+1 where persona_id=?";
+
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+                        $data->prestamo_persona_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+		
+		
+	}
 	public function Registrar(prestamo $data)
 	{
 		try
 		{
-		$sql = "INSERT INTO prestamo (prestamo_id,prestamo_libro_id,prestamo_persona_id,prestamo_fecha_entrega,prestamo_fecha_a_devolver,prestamo_fecha_devolucion,prestamo_estado)
-		        VALUES (?, ?, ?, ?, ?,?,?)";
+		$sql = "INSERT INTO prestamo (prestamo_id,prestamo_libro_id,prestamo_persona_id,prestamo_fecha_entrega,prestamo_fecha_a_devolver,prestamo_fecha_devolucion,prestamo_estado,prestamo_telefono,prestamo_direccion)
+		        VALUES (?, ?, ?, ?, ?,?,?,?,?)";
 			
 		$this->pdo->prepare($sql)
 		     ->execute(
@@ -232,7 +267,9 @@ class prestamo
                     $data->prestamo_fecha_entrega,
                     $data->prestamo_fecha_a_devolver,
                     $data->prestamo_fecha_devolucion,
-                    $data->prestamo_estado
+                    $data->prestamo_estado,
+                    $data->prestamo_telefono,
+                    $data->prestamo_direccion
                 )
 			);
 			} catch (Exception $e)

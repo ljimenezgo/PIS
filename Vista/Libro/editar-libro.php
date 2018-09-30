@@ -45,7 +45,16 @@
                                             <input class="form-control" name="libro_autor" value="<?php echo $pvd->libro_autor; ?>"  placeholder="Ingrese Autor"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
 											<div class="help-block with-errors"></div>
 										</div>
-										
+										<div class="form-group col-lg-3">
+                                            <label>Año Publicacion</label>
+                                            <input class="form-control" name="libro_anio" value="<?php echo $pvd->libro_anio; ?>"  placeholder="Ingrese Año de Publicacion"pattern="^[0-9]+$" data-error="Debe de contener solo numeros" required>
+											<div class="help-block with-errors"></div>
+										</div>
+										<div class="form-group col-lg-6">
+                                            <label>Editorial</label>
+                                            <input class="form-control" name="libro_editorial" value="<?php echo $pvd->libro_editorial; ?>"  placeholder="Ingrese Editorial"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
+											<div class="help-block with-errors"></div>
+										</div>
                                         <div class="form-group col-lg-6">
                                             <label>Enlace</label>
                                             <input class="form-control" name="libro_enlace" value="<?php echo $pvd->libro_enlace; ?>"  placeholder="Ingrese Enlace">

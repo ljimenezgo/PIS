@@ -82,12 +82,14 @@ class AlumnoController{
         $pvd->persona_email = $_REQUEST['persona_email'];
         $pvd->persona_telefono = $_REQUEST['persona_telefono'];
         $pvd->persona_estado = $_REQUEST['persona_estado'];
+		$pvd->persona_prestamo = $_REQUEST['persona_prestamo'];
 		$pc2->usuario_id = $_REQUEST['usuario_id'];
         $pc2->usuario_cuenta = $_REQUEST['persona_cui'];
         $pc2->usuario_password = $hash;
         $pc2->usuario_rol_id = $_REQUEST['persona_tipo_id'];
 		$pc2->usuario_persona_id = $_REQUEST['persona_cui'];;
         $pc2->usuario_estado = $_REQUEST['persona_estado'];
+		
 
         //Registro al modelo alumno.
         $this->model->Registrar($pvd);
@@ -112,6 +114,7 @@ class AlumnoController{
         $pvd->persona_direccion = $_REQUEST['persona_direccion'];
         $pvd->persona_email = $_REQUEST['persona_email'];
         $pvd->persona_telefono = $_REQUEST['persona_telefono'];
+		$pvd->persona_prestamo = $_REQUEST['persona_prestamo'];
 
         $this->model->Actualizar($pvd);
 
@@ -143,7 +146,7 @@ class AlumnoController{
                 $pvd->persona_nombres = utf8_encode($datos[2]);
                 $pvd->persona_apellido1 = "";
                 $pvd->persona_apellido2 = "";
-
+				$pvd->persona_prestamo=0;
                 $pvd->persona_tipo_id = 2;
                 $pvd->persona_cui = $datos[1];
                 //$pvd->persona_direccion = utf8_encode($datos[5]);

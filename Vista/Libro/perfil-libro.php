@@ -42,6 +42,14 @@
                                                     <td>Tipo</td>
                                                     <td><?php echo $pvd->libro_tipo; ?></td>
                                                 </tr>
+												<tr>
+                                                    <td>Año Publicacion</td>
+                                                    <td><?php echo $pvd->libro_anio; ?></td>
+                                                </tr>
+												<tr>
+                                                    <td>Editorial</td>
+                                                    <td><?php echo $pvd->libro_editorial; ?></td>
+                                                </tr>
                                                 <tr>
                                                     <td>Cantidad Disponible</td>
                                                     <td><?php echo $pvd->libro_cantidad_disponible; ?></td>

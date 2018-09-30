@@ -3,6 +3,9 @@ Aumentar Año Publicacion, Editorial
 Agregar en prestamo
 telefono y direccion
 
+agregar en persona
+estado prestamo
+
 Definir cuantos días se puede prestar(estado: moroso,deudor,status)(porcentaje de eficiente)
 historial moroso(que salga el alumno en rojo) Indicador
 

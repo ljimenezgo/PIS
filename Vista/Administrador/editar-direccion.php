@@ -27,6 +27,8 @@
                                 <div class="tab-pane fade in active" id="Formulario">
 									<form data-toggle="validator" role="form" id="frm-administrador" action="?c=administrador&a=Editar" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="persona_id" value="<?php echo $pvd->persona_id; ?>" />
+										<input type="hidden" name="persona_prestamo" value="0" />
+										
                                         <input type="hidden" name="persona_tipo_id" value="<?php echo $pvd->persona_tipo_id; ?>" />
 										<input type="hidden" name="persona_nombres" value="<?php echo $pvd->persona_nombres; ?>" />                                   
 										<input type="hidden" name="persona_apellido1" value="<?php echo $pvd->persona_apellido1; ?>" />

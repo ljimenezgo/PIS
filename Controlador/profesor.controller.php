@@ -56,7 +56,8 @@ class ProfesorController{
         $pc2->usuario_rol_id = $_REQUEST['persona_tipo_id'];
 		$pc2->usuario_persona_id = $_REQUEST['persona_dni'];
         $pc2->usuario_estado = $_REQUEST['persona_estado'];
-        
+		$pvd->persona_prestamo = $_REQUEST['persona_prestamo'];
+
         $this->model->Registrar($pvd);
 		$this->model->RegistrarU($pc2);
 
@@ -74,6 +75,7 @@ class ProfesorController{
         $pvd->persona_direccion = $_REQUEST['persona_direccion'];
         $pvd->persona_email = $_REQUEST['persona_email'];
         $pvd->persona_telefono = $_REQUEST['persona_telefono'];
+		$pvd->persona_prestamo = $_REQUEST['persona_prestamo'];
 
         $this->model->Actualizar($pvd);
 
@@ -113,7 +115,8 @@ class ProfesorController{
         $pc2->usuario_rol_id = 3;
 		$pc2->usuario_persona_id = $datos[4];
         $pc2->usuario_estado = $datos[8];
-        
+        				$pvd->persona_prestamo=0;
+
                 $this->model->Registrar($pvd);
 						$this->model->RegistrarU($pc2);
             }
