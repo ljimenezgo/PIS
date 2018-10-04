@@ -1,5 +1,5 @@
 <?php
-if($_SESSION['rol']==1){
+require_once '../Modelo/database.php';
 ?>
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -10,11 +10,47 @@ if($_SESSION['rol']==1){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
+<?php
+if($_SESSION['rol']==1){
+?>
+
                 <a class="navbar-brand" href="bienvenida.php.">Bienestar Social</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+				<?php
+					if($_SESSION['persona_colaborador']==1){
+				?>
+				<li class="dropdown">
+					<?php
+						$pdo = Conectar::conexion();
+						$sql = $pdo->prepare("SELECT SUM(IF(DATEDIFF(prestamo.prestamo_fecha_a_devolver, prestamo.prestamo_fecha_entrega) < 0,1,0)) FROM prestamo WHERE prestamo_estado = 0 ");
+						$sql->execute();
+						$num_rows = $sql->fetchColumn();
+					?>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+						<span class="badge bg-important"><?php echo $num_rows; ?></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> Tiene  <?php echo $num_rows; ?> prestamos retrasados
+                                    <span class="pull-right text-muted small"><a href="../Vista/Accion.php?c=prestamo&a=lista">VER</a></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+				<?php
+					}
+				?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php
@@ -104,33 +140,66 @@ if($_SESSION['rol']==1){
                             <!-- /.nav-second-level -->
                         </li>
 						<!-- /Usuarios -->
+						<?php
+							if($_SESSION['persona_colaborador']==1){
+						?>
+						<li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Préstamo<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=Nuevo">Agregar Prestamo</a>
+                                </li>
+                                 <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=lista">Pendiente</a>
+                                </li>
+								<li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=historial">Historial</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
 						
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.Barra Desplegable Izquierda -->
-        </nav>
-		<!-- /.Barra Direccion -->
-
 <?php
-}
+}}
 if($_SESSION['rol']==2){
 ?>
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+        
                 <a class="navbar-brand" href="bienvenida.php">Bienestar Social</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+			<?php
+					if($_SESSION['persona_colaborador']==1){
+				?>
+				<li class="dropdown">
+					<?php
+						$pdo = Conectar::conexion();
+						$sql = $pdo->prepare("SELECT SUM(IF(DATEDIFF(prestamo.prestamo_fecha_a_devolver, prestamo.prestamo_fecha_entrega) < 0,1,0)) FROM prestamo WHERE prestamo_estado = 0 ");
+						$sql->execute();
+						$num_rows = $sql->fetchColumn();
+					?>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+						<span class="badge bg-important"><?php echo $num_rows; ?></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> Tiene  <?php echo $num_rows; ?> prestamos retrasados
+                                    <span class="pull-right text-muted small"><a href="../Vista/Accion.php?c=prestamo&a=lista">VER</a></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+				<?php
+					}
+				?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php
@@ -162,44 +231,67 @@ if($_SESSION['rol']==2){
 											
 						
 						<!-- /Relaciones públicas y dirección -->                       
+								
+					<?php
+							if($_SESSION['persona_colaborador']==1){
+						?>
 						<li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Malla Curricular<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Préstamo<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
                                 <li>
-                                    <a href="Accion.php?c=malla&a=Listar">Lista</a>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=Nuevo">Agregar Prestamo</a>
                                 </li>
-
+                                 <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=lista">Pendiente</a>
+                                </li>
+								<li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=historial">Historial</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						<!-- /Malla Curricular -->		
-					
-						
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.Barra Desplegable Izquierda -->
-        </nav>
-		<!-- /.Barra Alumno -->
+
 <?php
-}
+}}
 if($_SESSION['rol']==3){
 ?>
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+        
                 <a class="navbar-brand" href="bienvenida.php">Bienestar Social</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+			<?php
+					if($_SESSION['persona_colaborador']==1){
+				?>
+				<li class="dropdown">
+					<?php
+						$pdo = Conectar::conexion();
+						$sql = $pdo->prepare("SELECT SUM(IF(DATEDIFF(prestamo.prestamo_fecha_a_devolver, prestamo.prestamo_fecha_entrega) < 0,1,0)) FROM prestamo WHERE prestamo_estado = 0 ");
+						$sql->execute();
+						$num_rows = $sql->fetchColumn();
+					?>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+						<span class="badge bg-important"><?php echo $num_rows; ?></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> Tiene  <?php echo $num_rows; ?> prestamos retrasados
+                                    <span class="pull-right text-muted small"><a href="../Vista/Accion.php?c=prestamo&a=lista">VER</a></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+				<?php
+					}
+				?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php
@@ -241,90 +333,57 @@ if($_SESSION['rol']==3){
                             <!-- /.nav-second-level -->
                         </li>
 						<!-- /Malla Curricular -->		
-					
-						
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.Barra Desplegable Izquierda -->
-        </nav>
+<?php
+							if($_SESSION['persona_colaborador']==1){
+						?>
+						<li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Préstamo<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=Nuevo">Agregar Prestamo</a>
+                                </li>
+                                 <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=lista">Pendiente</a>
+                                </li>
+								<li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=historial">Historial</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
 		<!-- /.Barra Profesor -->
 
 <?php
-}
+}}
 if($_SESSION['rol']==4){
 ?>
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+        
                 <a class="navbar-brand" href="bienvenida.php">Biblioteca</a>
             </div>
             <!-- /.navbar-header -->						
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
+					<?php
+						$pdo = Conectar::conexion();
+						$sql = $pdo->prepare("SELECT SUM(IF(DATEDIFF(prestamo.prestamo_fecha_a_devolver, prestamo.prestamo_fecha_entrega) < 0,1,0)) FROM prestamo WHERE prestamo_estado = 0 ");
+						$sql->execute();
+						$num_rows = $sql->fetchColumn();
+					?>
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-						<span class="badge bg-important">0</span>
+						<span class="badge bg-important"><?php echo $num_rows; ?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-comment fa-fw"></i> Tiene  <?php echo $num_rows; ?> prestamos retrasados
+                                    <span class="pull-right text-muted small"><a href="../Vista/Accion.php?c=prestamo&a=lista">VER</a></span>
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+                        
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -368,7 +427,7 @@ if($_SESSION['rol']==4){
                             <!-- /.nav-second-level -->
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Prestamo<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Préstamo<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
                                 <li>
                                     <a href="../Vista/Accion.php?c=prestamo&a=Nuevo">Agregar Prestamo</a>
@@ -382,8 +441,105 @@ if($_SESSION['rol']==4){
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+						<!-- /Colaborador -->						
+						<li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Colaboradores<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=colaborador&a=Nuevo">Asignar Colaborador</a>
+                                </li>
+                                <li>
+                                    <a href="../Vista/Accion.php?c=colaborador">Lista de Personal</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+						
+
+
+<?php
+}
+if($_SESSION['rol']==5){
+?>
+        
+                <a class="navbar-brand" href="bienvenida.php">Biblioteca</a>
+            </div>
+            <!-- /.navbar-header -->						
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+					<?php
+						$pdo = Conectar::conexion();
+						$sql = $pdo->prepare("SELECT SUM(IF(DATEDIFF(prestamo.prestamo_fecha_a_devolver, prestamo.prestamo_fecha_entrega) < 0,1,0)) FROM prestamo WHERE prestamo_estado = 0 ");
+						$sql->execute();
+						$num_rows = $sql->fetchColumn();
+					?>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+						<span class="badge bg-important"><?php echo $num_rows; ?></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> Tiene  <?php echo $num_rows; ?> prestamos retrasados
+                                    <span class="pull-right text-muted small"><a href="../Vista/Accion.php?c=prestamo&a=lista">VER</a></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+				<li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <?php
+							echo "<i>" . $_SESSION['nombre_persona']."</i>";
+						?>
+						<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="../Vista/Accion.php?c=contrasena&a=CambiarContrasena"><i class="fa fa-gear fa-fw"></i> Cambiar Contraseña</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+						
+						
+						<li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Préstamo<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=Nuevo">Agregar Prestamo</a>
+                                </li>
+                                 <li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=lista">Pendiente</a>
+                                </li>
+								<li>
+                                    <a href="../Vista/Accion.php?c=prestamo&a=historial">Historial</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+						<!-- /Colaborador -->						
 					
 						
+
+
+<?php
+}
+?>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -391,7 +547,3 @@ if($_SESSION['rol']==4){
             <!-- /.Barra Desplegable Izquierda -->
         </nav>
 		<!-- /.Barra Profesor -->
-
-<?php
-}
-?>

@@ -61,22 +61,28 @@
                                             <input class="form-control" name="libro_editorial" value="<?php echo $pvd->libro_editorial; ?>"  placeholder="Ingrese Editorial"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
 											<div class="help-block with-errors"></div>
 										</div>
-                                        <div class="form-group col-lg-9">
+										
+										
+										<div class="form-group col-lg-12" >
+										<label>Tipo</label>
+											<select onchange="habilitar(this)" name= "libro_tipo"  class="selectpicker col-lg-2" data-live-search="true">
+													<option value="1" >Virtual</option>
+													<option value="2" >Fisico</option>
+											</select>
+										 </div>
+                                        <div class="form-group col-lg-9" >
                                             <label>Enlace</label>
                                             <input class="form-control" name="libro_enlace" value="<?php echo $pvd->libro_enlace; ?>"  placeholder="Ingrese Enlace">
                                         </div>
+										
+										
+										
 										<div class="form-group col-lg-3">
                                             <label>Cantidad</label>
                                             <input class="form-control" name="libro_cantidad" value="<?php echo $pvd->libro_cantidad_disponible; ?>"  placeholder="Ingrese Cantidad" pattern="^[0-9]+$" data-error="Debe de contener solo numeros" required>
 											<div class="help-block with-errors"></div>
 										</div>
-										 <div class="form-group col-lg-12">
-										<label>Tipo</label>
-											<select name= "libro_tipo" class="selectpicker col-lg-2" data-live-search="true">
-													<option value="1" >Virtual</option>
-													<option value="2" >Fisico</option>
-											</select>
-										 </div>
+										 
 										<br>
 										<div class="col-lg-12">
 											<button type="submit" class="btn btn-default ">Registrar</button>
@@ -114,6 +120,17 @@
     </div>
     <!-- /#wrapper -->
 	<?php include("scripts.php"); ?>
+	<script type="text/javascript"> 
+	function habilitar(obj) { 
+		var hab; 
+		frm=obj.form; 
+		num=obj.selectedIndex; 
+		if (num==1) hab=true; 
+		else if (num==2) hab=false; 
+		frm.libro_enlace.disabled=hab; 
+		frm.nombre.disabled=hab; 
+	} 
+</script>
 
 </body>
 

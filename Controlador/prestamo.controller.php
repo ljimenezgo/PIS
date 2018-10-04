@@ -1,6 +1,7 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
 require_once '../Modelo/prestamo.php';
+require_once '../Modelo/profesor.php';
 
 class PrestamoController{
 
@@ -9,6 +10,7 @@ class PrestamoController{
     //Creación del modelo
     public function __CONSTRUCT(){
         $this->model = new prestamo();
+        $this->model2 = new profesor();
     }
 
     //Llamado plantilla principal
@@ -51,7 +53,12 @@ class PrestamoController{
         require_once '../Vista/Prestamo/agregar-prestamo.php';
 
     }
+    public function nuevoExAlumno(){
+        $pvd = new profesor();
 
+        require_once '../Vista/Prestamo/agregar-exalumno.php';
+
+    }
     public function lista(){
         $pvd = new prestamo();
 
@@ -85,6 +92,7 @@ class PrestamoController{
 		$pvd->prestamo_fecha_a_devolver = $nuevafecha;
         $pvd->prestamo_fecha_devolucion = "";
         $pvd->prestamo_estado = 0;
+		$pvd->prestamo_prestador = $_REQUEST['prestamo_prestador'];
 
         //Registro al modelo prestamo.
         $this->model->Registrar($pvd);
@@ -97,7 +105,22 @@ class PrestamoController{
         //navegador
         header('Location: ../Vista/Accion.php?c=prestamo&a=lista');
     }
-
+    public function GuardarExAlumno(){
+        $pvd = new profesor();
+		$hash = password_hash($_REQUEST['persona_dni'], PASSWORD_BCRYPT);
+        $pvd->persona_id = $_REQUEST['persona_dni'];
+        $pvd->persona_nombres = $_REQUEST['persona_nombres'];
+        $pvd->persona_apellido1 = $_REQUEST['persona_apellido1'];
+        $pvd->persona_apellido2 = $_REQUEST['persona_apellido2'];
+		$pvd->persona_tipo_id = $_REQUEST['persona_tipo_id'];
+        $pvd->persona_dni = $_REQUEST['persona_dni'];
+        $pvd->persona_direccion = $_REQUEST['persona_direccion'];
+        $pvd->persona_email = $_REQUEST['persona_email'];
+        $pvd->persona_telefono = $_REQUEST['persona_telefono'];
+        $pvd->persona_estado = $_REQUEST['persona_estado'];
+        $this->model->RegistrarExAlumno($pvd);
+		header('Location: ../Vista/Accion.php?c=prestamo&a=Nuevo#ExAlumnos');
+    }
     //Método que modifica el modelo de un proveedor.
     public function Editar(){
         $pvd = new prestamo();
@@ -114,7 +137,11 @@ class PrestamoController{
 
     //Método que elimina la tupla proveedor con el nit dado.
     public function Eliminar(){
-        $this->model->Eliminar($_REQUEST['prestamo_id']);
+		$pvd = new prestamo();
+		$pvd->prestamo_fecha_devolucion = $_REQUEST['prestamo_fecha_devolucion'];
+		$pvd->prestamo_id = $_REQUEST['prestamo_id'];
+		$this->model->Eliminar($_REQUEST['prestamo_id']);
+        $this->model->Devolucion($pvd);
 		if($_REQUEST['tiempo'] > 0 ){
 			$this->model->Deudor($_REQUEST['persona_id']);
 		}

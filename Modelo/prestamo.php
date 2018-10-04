@@ -15,6 +15,7 @@ class prestamo
     public $persona_prestamo_deuda;
     public $libro_nombre;
     public $persona_nombres;
+	public $prestamo_prestador;
 	
 	public function __CONSTRUCT()
 	{
@@ -67,22 +68,39 @@ class prestamo
 			die($e->getMessage());
 		}
 	}
-	public function ListarAlumnos()
-	{
-		try
-		{
+	public function ListarAlumnos(){
+		try{
 			$result = array();
-
 			$stm = $this->pdo->prepare("SELECT * FROM persona WHERE (persona_tipo_id = 2) AND (persona_estado = 0)");
 			$stm->execute();
-
 			return $stm->fetchAll(PDO::FETCH_OBJ);
 		}
-		catch(Exception $e)
-		{
+		catch(Exception $e){
 			die($e->getMessage());
 		}
 	}
+	public function ListarDocentes(){
+		try{
+			$result = array();
+			$stm = $this->pdo->prepare("SELECT * FROM persona WHERE (persona_tipo_id = 3) AND (persona_estado = 0)");
+			$stm->execute();
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e){
+			die($e->getMessage());
+		}
+	}
+	public function ListarExAlumnos(){
+		try{
+			$result = array();
+			$stm = $this->pdo->prepare("SELECT * FROM persona WHERE (persona_tipo_id = 6) AND (persona_estado = 0)");
+			$stm->execute();
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e){
+			die($e->getMessage());
+		}
+	}	
 	public function ListarLibros()
 	{
 		try
@@ -231,15 +249,40 @@ class prestamo
 			die($e->getMessage());
 		}
 	}
-
-	public function Prestamo_Persona(prestamo $data){
+	public function Devolucion($data)
+	{
 		try
 		{
-			$sql = "update persona set persona_prestamo_total=persona_prestamo_total+1 where persona_id=?";
+			$sql = "UPDATE prestamo SET
+						prestamo_fecha_devolucion        = ?
+				    WHERE prestamo_id = ?";
 
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
+                        $data->prestamo_fecha_devolucion,
+                        $data->prestamo_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	public function Prestamo_Persona(prestamo $data){
+		try
+		{
+			$sql = "UPDATE persona SET 
+						persona_prestamo_total=persona_prestamo_total+1, 
+						persona_direccion = ?,
+						persona_telefono = ?
+					WHERE persona_id=?";
+
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+                        $data->prestamo_direccion,
+                        $data->prestamo_telefono,
                         $data->prestamo_persona_id
 					)
 				);
@@ -254,8 +297,8 @@ class prestamo
 	{
 		try
 		{
-		$sql = "INSERT INTO prestamo (prestamo_id,prestamo_libro_id,prestamo_persona_id,prestamo_fecha_entrega,prestamo_fecha_a_devolver,prestamo_fecha_devolucion,prestamo_estado,prestamo_telefono,prestamo_direccion)
-		        VALUES (?, ?, ?, ?, ?,?,?,?,?)";
+		$sql = "INSERT INTO prestamo (prestamo_id,prestamo_libro_id,prestamo_persona_id,prestamo_fecha_entrega,prestamo_fecha_a_devolver,prestamo_fecha_devolucion,prestamo_estado,prestamo_prestador)
+		        VALUES (?, ?, ?, ?, ?,?,?,?)";
 			
 		$this->pdo->prepare($sql)
 		     ->execute(
@@ -268,13 +311,53 @@ class prestamo
                     $data->prestamo_fecha_a_devolver,
                     $data->prestamo_fecha_devolucion,
                     $data->prestamo_estado,
-                    $data->prestamo_telefono,
-                    $data->prestamo_direccion
+                    $data->prestamo_prestador
                 )
 			);
 			} catch (Exception $e)
 			{
 			die($e->getMessage());
+		}
+	}
+	
+	
+	
+	public function RegistrarExAlumno(profesor $data)
+	{
+		$consulta = "select count(*) as total from persona where persona_id = ?";
+		$result = $this->pdo->prepare($consulta);
+		$result->bindParam(1,$data->persona_dni,PDO::PARAM_STR);
+		$result->execute();
+		
+		if($result->fetchColumn()==0){ //si no existe el dato lo inserto
+		try
+		{
+			$sql = "INSERT INTO persona (persona_id, persona_nombres,persona_apellido1,persona_apellido2,persona_tipo_id,persona_dni,persona_direccion,persona_email,persona_telefono, persona_estado)
+		        VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+
+			$this->pdo->prepare($sql)
+		     ->execute(
+				array(
+						$data->persona_id,
+						$data->persona_nombres,
+                        $data->persona_apellido1,
+                        $data->persona_apellido2,
+                        $data->persona_tipo_id,
+						$data->persona_dni,
+                        $data->persona_direccion,
+                        $data->persona_email,
+                        $data->persona_telefono,
+                        $data->persona_estado
+                )
+			);
+			        header('Location: ../Vista/Accion.php?c=profesor');
+
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+		}else{
+			header("Location: ../Vista/Accion.php?c=profesor&a=error");
 		}
 	}
 }
