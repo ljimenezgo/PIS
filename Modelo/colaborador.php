@@ -65,7 +65,7 @@ class colaborador
 			$result = array();
 			//Sentencia SQL para selección de datos.
 			$stm = $this->pdo->prepare("SELECT * FROM persona JOIN tipo_persona on persona.persona_tipo_id = tipo_persona.tipo_persona_id
-										WHERE (persona_tipo_id != 1) AND (persona_estado = 0) AND (persona_colaborador !=1 AND persona_colaborador != 2)");
+										WHERE (persona_tipo_id != 1 AND persona_tipo_id !=4 AND persona_tipo_id !=6) AND (persona_estado = 0) AND (persona_colaborador !=1 AND persona_colaborador != 2)");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
