@@ -26,8 +26,7 @@
                             <ul class="nav nav-pills">
                                 <li class="active"><a href="#Formulario" data-toggle="tab">Formulario</a>
                                 </li>
-                                <li><a href="#Archivo" data-toggle="tab">Archivo</a>
-                                </li>
+                                
                             </ul>
 
                             <!-- Tab panes -->

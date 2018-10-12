@@ -427,6 +427,34 @@ if($_SESSION['rol']==4){
                             <!-- /.nav-second-level -->
                         </li>
 						<li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Tesis<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=tesis&a=Nuevo">Registro de Tesis</a>
+                                </li>
+                                <li>
+                                    <a href="../Vista/Accion.php?c=tesis">Lista de Tesis</a>
+                                </li>
+                            </ul>
+							
+                            <!-- /.nav-second-level -->
+                        </li>
+						
+						
+						<li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Informes de Trabajo<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=trabajo&a=Nuevo">Registro de Informes</a>
+                                </li>
+                                <li>
+                                    <a href="../Vista/Accion.php?c=trabajo">Lista de Informes</a>
+                                </li>
+                            </ul>
+							
+                            <!-- /.nav-second-level -->
+                        </li>
+						<li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>Préstamo<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
                                 <li>
