@@ -128,7 +128,6 @@
 		if (num==1) hab=true; 
 		else if (num==2) hab=false; 
 		frm.libro_enlace.disabled=hab; 
-		frm.libro_cantidad.disabled=hab; 
 		frm.nombre.disabled=hab; 
 	} 
 </script>
