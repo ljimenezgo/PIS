@@ -38,6 +38,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 						
 						
                         <div class="panel-body">
+							<p>SOLO APARECERAN LOS LIBROS FISICOS</p>
 							<ul class="nav nav-pills">
                                 <li class="active"><a href="#Alumnos" data-toggle="tab">Alumnos</a></li>
                                 <li><a href="#Docentes" data-toggle="tab">Docentes</a></li>

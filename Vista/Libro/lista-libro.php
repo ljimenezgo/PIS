@@ -40,7 +40,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach($this->model->Listar() as $r): ?>
+                                    <?php foreach($this->model->ListarLibro() as $r): ?>
                                         <tr class="odd gradeX">
 										
 											<?php

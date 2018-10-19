@@ -20,7 +20,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Alumnos Registrados
+                            Libros Registrados
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -39,7 +39,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach($this->model->Listar() as $r): ?>
+                                    <?php foreach($this->model->ListarTrabajo() as $r): ?>
                                         <tr class="odd gradeX">
 										
 											<?php

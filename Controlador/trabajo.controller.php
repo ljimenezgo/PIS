@@ -73,6 +73,8 @@ class TrabajoController{
         $pvd->libro_enlace = $_REQUEST['libro_enlace'];
         $pvd->libro_anio = $_REQUEST['libro_anio'];
         $pvd->libro_editorial = $_REQUEST['libro_editorial'];
+        $pvd->libro_caracteristica = $_REQUEST['libro_caracteristica'];
+
         $pvd->libro_estado = 0;
         $pvd->libro_cantidad = 0;
         $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad'];

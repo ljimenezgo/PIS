@@ -1,7 +1,7 @@
 <?php
 include "Conexion.php";
 $db=connect();
-$query=$db->query("select * from libro where libro_caracteristica=$_GET[select]");
+$query=$db->query("select * from libro where libro_caracteristica=$_GET[select] AND libro_tipo=2");
 $states = array();
 while($r=$query->fetch_object()){ $states[]=$r; }
 if(count($states)>0){
