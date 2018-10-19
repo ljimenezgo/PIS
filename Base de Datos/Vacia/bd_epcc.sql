@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2018 a las 03:21:42
+-- Tiempo de generación: 19-10-2018 a las 05:45:21
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 5.6.38
 
@@ -99,10 +99,13 @@ CREATE TABLE `libro` (
   `libro_enlace` varchar(100) DEFAULT NULL,
   `libro_estado` int(11) DEFAULT NULL,
   `libro_cantidad_disponible` int(11) DEFAULT NULL,
-  `libro_cantidad` int(11) DEFAULT NULL,
+  `libro_cantidad` int(11) DEFAULT '0',
   `libro_anio` varchar(20) NOT NULL,
   `libro_editorial` varchar(100) NOT NULL,
-  `libro_caracteristica` int(1) DEFAULT NULL
+  `libro_caracteristica` int(1) DEFAULT NULL,
+  `tamanio` int(255) UNSIGNED DEFAULT NULL,
+  `tipo` varchar(150) DEFAULT NULL,
+  `nombre_archivo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -419,7 +422,7 @@ ALTER TABLE `docente_curso`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `malla_curricular`
