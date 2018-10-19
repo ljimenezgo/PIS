@@ -85,6 +85,8 @@ class PrestamoController{
 			$pvd->prestamo_tipo = "Libro";
 		}elseif($_REQUEST['select'] == 2){
 			$pvd->prestamo_tipo = "Tesis";
+		}elseif($_REQUEST['select'] == 3){
+			$pvd->prestamo_tipo = "Informes de Trabajo";
 		}
         //Captura de los datos del formulario (vista).
         $pvd->prestamo_id = $_REQUEST['prestamo_id'];
