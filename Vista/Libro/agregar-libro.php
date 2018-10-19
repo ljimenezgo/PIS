@@ -67,10 +67,10 @@
 													<option value="1" >Virtual</option>
 													<option value="2" >Fisico</option>
 											</select>
-										 </div>
+										</div>
                                         <div class="form-group col-lg-9" >
-                                            <label>Enlace</label>
-                                            <input class="form-control" name="libro_enlace" value="<?php echo $pvd->libro_enlace; ?>"  placeholder="Ingrese Enlace" disabled>
+                                            <label>Archivo</label>
+                                            <input id="archivo" accept=".pdf" name="archivo" type="file" data-error="Selecciona un archivo" disabled>
                                         </div>
 										<div class="form-group col-lg-3">
                                             <label>Cantidad</label>
@@ -121,7 +121,7 @@
 			num=obj.selectedIndex; 
 			if (num==1) hab=true; 
 			else if (num==2) hab=false; 
-			frm.libro_enlace.disabled=!hab;
+			frm.archivo.disabled=!hab;
 			frm.libro_cantidad.disabled=hab;			
 			frm.nombre.disabled=hab; 
 		} 

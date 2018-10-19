@@ -65,6 +65,13 @@ class LibroController{
     //Método que registrar al modelo un nuevo proveedor.
     public function Guardar(){
         $pvd = new libro();
+		$nombre= $_FILES['archivo']['name'];
+		$pvd->nombre_archivo = $nombre;
+		$pvd->tipo = $_FILES['archivo']['type'];
+		$pvd->tamanio = $_FILES['archivo']['size'];
+		$ruta = $_FILES['archivo']['tmp_name'];
+		$destino = "archivos/" . $nombre;
+		copy($ruta, $destino);		
         $pvd->libro_codigo = $_REQUEST['libro_codigo'];
         $pvd->libro_nombre = $_REQUEST['libro_nombre'];
         $pvd->libro_autor = $_REQUEST['libro_autor'];

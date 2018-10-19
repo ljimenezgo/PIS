@@ -145,7 +145,6 @@ class AlumnoController{
                 $datos = explode(";",$linea);
 				$hash = password_hash($datos[1], PASSWORD_BCRYPT);
                 $pvd->persona_id = $datos[1];
-
                 $pvd->persona_nombres = utf8_encode($datos[2]);
                 $pvd->persona_apellido1 = "";
                 $pvd->persona_apellido2 = "";
