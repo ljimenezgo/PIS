@@ -71,6 +71,7 @@ class LibroController{
 		$pvd->libro_tipo = $_REQUEST['libro_tipo'];
         $pvd->libro_pdf = "";
         $pvd->libro_enlace = $_REQUEST['libro_enlace'];
+        $pvd->libro_caracteristica = $_REQUEST['libro_caracteristica'];
         $pvd->libro_anio = $_REQUEST['libro_anio'];
         $pvd->libro_editorial = $_REQUEST['libro_editorial'];
         $pvd->libro_estado = 0;

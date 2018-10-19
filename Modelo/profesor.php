@@ -13,7 +13,8 @@ class profesor
 	public $persona_email;
 	public $persona_telefono;
 	public $persona_estado;
-	
+	public $persona_egresado;
+	public $persona_tipo_libro_prestado;
 	public function __CONSTRUCT()
 	{
 		try

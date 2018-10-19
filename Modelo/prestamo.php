@@ -16,6 +16,8 @@ class prestamo
     public $libro_nombre;
     public $persona_nombres;
 	public $prestamo_prestador;
+	public $prestamo_tipo;
+	public $persona_egresado;
 	
 	public function __CONSTRUCT()
 	{
@@ -297,8 +299,8 @@ class prestamo
 	{
 		try
 		{
-		$sql = "INSERT INTO prestamo (prestamo_id,prestamo_libro_id,prestamo_persona_id,prestamo_fecha_entrega,prestamo_fecha_a_devolver,prestamo_fecha_devolucion,prestamo_estado,prestamo_prestador)
-		        VALUES (?, ?, ?, ?, ?,?,?,?)";
+		$sql = "INSERT INTO prestamo (prestamo_id,prestamo_libro_id,prestamo_persona_id,prestamo_fecha_entrega,prestamo_fecha_a_devolver,prestamo_fecha_devolucion,prestamo_estado,prestamo_prestador,prestamo_tipo)
+		        VALUES (?, ?, ?, ?, ?,?,?,?,?)";
 			
 		$this->pdo->prepare($sql)
 		     ->execute(
@@ -311,7 +313,8 @@ class prestamo
                     $data->prestamo_fecha_a_devolver,
                     $data->prestamo_fecha_devolucion,
                     $data->prestamo_estado,
-                    $data->prestamo_prestador
+                    $data->prestamo_prestador,
+					$data->prestamo_tipo
                 )
 			);
 			} catch (Exception $e)
@@ -332,7 +335,7 @@ class prestamo
 		if($result->fetchColumn()==0){ //si no existe el dato lo inserto
 		try
 		{
-			$sql = "INSERT INTO persona (persona_id, persona_nombres,persona_apellido1,persona_apellido2,persona_tipo_id,persona_dni,persona_direccion,persona_email,persona_telefono, persona_estado)
+			$sql = "INSERT INTO persona (persona_id, persona_nombres,persona_apellido1,persona_apellido2,persona_tipo_id,persona_dni,persona_email, persona_estado,persona_egresado,persona_prestamo)
 		        VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
 			$this->pdo->prepare($sql)
@@ -344,10 +347,10 @@ class prestamo
                         $data->persona_apellido2,
                         $data->persona_tipo_id,
 						$data->persona_dni,
-                        $data->persona_direccion,
                         $data->persona_email,
-                        $data->persona_telefono,
-                        $data->persona_estado
+                        $data->persona_estado,
+                        $data->persona_egresado,
+						$data->persona_prestamo
                 )
 			);
 			        header('Location: ../Vista/Accion.php?c=profesor');

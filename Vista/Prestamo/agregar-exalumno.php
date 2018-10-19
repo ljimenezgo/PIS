@@ -49,6 +49,11 @@
                                             <input class="form-control" name="persona_apellido2" value="<?php echo $pvd->persona_apellido2; ?>"  placeholder="Ingrese Segundo Apellido" pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
                                         	<div class="help-block with-errors"></div>
 										</div>
+										<div class="form-group col-lg-6">
+                                            <label>Año Egreso</label>
+                                            <input class="form-control" name="persona_egresado" value="<?php echo $pvd->persona_egresado; ?>"  placeholder="Ingrese Año de Egreso" pattern="^\d{4}$" data-error="Debe de tener 4 dígitos">
+                                        	<div class="help-block with-errors"></div>
+										</div>
                                         <div class="form-group col-lg-6">
                                             <label for="persona_dni" class="control-label" >DNI</label>
                                             <input class="form-control"  name="persona_dni" value="<?php echo $pvd->persona_dni; ?>"  placeholder="Ingrese DNI" pattern="^\d{8}$" data-error="Debe de tener 8 dígitos" required>

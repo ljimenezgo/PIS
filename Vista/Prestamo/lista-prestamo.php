@@ -30,7 +30,8 @@ include("head.php"); ?>
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Libro</th>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
                                             <th>Prestado a</th>
                                             <th>Fecha Entrega</th>
                                             <th>Fecha Devolución</th>
@@ -47,6 +48,7 @@ include("head.php"); ?>
 											if($hoy > $r->prestamo_fecha_a_devolver){
 										?>
                                             <td bgcolor="red"><?php echo $r->libro_nombre; ?></td>
+                                            <td bgcolor="red"><?php echo $r->prestamo_tipo; ?></td>
                                             <td bgcolor="red"><?php echo $r->persona_nombres; ?></td>
                                             <td bgcolor="red"><?php echo $r->prestamo_fecha_entrega; ?></td>
                                             <td bgcolor="red"><?php echo $r->prestamo_fecha_a_devolver; ?></td>
@@ -56,6 +58,7 @@ include("head.php"); ?>
 											}else{
 										?>
 											<td><?php echo $r->libro_nombre; ?></td>
+											<td><?php echo $r->prestamo_tipo; ?></td>
                                             <td><?php echo $r->persona_nombres; ?></td>
                                             <td><?php echo $r->prestamo_fecha_entrega; ?></td>
                                             <td><?php echo $r->prestamo_fecha_a_devolver; ?></td>

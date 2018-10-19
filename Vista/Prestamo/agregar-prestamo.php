@@ -1,4 +1,13 @@
 <?php include("restriccion.php"); ?>
+<?php
+include "Conexion.php";
+$db =  connect();
+$query=$db->query("select * from libro");
+$countries = array();
+while($r=$query->fetch_object()){ $countries[]=$r; }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include("head.php"); ?>
@@ -16,11 +25,18 @@
             <!-- /.row -->
             <div class="row">
 				<div class="col-lg-12">
+				
+				
+				
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Prestamo
                         </div>
                         <!-- /.panel-heading -->
+						
+						
+						
                         <div class="panel-body">
 							<ul class="nav nav-pills">
                                 <li class="active"><a href="#Alumnos" data-toggle="tab">Alumnos</a></li>
@@ -52,13 +68,21 @@
                                         	<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
-												<label>Libro</label>
-												<select name= "prestamo_libro_id" class="selectpicker col-lg-12" data-live-search="true" required>
-													<?php foreach($this->model->ListarLibros() as $rr): ?>
-														<option value="<?php echo $rr->libro_id; ?>"  data-tokens="<?php echo $rr->libro_nombre; ?>"><?php echo $rr->libro_nombre; ?></option>
-													<?php endforeach; ?> 
+											<label>Tipo</label>
+											<div class="form-group">
+												<select name="select" id= "select" class="form-control" required>
+												  <option value='' selected>-- SELECCIONE --</option>
+												  <option value="1" >Libro</option> 
+												  <option value="2">Tesis</option>
+												  <option value="3">Trabajo</option>
 												</select>
 											</div>
+											<div class="form-group">
+												<label for="name1">Seleccione</label>
+												<select id="prestamo_libro_id" class="form-control" name="prestamo_libro_id" required>
+											    </select>
+											  </div>
+										</div>
 										<div class="form-group col-lg-6">
                                             <label for="prestamo_telefono" class="control-label" >Telefono</label>
                                             <input class="form-control" pattern="^[0-9]+$" name="prestamo_telefono" placeholder="Ingrese Numero de Telefono" data-error="Debe llenar este campo"required>
@@ -105,13 +129,21 @@
                                         	<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
-												<label>Libro</label>
-												<select name= "prestamo_libro_id" class="selectpicker col-lg-12" data-live-search="true" required>
-													<?php foreach($this->model->ListarLibros() as $rr): ?>
-														<option value="<?php echo $rr->libro_id; ?>"  data-tokens="<?php echo $rr->libro_nombre; ?>"><?php echo $rr->libro_nombre; ?></option>
-													<?php endforeach; ?> 
+											<label>Tipo</label>
+											<div class="form-group">
+												<select name="select" id= "select" class="form-control">
+												  <option value='' selected>-- SELECCIONE --</option>
+												  <option value="1" >Libro</option> 
+												  <option value="2">Tesis</option>
+												  <option value="3">Trabajo</option>
 												</select>
 											</div>
+											<div class="form-group">
+												<label for="name1">Seleccione</label>
+												<select id="prestamo_libro_id" class="form-control" name="prestamo_libro_id" required>
+											    </select>
+											  </div>
+										</div>
 										<div class="form-group col-lg-6">
                                             <label for="prestamo_telefono" class="control-label" >Telefono</label>
                                             <input class="form-control" pattern="^[0-9]+$" name="prestamo_telefono" placeholder="Ingrese Numero de Telefono" data-error="Debe llenar este campo"required>
@@ -163,13 +195,21 @@
                                         	<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
-												<label>Libro</label>
-												<select name= "prestamo_libro_id" class="selectpicker col-lg-12" data-live-search="true" required>
-													<?php foreach($this->model->ListarLibros() as $rr): ?>
-														<option value="<?php echo $rr->libro_id; ?>"  data-tokens="<?php echo $rr->libro_nombre; ?>"><?php echo $rr->libro_nombre; ?></option>
-													<?php endforeach; ?> 
+											<label>Tipo</label>
+											<div class="form-group">
+												<select name="select" id= "select" class="form-control">
+												  <option value='' selected>-- SELECCIONE --</option>
+												  <option value="1">Libro</option> 
+												  <option value="2">Tesis</option>
+												  <option value="3">Trabajo</option>
 												</select>
 											</div>
+											<div class="form-group">
+												<label for="name1">Seleccione</label>
+												<select id="prestamo_libro_id" class="form-control" name="prestamo_libro_id" required>
+											    </select>
+											  </div>
+										</div>
 										<div class="form-group col-lg-6">
                                             <label for="prestamo_telefono" class="control-label" >Telefono</label>
                                             <input class="form-control" pattern="^[0-9]+$" name="prestamo_telefono" placeholder="Ingrese Numero de Telefono" data-error="Debe llenar este campo"required>
@@ -198,6 +238,7 @@
                             </div>
                         </div>
                         <!-- /.panel-body -->
+								
                     </div>
                     <!-- /.panel -->
                 </div>
@@ -211,6 +252,23 @@
     </div>
     <!-- /#wrapper -->
 	<?php include("scripts.php"); ?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#select").change(function(){
+			$.get("Libros.php","select="+$("#select").val(), function(data){
+				$("#prestamo_libro_id").html(data);
+				console.log(data);
+			});
+		});
+
+		$("#prestamo_libro_id").change(function(){
+			$.get("Ciudades.php","prestamo_libro_id="+$("#prestamo_libro_id").val(), function(data){
+				$("#ciudad_id").html(data);
+				console.log(data);
+			});
+		});
+	});
+</script>
 
 </body>
 

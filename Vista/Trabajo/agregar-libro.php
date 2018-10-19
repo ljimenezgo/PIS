@@ -18,7 +18,7 @@
 				<div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Registro de libro
+                            Registro de Trabajo
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -35,7 +35,9 @@
 									<form data-toggle="validator" role="form" id="frm-libro" action="?c=trabajo&a=Guardar" method="post" >
                                         <input type="hidden" name="libro_anio" value="<?php echo $pvd->libro_anio; ?>" />
                                         <input type="hidden" name="libro_tipo" value="1" />
-                                        <input type="hidden" name="libro_cantidad" value="10000" />
+                                        <input type="hidden" name="libro_caracteristica" value="3" />
+
+										<input type="hidden" name="libro_cantidad" value="10000" />
 
 										<div class="form-group col-lg-12">
                                             <label>Codigo</label>

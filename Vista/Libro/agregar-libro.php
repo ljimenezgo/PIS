@@ -34,6 +34,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="Formulario">
 									<form data-toggle="validator" role="form" id="frm-libro" action="?c=libro&a=Guardar" method="post" >
+                                        <input type="hidden" name="libro_caracteristica" value="1" />
 
 										<div class="form-group col-lg-12">
                                             <label>Codigo</label>

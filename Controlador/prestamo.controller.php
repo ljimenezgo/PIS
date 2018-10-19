@@ -81,7 +81,11 @@ class PrestamoController{
 		$dias = $_REQUEST['libro_cantidad'];
 		$nuevafecha = strtotime ( '+'.$dias.' day' , strtotime ( $fecha ) ) ;
 		$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
-
+		if($_REQUEST['select'] == 1){
+			$pvd->prestamo_tipo = "Libro";
+		}elseif($_REQUEST['select'] == 2){
+			$pvd->prestamo_tipo = "Tesis";
+		}
         //Captura de los datos del formulario (vista).
         $pvd->prestamo_id = $_REQUEST['prestamo_id'];
         $pvd->prestamo_libro_id = $_REQUEST['prestamo_libro_id'];
@@ -107,17 +111,16 @@ class PrestamoController{
     }
     public function GuardarExAlumno(){
         $pvd = new profesor();
-		$hash = password_hash($_REQUEST['persona_dni'], PASSWORD_BCRYPT);
         $pvd->persona_id = $_REQUEST['persona_dni'];
         $pvd->persona_nombres = $_REQUEST['persona_nombres'];
         $pvd->persona_apellido1 = $_REQUEST['persona_apellido1'];
         $pvd->persona_apellido2 = $_REQUEST['persona_apellido2'];
 		$pvd->persona_tipo_id = $_REQUEST['persona_tipo_id'];
         $pvd->persona_dni = $_REQUEST['persona_dni'];
-        $pvd->persona_direccion = $_REQUEST['persona_direccion'];
         $pvd->persona_email = $_REQUEST['persona_email'];
-        $pvd->persona_telefono = $_REQUEST['persona_telefono'];
         $pvd->persona_estado = $_REQUEST['persona_estado'];
+        $pvd->persona_egresado = $_REQUEST['persona_egresado'];
+        $pvd->persona_prestamo = $_REQUEST['persona_prestamo'];
         $this->model->RegistrarExAlumno($pvd);
 		header('Location: ../Vista/Accion.php?c=prestamo&a=Nuevo#ExAlumnos');
     }

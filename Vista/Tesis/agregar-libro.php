@@ -18,7 +18,7 @@
 				<div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Registro de libro
+                            Registro de Tesis
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -35,6 +35,7 @@
                                 <div class="tab-pane fade in active" id="Formulario">
 									<form data-toggle="validator" role="form" id="frm-libro" action="?c=libro&a=Guardar" method="post" >
                                         <input type="hidden" name="libro_tipo" value="1" />
+                                        <input type="hidden" name="libro_caracteristica" value="2" />
                                         <input type="hidden" name="libro_cantidad" value="1000" />
                                         <input type="hidden" name="libro_enlace" value="<?php echo $pvd->libro_enlace; ?>" />
                                         <input type="hidden" name="libro_editorial" value="<?php echo $pvd->libro_editorial; ?>" />

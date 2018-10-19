@@ -27,6 +27,7 @@
                                 <div class="tab-pane fade in active" id="Formulario">
 									<form role="form" id="frm-libro" action="?c=tesis&a=Editar" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="libro_tipo" value="1" />
+                                        <input type="hidden" name="libro_caracteristica" value="1" />
                                         <input type="hidden" name="libro_id" value="<?php echo $pvd->libro_id; ?>" />
                                         <input type="hidden" name="libro_editorial" value="<?php echo $pvd->libro_editorial; ?>" />
                                         <input type="hidden" name="libro_enlace" value="<?php echo $pvd->libro_enlace; ?>" />
