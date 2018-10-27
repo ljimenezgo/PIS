@@ -129,28 +129,15 @@ class LibroController{
         foreach ($lineas as $linea_num => $linea) {
             if($i != 0) {
                 $datos = explode(";",$linea);
-				$hash = password_hash($datos[1], PASSWORD_BCRYPT);
-                $pvd->libro_id = $datos[1];
+                $pvd->libro_codigo = $datos[1];
 
-                $pvd->persona_nombres = utf8_encode($datos[2]);
-                $pvd->persona_apellido1 = "";
-                $pvd->persona_apellido2 = "";
-        $pvd->libro_anio = utf8_encode($datos[2]);
-        $pvd->libro_editorial = utf8_encode($datos[2]);
-                $pvd->persona_tipo_id = 2;
-                $pvd->persona_cui = $datos[1];
-                //$pvd->persona_direccion = utf8_encode($datos[5]);
-                $pvd->persona_email = utf8_encode($datos[5]);
-                //$pvd->persona_telefono = $datos[7];
-                $pvd->persona_estado = 0;
-				$pc2->usuario_cuenta = $datos[1];
-				$pc2->usuario_password = $hash;
-				$pc2->usuario_rol_id = 2;
-				$pc2->usuario_libro_id = $datos[1];
-				$pc2->usuario_estado = 0;
+                $pvd->libro_nombre = utf8_encode($datos[2]);
+                $pvd->libro_autor = utf8_encode($datos[2]);
+                $pvd->libro_tipo = 2;
+                $pvd->libro_estado = 0;
+                $pvd->libro_cantidad_disponible = utf8_encode($datos[2]);
+
                 $this->model->Registrar($pvd);
-				$this->model->RegistrarU($pc2);
-
             }
             $i++;
         }

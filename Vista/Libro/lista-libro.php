@@ -42,20 +42,19 @@
                                     <tbody>
                                     <?php foreach($this->model->ListarLibro() as $r): ?>
                                         <tr class="odd gradeX">
-										
-											<?php
-												if($r->libro_cantidad_disponible!=0){
-											?>
+											<?php if($r->libro_cantidad_disponible!=0 or $r->libro_tipo==1){ ?>
                                             <td><?php echo $r->libro_codigo; ?></td>
                                             <td><?php echo $r->libro_nombre; ?></td>
                                             <td><?php echo $r->libro_autor; ?></td>
-                                            <td><?php echo $r->libro_cantidad_disponible; ?></td>
+											<?php if($r->libro_tipo == 1){ ?>
+												<td>Virtual</td>
+											<?php }else{ ?>
+											    <td><?php echo $r->libro_cantidad_disponible; ?></td>
+											<?php } ?>
                                             <td class="center"><a href="?c=libro&a=Crud&libro_id=<?php echo $r->libro_id; ?>">Editar</a></td>
                                             <td class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=libro&a=Eliminar&libro_id=<?php echo $r->libro_id; ?>">Eliminar</a></td>
                                             <td class="center"><a href="?c=libro&a=Perfil&libro_id=<?php echo $r->libro_id; ?>">Ver</a></td>
-                                            <?php
-												}else{
-											?>
+                                            <?php }else{ ?>
 											<td bgcolor="red"><?php echo $r->libro_codigo; ?></td>
                                             <td bgcolor="red"><?php echo $r->libro_nombre; ?></td>
                                             <td bgcolor="red"><?php echo $r->libro_autor; ?></td>
@@ -63,11 +62,7 @@
                                             <td bgcolor="red" class="center"><a href="?c=libro&a=Crud&libro_id=<?php echo $r->libro_id; ?>">Editar</a></td>
                                             <td bgcolor="red" class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=libro&a=Eliminar&libro_id=<?php echo $r->libro_id; ?>">Eliminar</a></td>
                                             <td bgcolor="red" class="center"><a href="?c=libro&a=Perfil&libro_id=<?php echo $r->libro_id; ?>">Ver</a></td>
-											
-											
-											<?php
-												}
-											?>
+											<?php } ?>
                                         </tr>                                        
                                     <?php endforeach; ?>    
                                     </tbody>

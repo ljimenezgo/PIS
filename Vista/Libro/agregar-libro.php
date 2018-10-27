@@ -91,6 +91,8 @@
                                             <label>Subir Archivo</label>
                                             <input id="archivo" accept=".csv" name="archivo" type="file" data-error="Selecciona un archivo" required> 
 											<div class="help-block with-errors"></div>
+											<label><p>Solo para libros físicos<p></label>
+
                                         </div>
                                   
                                         <button type="submit" class="btn btn-default">Registrar</button>
@@ -116,13 +118,16 @@
 	<?php include("scripts.php"); ?>
 	<script type="text/javascript"> 
 		function habilitar(obj) { 
-			var hab; 
+			var hab;
 			frm=obj.form; 
 			num=obj.selectedIndex; 
-			if (num==1) hab=true; 
-			else if (num==2) hab=false; 
+			if (num==1){
+				hab=true;
+			}else if (num==2){ 
+				hab=false;
+			} 
 			frm.archivo.disabled=!hab;
-			frm.libro_cantidad.disabled=hab;			
+			frm.libro_cantidad.disabled=hab;	
 			frm.nombre.disabled=hab; 
 		} 
 	</script>
