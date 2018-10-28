@@ -1,20 +1,28 @@
 <?php
-class libro
+class trabajo
 {
 	private $pdo;
 
-    public $libro_id;
-    public $libro_codigo;
-    public $libro_nombre;
-    public $libro_autor;
-    public $libro_tipo;
-    public $libro_pdf;
-    public $libro_enlace;
-    public $libro_estado;
-    public $libro_cantidad_disponible;
-    public $libro_cantidad;
-    public $libro_anio;
-    public $libro_editorial;
+    public $trabajo_id;
+    public $trabajo_codigo;
+    public $trabajo_nombre;
+    public $trabajo_autor;
+    public $trabajo_tipo;
+    public $trabajo_pdf;
+    public $trabajo_enlace;
+    public $trabajo_estado;
+    public $trabajo_cantidad_disponible;
+    public $trabajo_cantidad;
+    public $trabajo_anio;
+    public $trabajo_editorial;
+    public $trabajo_caracteristica;
+	
+	public $trabajo_error;
+	public $trabajo_size;
+	public $trabajo_name;
+	public $trabajo_type;
+	public $trabajo_tmp_name;
+	
 	
 	public function __CONSTRUCT()
 	{
@@ -27,7 +35,7 @@ class libro
 			die($e->getMessage());
 		}
 	}
-	public function Obtener($libro_id)
+	public function Obtener($trabajo_id)
 	{
 		try
 		{
@@ -35,7 +43,7 @@ class libro
 			//la clausula Where para especificar el id del alumno.
 			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_id = ?");
 			//Ejecución de la sentencia SQL utilizando el parámetro id.
-			$stm->execute(array($libro_id));
+			$stm->execute(array($trabajo_id));
 			return $stm->fetch(PDO::FETCH_OBJ);
 
 		} catch (Exception $e)
@@ -49,7 +57,26 @@ class libro
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0");
+			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0 ");
+			//Ejecución de la sentencia SQL.
+			$stm->execute();
+			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
+			//de resultados
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			//Obtener mensaje de error.
+			die($e->getMessage());
+		}
+	}
+	public function ListarTrabajo()
+	{
+		try
+		{
+			$result = array();
+			//Sentencia SQL para selección de datos.
+			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0 AND libro_caracteristica = 3");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
@@ -65,7 +92,6 @@ class libro
 
 	public function Actualizar($data)
 	{
-
 		try
 		{
 			//Sentencia SQL para actualizar los datos.
@@ -75,40 +101,72 @@ class libro
 						libro_autor        = ?,
 						libro_tipo			 = ?,
 						libro_pdf				 = ?,
-						libro_enlace		 = ?,
 						libro_estado			 = ?,
 						libro_cantidad_disponible		 = ?,
+						libro_cantidad		 = ?,
 						libro_anio		 = ?,
-						libro_editorial		 = ?
+						libro_editorial		 = ?,
+						libro_caracteristica = ?
 						
 				    WHERE libro_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
+			$id_insert = $data->trabajo_id;
+			if($data->trabajo_error>0){
+				echo "Error al cargar archivo";	
+			} else {
+				
+				$permitidos = array("image/gif","image/png","application/pdf");
+				$limite_kb = 2000000;
+				
+				if(in_array($data->trabajo_type, $permitidos) && $data->trabajo_size <= $limite_kb * 1024){
+					$ruta = '../files/'.$id_insert.'/';
+					$archivo = $ruta.$data->trabajo_name;
+					
+					if(!file_exists($ruta)){
+						mkdir($ruta);
+					}
+					if(!file_exists($archivo)){
+						
+						$resultado = @move_uploaded_file($_FILES["archivo"]["tmp_name"], $archivo);
+						
+						if($resultado){
+							echo "Archivo Guardado";
+						} else {
+							echo "Error al guardar archivo";
+						}
+						
+					} else {
+						echo "Archivo ya existe";
+					}
+				} else {
+					echo "Archivo no permitido o excede el tamaño";
+				}
+				
+			}
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
-                        $data->libro_codigo,
-						$data->libro_nombre,
-						$data->libro_autor,
-						$data->libro_tipo,
-						$data->libro_pdf,
-						$data->libro_enlace,
-						$data->libro_estado,
-						$data->libro_cantidad_disponible,
-						$data->libro_anio,
-						$data->libro_editorial,
-						$data->libro_id
-
-
+                        $data->trabajo_codigo,
+						$data->trabajo_nombre,
+						$data->trabajo_autor,
+						$data->trabajo_tipo,
+						$data->trabajo_pdf,
+						$data->trabajo_estado,
+						$data->trabajo_cantidad_disponible,
+						$data->trabajo_cantidad,
+						$data->trabajo_anio,
+						$data->trabajo_editorial,
+						$data->trabajo_caracteristica,
+						$data->trabajo_id
 					)
 				);
+				header('Location: ../Vista/Accion.php?c=trabajo');
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
 		}
-		
 	}
-	
-	public function Eliminar($libro_id)
+	public function Eliminar($trabajo_id)
 	{
 		try
 		{
@@ -116,15 +174,14 @@ class libro
 			//la clausula Where.
 			$stm = $this->pdo
 			            ->prepare("UPDATE libro SET libro_estado = 1 WHERE libro_id = ?");
-
-			$stm->execute(array($libro_id));
+			$stm->execute(array($trabajo_id));
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
 		}
 	}
 	
-	public function Registrar(libro $data)
+	public function Registrar(trabajo $data)
 	{
 		$consulta = "select count(*) as total from libro where libro_id = ?";
 		$result = $this->pdo->prepare($consulta);
@@ -135,26 +192,58 @@ class libro
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_cantidad,libro_anio,libro_editorial) VALUES ( ?,?, ?, ?, ?, ?, ?, ?,?,?,?)";
-
-
+			$sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_cantidad,libro_anio,libro_editorial,libro_caracteristica) VALUES ( ?,?,?, ?, ?, ?, ?, ?, ?,?,?,?)";
+			
 			$this->pdo->prepare($sql)
 		     ->execute(
 				array(
-						$data->libro_codigo,
-						$data->libro_nombre,
-						$data->libro_autor,
-						$data->libro_tipo,
-						$data->libro_pdf,
-						$data->libro_enlace,
-						$data->libro_estado,
-						$data->libro_cantidad_disponible,
-						$data->libro_cantidad,
-						$data->libro_anio,
-						$data->libro_editorial
+						$data->trabajo_codigo,
+						$data->trabajo_nombre,
+						$data->trabajo_autor,
+						$data->trabajo_tipo,
+						$data->trabajo_pdf,
+						$data->trabajo_enlace,
+						$data->trabajo_estado,
+						$data->trabajo_cantidad_disponible,
+						$data->trabajo_cantidad,
+						$data->trabajo_anio,
+						$data->trabajo_editorial,
+						$data->trabajo_caracteristica
                 )
 			);
-        header('Location: ../Vista/Accion.php?c=libro');
+			$id_insert = $this->pdo->lastInsertId($sql);
+			if($data->trabajo_error>0){
+				echo "Error al cargar archivo";
+			} else {
+				$permitidos = array("image/gif","image/png","application/pdf");
+				$limite_kb = 2000000;
+				
+				if(in_array($data->trabajo_type, $permitidos) && $data->trabajo_size <= $limite_kb * 1024){
+					$ruta = '../files/'.$id_insert.'/';
+					$archivo = $ruta.$data->trabajo_name;
+					
+					if(!file_exists($ruta)){
+						mkdir($ruta);
+					}
+					if(!file_exists($archivo)){
+						
+						$resultado = @move_uploaded_file($_FILES["archivo"]["tmp_name"], $archivo);
+						
+						if($resultado){
+							echo "Archivo Guardado";
+						} else {
+							echo "Error al guardar archivo";
+						}
+						
+					} else {
+						echo "Archivo ya existe";
+					}
+				} else {
+					echo "Archivo no permitido o excede el tamaño";
+				}
+				
+			}
+			header('Location: ../Vista/Accion.php?c=trabajo');
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
@@ -163,33 +252,4 @@ class libro
 			header("Location: ../Vista/Accion.php?c=alumno&a=error");
 		}
 	}
-	
-	public function RegistrarPorArchivo(libro $data, $libro_equivalencia) {
-		try {
-			$id_libro = 0;
-
-		    $sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_anio,libro_editorial) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
-			$this->pdo->prepare($sql)
-		     ->execute(
-				array(
-						$data->libro_codigo,
-						$data->libro_nombre,
-						$data->libro_autor,
-						$data->libro_tipo,
-						$data->libro_pdf,
-						$data->libro_enlace,
-						$data->libro_estado,
-						$data->libro_cantidad_disponible,
-						$data->libro_anio,
-						$data->libro_editorial
-                )
-			);
-		} catch (Exception $e) {
-			die($e->getMessage());
-		}
-	}
-	
-	
-	
-
 }

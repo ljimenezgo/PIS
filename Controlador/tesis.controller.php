@@ -1,13 +1,13 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
-require_once '../Modelo/libro.php';
+require_once '../Modelo/tesis.php';
 require_once '../Modelo/usuario.php';
 require_once '../Modelo/database.php';
 
 
 if(isset($_POST['id_usuario'])) {
     $usuario = $_POST['id_usuario'];
-    $modelo = new libro();
+    $modelo = new tesis();
     $pvd = $modelo->Obtener($usuario);
     header('Content-Type: application/json');
     echo json_encode($pvd);
@@ -19,83 +19,91 @@ class TesisController{
 
     //Creación del modelo
     public function __CONSTRUCT(){
-        $this->model = new libro();
+        $this->model = new tesis();
     }
 
     //Llamado plantilla principal
     public function Index(){
-        require_once '../Vista/tesis/lista-libro.php';
+        require_once '../Vista/tesis/lista-tesis.php';
 
     }
 
-    //Llamado a la vista libro-editar
+    //Llamado a la vista tesis-editar
     public function Crud(){
-        $pvd = new libro();
+        $pvd = new tesis();
 
-        //Se obtienen los datos del libro a editar.
-        if(isset($_REQUEST['libro_id'])){
-            $pvd = $this->model->Obtener($_REQUEST['libro_id']);
+        //Se obtienen los datos del tesis a editar.
+        if(isset($_REQUEST['tesis_id'])){
+            $pvd = $this->model->Obtener($_REQUEST['tesis_id']);
         }
 
         //Llamado de las vistas.
-        require_once '../Vista/tesis/editar-libro.php';
+        require_once '../Vista/tesis/editar-tesis.php';
 	}
 
-	//Llamado a la vista libro-perfil
+	//Llamado a la vista tesis-perfil
     public function Perfil(){
-        $pvd = new libro();
+        $pvd = new tesis();
 
-        //Se obtienen los datos del libro.
-        if(isset($_REQUEST['libro_id'])){
-            $pvd = $this->model->Obtener($_REQUEST['libro_id']);
+        //Se obtienen los datos del tesis.
+        if(isset($_REQUEST['tesis_id'])){
+            $pvd = $this->model->Obtener($_REQUEST['tesis_id']);
         }
 
         //Llamado de las vistas.
-        require_once '../Vista/tesis/perfil-libro.php';
+        require_once '../Vista/tesis/perfil-tesis.php';
 	}
 
-    //Llamado a la vista libro-nuevo
+    //Llamado a la vista tesis-nuevo
     public function Nuevo(){
-        $pvd = new libro();
+        $pvd = new tesis();
 
         //Llamado de las vistas.
-        require_once '../Vista/tesis/agregar-libro.php';
+        require_once '../Vista/tesis/agregar-tesis.php';
 
     }
     //Método que registrar al modelo un nuevo proveedor.
     public function Guardar(){
-        $pvd = new libro();
-        $pvd->libro_codigo = $_REQUEST['libro_codigo'];
-        $pvd->libro_nombre = $_REQUEST['libro_nombre'];
-        $pvd->libro_autor = $_REQUEST['libro_autor'];
-		$pvd->libro_tipo = $_REQUEST['libro_tipo'];
-        $pvd->libro_pdf = "";
-        $pvd->libro_enlace = $_REQUEST['libro_enlace'];
-        $pvd->libro_anio = $_REQUEST['libro_anio'];
-        $pvd->libro_editorial = $_REQUEST['libro_editorial'];
-        $pvd->libro_estado = 0;
-        $pvd->libro_cantidad = 0;
-        $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad'];
-
-        //Registro al modelo libro.
+        $pvd = new tesis();
+		$pvd->tesis_error=$_FILES['archivo']['error'];
+		$pvd->tesis_size=$_FILES['archivo']['size'];
+		$pvd->tesis_name=$_FILES['archivo']['name'];
+		$pvd->tesis_type=$_FILES['archivo']['type'];
+		$pvd->tesis_tmp_name=$_FILES['archivo']['tmp_name'];
+		
+        $pvd->tesis_codigo = $_REQUEST['tesis_codigo'];
+        $pvd->tesis_nombre = $_REQUEST['tesis_nombre'];
+        $pvd->tesis_autor = $_REQUEST['tesis_autor'];
+		$pvd->tesis_tipo = $_REQUEST['tesis_tipo'];
+        $pvd->tesis_caracteristica = $_REQUEST['tesis_caracteristica'];
+        $pvd->tesis_anio = $_REQUEST['tesis_anio'];
+        $pvd->tesis_estado = 0;
+        $pvd->tesis_cantidad = 0;
+        $pvd->tesis_cantidad_disponible = $_REQUEST['tesis_cantidad'];
+		
+        //Registro al modelo tesis.
         $this->model->Registrar($pvd);
     }
 
     //Método que modifica el modelo de un proveedor.
     public function Editar(){
-        $pvd = new libro();
-
-        $pvd->libro_codigo = $_REQUEST['libro_codigo'];
-        $pvd->libro_nombre = $_REQUEST['libro_nombre'];
-        $pvd->libro_autor = $_REQUEST['libro_autor'];
-		$pvd->libro_tipo = $_REQUEST['libro_tipo'];
-        $pvd->libro_pdf = "";
-        $pvd->libro_enlace = $_REQUEST['libro_enlace'];
-        $pvd->libro_estado = 0;
-		$pvd->libro_anio = $_REQUEST['libro_anio'];
-        $pvd->libro_editorial = $_REQUEST['libro_editorial'];
-        $pvd->libro_id = $_REQUEST['libro_id'];
-        $pvd->libro_cantidad_disponible = $_REQUEST['cantidad'];
+        $pvd = new tesis();
+		$pvd->tesis_error=$_FILES['archivo']['error'];
+		$pvd->tesis_size=$_FILES['archivo']['size'];
+		$pvd->tesis_name=$_FILES['archivo']['name'];
+		$pvd->tesis_type=$_FILES['archivo']['type'];
+		$pvd->tesis_tmp_name=$_FILES['archivo']['tmp_name'];
+		
+        $pvd->tesis_codigo = $_REQUEST['tesis_codigo'];
+        $pvd->tesis_nombre = $_REQUEST['tesis_nombre'];
+        $pvd->tesis_autor = $_REQUEST['tesis_autor'];
+		$pvd->tesis_tipo = $_REQUEST['tesis_tipo'];
+		$pvd->tesis_id = $_REQUEST['tesis_id'];
+        $pvd->tesis_caracteristica = $_REQUEST['tesis_caracteristica'];
+        $pvd->tesis_anio = $_REQUEST['tesis_anio'];
+        $pvd->tesis_estado = 0;
+        $pvd->tesis_cantidad = 0;
+        $pvd->tesis_cantidad_disponible = $_REQUEST['tesis_cantidad'];
 
         $this->model->Actualizar($pvd);
 
@@ -104,14 +112,12 @@ class TesisController{
 
     //Método que elimina la tupla proveedor con el nit dado.
     public function Eliminar(){
-        $this->model->Eliminar($_REQUEST['libro_id']);
+        $this->model->Eliminar($_REQUEST['tesis_id']);
         header('Location: ../Vista/Accion.php?c=tesis');
     }
 
     public function GuardarArchivo(){
-        $pvd = new libro();
-		$pc2 = new usuario();
-
+        $pvd = new tesis();
 
         $tipo = $_FILES['archivo']['type'];
         $tamanio = $_FILES['archivo']['size'];
@@ -121,28 +127,17 @@ class TesisController{
         foreach ($lineas as $linea_num => $linea) {
             if($i != 0) {
                 $datos = explode(";",$linea);
-				$hash = password_hash($datos[1], PASSWORD_BCRYPT);
-                $pvd->libro_id = $datos[1];
+				$pvd->tesis_codigo = utf8_encode($datos[1]);
+				$pvd->tesis_nombre = utf8_encode($datos[2]);
+				$pvd->tesis_autor =  $datos[3];
+				$pvd->tesis_tipo = 2;
+				$pvd->tesis_caracteristica = 2;
+				$pvd->tesis_anio = $datos[4];
+				$pvd->tesis_estado = 0;
+				$pvd->tesis_cantidad = 0;
+				$pvd->tesis_cantidad_disponible = $datos[5];
 
-                $pvd->persona_nombres = utf8_encode($datos[2]);
-                $pvd->persona_apellido1 = "";
-                $pvd->persona_apellido2 = "";
-        $pvd->libro_anio = utf8_encode($datos[2]);
-        $pvd->libro_editorial = utf8_encode($datos[2]);
-                $pvd->persona_tipo_id = 2;
-                $pvd->persona_cui = $datos[1];
-                //$pvd->persona_direccion = utf8_encode($datos[5]);
-                $pvd->persona_email = utf8_encode($datos[5]);
-                //$pvd->persona_telefono = $datos[7];
-                $pvd->persona_estado = 0;
-				$pc2->usuario_cuenta = $datos[1];
-				$pc2->usuario_password = $hash;
-				$pc2->usuario_rol_id = 2;
-				$pc2->usuario_libro_id = $datos[1];
-				$pc2->usuario_estado = 0;
                 $this->model->Registrar($pvd);
-				$this->model->RegistrarU($pc2);
-
             }
             $i++;
         }

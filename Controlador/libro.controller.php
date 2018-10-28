@@ -65,26 +65,24 @@ class LibroController{
     //Método que registrar al modelo un nuevo proveedor.
     public function Guardar(){
         $pvd = new libro();
-		$nombre= $_FILES['archivo']['name'];
-		$pvd->nombre_archivo = $nombre;
-		$pvd->tipo = $_FILES['archivo']['type'];
-		$pvd->tamanio = $_FILES['archivo']['size'];
-		$ruta = $_FILES['archivo']['tmp_name'];
-		$destino = "archivos/" . $nombre;
-		copy($ruta, $destino);		
+		$pvd->libro_error=$_FILES['archivo']['error'];
+		$pvd->libro_size=$_FILES['archivo']['size'];
+		$pvd->libro_name=$_FILES['archivo']['name'];
+		$pvd->libro_type=$_FILES['archivo']['type'];
+		$pvd->libro_tmp_name=$_FILES['archivo']['tmp_name'];
+		
         $pvd->libro_codigo = $_REQUEST['libro_codigo'];
         $pvd->libro_nombre = $_REQUEST['libro_nombre'];
         $pvd->libro_autor = $_REQUEST['libro_autor'];
 		$pvd->libro_tipo = $_REQUEST['libro_tipo'];
         $pvd->libro_pdf = "";
-        $pvd->libro_enlace = $_REQUEST['libro_enlace'];
         $pvd->libro_caracteristica = $_REQUEST['libro_caracteristica'];
         $pvd->libro_anio = $_REQUEST['libro_anio'];
         $pvd->libro_editorial = $_REQUEST['libro_editorial'];
         $pvd->libro_estado = 0;
         $pvd->libro_cantidad = 0;
         $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad'];
-
+		
         //Registro al modelo libro.
         $this->model->Registrar($pvd);
     }
@@ -92,18 +90,24 @@ class LibroController{
     //Método que modifica el modelo de un proveedor.
     public function Editar(){
         $pvd = new libro();
-
+		$pvd->libro_error=$_FILES['archivo']['error'];
+		$pvd->libro_size=$_FILES['archivo']['size'];
+		$pvd->libro_name=$_FILES['archivo']['name'];
+		$pvd->libro_type=$_FILES['archivo']['type'];
+		$pvd->libro_tmp_name=$_FILES['archivo']['tmp_name'];
+		
         $pvd->libro_codigo = $_REQUEST['libro_codigo'];
         $pvd->libro_nombre = $_REQUEST['libro_nombre'];
         $pvd->libro_autor = $_REQUEST['libro_autor'];
 		$pvd->libro_tipo = $_REQUEST['libro_tipo'];
         $pvd->libro_pdf = "";
-        $pvd->libro_enlace = $_REQUEST['libro_enlace'];
-        $pvd->libro_estado = 0;
-		$pvd->libro_anio = $_REQUEST['libro_anio'];
+		$pvd->libro_id = $_REQUEST['libro_id'];
+        $pvd->libro_caracteristica = $_REQUEST['libro_caracteristica'];
+        $pvd->libro_anio = $_REQUEST['libro_anio'];
         $pvd->libro_editorial = $_REQUEST['libro_editorial'];
-        $pvd->libro_id = $_REQUEST['libro_id'];
-        $pvd->libro_cantidad_disponible = $_REQUEST['cantidad'];
+        $pvd->libro_estado = 0;
+        $pvd->libro_cantidad = 0;
+        $pvd->libro_cantidad_disponible = $_REQUEST['libro_cantidad'];
 
         $this->model->Actualizar($pvd);
 
@@ -118,8 +122,6 @@ class LibroController{
 
     public function GuardarArchivo(){
         $pvd = new libro();
-		$pc2 = new usuario();
-
 
         $tipo = $_FILES['archivo']['type'];
         $tamanio = $_FILES['archivo']['size'];
@@ -129,13 +131,17 @@ class LibroController{
         foreach ($lineas as $linea_num => $linea) {
             if($i != 0) {
                 $datos = explode(";",$linea);
-                $pvd->libro_codigo = $datos[1];
-
-                $pvd->libro_nombre = utf8_encode($datos[2]);
-                $pvd->libro_autor = utf8_encode($datos[2]);
-                $pvd->libro_tipo = 2;
-                $pvd->libro_estado = 0;
-                $pvd->libro_cantidad_disponible = utf8_encode($datos[2]);
+				$pvd->libro_codigo = utf8_encode($datos[1]);
+				$pvd->libro_nombre = utf8_encode($datos[2]);
+				$pvd->libro_autor =  $datos[3];
+				$pvd->libro_tipo = 2;
+				$pvd->libro_pdf = "";
+				$pvd->libro_caracteristica = 1;
+				$pvd->libro_anio = $datos[4];
+				$pvd->libro_editorial = $datos[5];
+				$pvd->libro_estado = 0;
+				$pvd->libro_cantidad = 0;
+				$pvd->libro_cantidad_disponible = $datos[6];
 
                 $this->model->Registrar($pvd);
             }

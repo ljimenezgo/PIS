@@ -20,7 +20,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Alumnos Registrados
+                            Trabajos Registrados
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -31,40 +31,38 @@
                                             <th>Codigo</th>
                                             <th>Nombre</th>
                                             <th>Autor</th>
-                                            <th>Editar</th>
-                                            <th>Eliminar</th>
-                                            <th>Ver</th>
+                                            <th>Cantidad</th>
+                                            <th style="text-align: center" >Editar</th>
+                                            <th style="text-align: center" >Eliminar</th>
+                                            <th style="text-align: center" >Ver</th>
 											
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach($this->model->ListarTesis() as $r): ?>
+                                    <?php foreach($this->model->ListarTrabajo() as $r): ?>
                                         <tr class="odd gradeX">
-										
-											<?php
-												if($r->libro_cantidad_disponible!=0){
-											?>
+											<?php if($r->libro_cantidad_disponible!=0 or $r->libro_tipo==1){ ?>
                                             <td><?php echo $r->libro_codigo; ?></td>
                                             <td><?php echo $r->libro_nombre; ?></td>
                                             <td><?php echo $r->libro_autor; ?></td>
-                                            <td class="center"><a href="?c=tesis&a=Crud&libro_id=<?php echo $r->libro_id; ?>">Editar</a></td>
-                                            <td class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=tesis&a=Eliminar&libro_id=<?php echo $r->libro_id; ?>">Eliminar</a></td>
-                                            <td class="center"><a href="?c=tesis&a=Perfil&libro_id=<?php echo $r->libro_id; ?>">Ver</a></td>
-                                            <?php
-												}else{
-											?>
+											<?php if($r->libro_tipo == 1){ ?>
+												<td>Virtual</td>
+											<?php }else{ ?>
+											    <td><?php echo $r->libro_cantidad_disponible; ?></td>
+											<?php } ?>
+                                            <td style="text-align: center" class="center"><a href="?c=libro&a=Crud&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-pencil"></a></td>
+                                            <td style="text-align: center" class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=libro&a=Eliminar&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                            <td style="text-align: center" class="center"><a href="?c=libro&a=Perfil&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                            <?php }else{ ?>
 											<td bgcolor="red"><?php echo $r->libro_codigo; ?></td>
                                             <td bgcolor="red"><?php echo $r->libro_nombre; ?></td>
                                             <td bgcolor="red"><?php echo $r->libro_autor; ?></td>
-                                            <td bgcolor="red" class="center"><a href="?c=tesis&a=Crud&libro_id=<?php echo $r->libro_id; ?>">Editar</a></td>
-                                            <td bgcolor="red" class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=tesis&a=Eliminar&libro_id=<?php echo $r->libro_id; ?>">Eliminar</a></td>
-                                            <td bgcolor="red" class="center"><a href="?c=tesis&a=Perfil&libro_id=<?php echo $r->libro_id; ?>">Ver</a></td>
-											
-											
-											<?php
-												}
-											?>
+                                            <td bgcolor="red"><?php echo $r->libro_cantidad_disponible; ?></td>
+                                            <td style="text-align: center" bgcolor="red" class="center"><a href="?c=libro&a=Crud&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-pencil"></a></td>
+                                            <td style="text-align: center" bgcolor="red" class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=libro&a=Eliminar&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                            <td style="text-align: center" bgcolor="red" class="center"><a href="?c=libro&a=Perfil&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+											<?php } ?>
                                         </tr>                                        
                                     <?php endforeach; ?>    
                                     </tbody>
