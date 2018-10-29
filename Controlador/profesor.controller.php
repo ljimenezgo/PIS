@@ -42,6 +42,15 @@ class ProfesorController{
         header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
         //Llamado de las vistas.
 	}
+	public function desmatricular(){
+        $pvd = new profesor();
+		$pvd->persona_id = $_REQUEST['persona_id'];
+        $pvd->persona_tutor = $_REQUEST['persona_tutor'];
+        //Se obtienen los datos del comentar a editar.
+        $pvd = $this->model->desmatricular($pvd);
+        header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
+        //Llamado de las vistas.
+	}
 
     public function Nuevo(){
         $pvd = new profesor();

@@ -45,7 +45,6 @@
 											<?php
                                                 if($_SESSION['rol']==3){
                                             ?>
-                                            <th>Comentar</th>
                                             <th>Matricular</th>
                                             <?php
                                                 }
@@ -53,31 +52,37 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach($this->model->Listar() as $r): ?>
+                                    <?php if($_SESSION['rol']==1){
+										foreach($this->model->Listar() as $r): ?>
                                         <tr class="odd gradeX">
                                             <td><?php echo $r->persona_apellido1; ?> <?php echo $r->persona_apellido2; ?> <?php echo $r->persona_nombres; ?></td>
                                             <td><?php echo $r->persona_cui; ?></td>
                                             <td><?php echo $r->persona_telefono; ?></td>
                                             <td><?php echo $r->persona_email; ?></td>
-                                            <?php
-                                                if($_SESSION['rol']==1){
-                                            ?>
+                                            
                                             <td class="center"><a href="?c=alumno&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
                                             <td class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=alumno&a=Eliminar&persona_id=<?php echo $r->persona_id; ?>">Eliminar</a></td>
-                                            <?php
-                                            }
-                                            ?>
+                                            
                                             <td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
-											<?php
-                                                if($_SESSION['rol']==3){
-                                            ?>
-                                            <td class="center"><a href="../Vista/Accion.php?c=comentar&a=comentario&persona_id=<?php echo $r->persona_id; ?>">Comentar</a></td>
-                                            <td class="center"><a href="../Vista/Accion.php?c=profesor&a=matricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Matricular</a></td>
-                                            <?php
-                                            }
-                                            ?>
+											
                                         </tr>                                        
-                                    <?php endforeach; ?>    
+                                    <?php endforeach;}
+									
+										if($_SESSION['rol']==3){
+									
+											foreach($this->model->ListarTuto() as $r): ?>
+                                        <tr class="odd gradeX">
+                                            <td><?php echo $r->persona_apellido1; ?> <?php echo $r->persona_apellido2; ?> <?php echo $r->persona_nombres; ?></td>
+                                            <td><?php echo $r->persona_cui; ?></td>
+                                            <td><?php echo $r->persona_telefono; ?></td>
+                                            <td><?php echo $r->persona_email; ?></td>
+                                            
+                                            <td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
+											
+                                            <td class="center"><a href="../Vista/Accion.php?c=profesor&a=matricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Matricular</a></td>
+                                            
+                                        </tr>                                        
+										<?php endforeach; }?> 									
                                     </tbody>
                                 </table>
                             </div>

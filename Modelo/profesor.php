@@ -104,7 +104,22 @@ class profesor
 			die($e->getMessage());
 		}
 	}
-	
+	public function desmatricular($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_tutor = '' WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->persona_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}	
 	public function Actualizar($data)
 	{
 		try

@@ -29,17 +29,12 @@
                                         <tr>
                                             <th>Apellidos y Nombres</th>
                                             <th>DNI</th>
-                                            <th>Telefono</th>
                                             <th>Email</th>
+                                            <th>Ver</th>
+											<th>Comentar</th>
+                                            <th>Desmatricular</th>
                                             
-											<?php
-												if($_SESSION['rol']==1){
-											?>
-											<th>Editar</th>
-											<th>Eliminar</th>
-											<?php
-												}
-											?>
+											
 										
                                         </tr>
                                     </thead>
@@ -48,16 +43,10 @@
                                         <tr class="odd gradeX">
 											<td><?php echo $r->persona_apellido1; ?> <?php echo $r->persona_apellido2; ?> <?php echo $r->persona_nombres; ?></td>
 											<td><?php echo $r->persona_dni; ?></td>
-											<td><?php echo $r->persona_telefono; ?></td>
 											<td><?php echo $r->persona_email; ?></td>
-											<?php
-												if($_SESSION['rol']==1){
-											?>
-											<td class="center"><a href="?c=profesor&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
-											<td class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=profesor&a=Eliminar&persona_id=<?php echo $r->persona_id; ?>">Eliminar</a></td>
-											<?php
-												}
-											?>
+											<td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
+											<td class="center"><a href="../Vista/Accion.php?c=comentar&a=comentario&persona_id=<?php echo $r->persona_id; ?>">Comentar</a></td>
+											<td class="center"><a href="../Vista/Accion.php?c=profesor&a=desmatricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Desmatricular</a></td>
                                         </tr>                                        
                                     <?php endforeach; ?>    
                                     </tbody>

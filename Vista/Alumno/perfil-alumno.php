@@ -14,9 +14,11 @@
                                 <h3 class="panel-title"><?php echo $pvd->persona_nombres; ?> <?php echo $pvd->persona_apellido1; ?>  <!-- <button type="button" class="btn btn-primary btn-xs">Generar Reporte</button>--></h3>
 								
                             </div>
+							<!--
 							<div class="alert alert-success">
                                 Usted se encuentra en <a href="#" class="alert-link"> Tercio Superior</a>.
                             </div>
+							-->
                             <div class="panel-body">
                                 <div class="row">
                                     <div class=" col-md-9 col-lg-9 ">
