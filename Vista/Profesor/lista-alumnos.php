@@ -31,6 +31,7 @@
                                             <th>DNI</th>
                                             <th>Email</th>
                                             <th>Ver</th>
+											<th>Editar</th>
 											<th>Comentar</th>
                                             <th>Desmatricular</th>
                                             
@@ -45,6 +46,7 @@
 											<td><?php echo $r->persona_dni; ?></td>
 											<td><?php echo $r->persona_email; ?></td>
 											<td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
+											<td class="center"><a href="?c=alumno&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
 											<td class="center"><a href="../Vista/Accion.php?c=comentar&a=comentario&persona_id=<?php echo $r->persona_id; ?>">Comentar</a></td>
 											<td class="center"><a href="../Vista/Accion.php?c=profesor&a=desmatricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Desmatricular</a></td>
                                         </tr>                                        
