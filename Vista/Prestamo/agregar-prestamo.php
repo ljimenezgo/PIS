@@ -49,9 +49,9 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 											<div class="form-group">
 												<select name="persona" id= "persona" class="form-control" required>
 												  <option value='' selected>-- SELECCIONE TIPO DE PERSONA--</option>
-												  <option value="1">Alumno</option> 
-												  <option value="2">Profesor</option>
-												  <option value="3">Ex Alumno</option>
+												  <option value="2">Alumno</option> 
+												  <option value="3">Profesor</option>
+												  <option value="6">Ex Alumno</option>
 												</select>
 											</div>
 											<div class="form-group">
