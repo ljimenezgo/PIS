@@ -15,6 +15,10 @@ class ProfesorController{
         require_once '../Vista/Profesor/lista-profesores.php';
 
     }
+	public function Tutor(){
+        require_once '../Vista/Profesor/lista-alumnos.php';
+
+    }
 	public function error(){
         require_once '../Vista/error.php';
 
@@ -27,7 +31,17 @@ class ProfesorController{
         }
 
         require_once '../Vista/Profesor/editar-profesores.php';
-  }
+	}
+	
+	public function matricular(){
+        $pvd = new profesor();
+		$pvd->persona_id = $_REQUEST['persona_id'];
+        $pvd->persona_tutor = $_REQUEST['persona_tutor'];
+        //Se obtienen los datos del comentar a editar.
+        $pvd = $this->model->Matricular($pvd);
+        header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
+        //Llamado de las vistas.
+	}
 
     public function Nuevo(){
         $pvd = new profesor();
@@ -41,9 +55,9 @@ class ProfesorController{
 		$pc2 = new usuario();
 		$hash = password_hash($_REQUEST['persona_dni'], PASSWORD_BCRYPT);
         $pvd->persona_id = $_REQUEST['persona_dni'];
-        $pvd->persona_nombres = $_REQUEST['persona_nombres'];
-        $pvd->persona_apellido1 = $_REQUEST['persona_apellido1'];
-        $pvd->persona_apellido2 = $_REQUEST['persona_apellido2'];
+        $pvd->persona_nombres = strtoupper(''.$_REQUEST['persona_apellido1'].'/'.$_REQUEST['persona_apellido2'].", ".$_REQUEST['persona_nombres']);
+        $pvd->persona_apellido1 = "";
+        $pvd->persona_apellido2 = "";
 		$pvd->persona_tipo_id = $_REQUEST['persona_tipo_id'];
         $pvd->persona_dni = $_REQUEST['persona_dni'];
         $pvd->persona_direccion = $_REQUEST['persona_direccion'];
@@ -67,9 +81,9 @@ class ProfesorController{
         $pvd = new profesor();
 
         $pvd->persona_id = $_REQUEST['persona_id'];
-        $pvd->persona_nombres = $_REQUEST['persona_nombres'];
-        $pvd->persona_apellido1 = $_REQUEST['persona_apellido1'];
-        $pvd->persona_apellido2 = $_REQUEST['persona_apellido2'];
+        $pvd->persona_nombres = strtoupper($_REQUEST['persona_nombres']);
+        $pvd->persona_apellido1 = "";
+        $pvd->persona_apellido2 = "";
 		$pvd->persona_tipo_id = $_REQUEST['persona_tipo_id'];
         $pvd->persona_dni = $_REQUEST['persona_dni'];
         $pvd->persona_direccion = $_REQUEST['persona_direccion'];
@@ -96,31 +110,31 @@ class ProfesorController{
         $archivotmp = $_FILES['archivo']['tmp_name'];
         $lineas = file($archivotmp);
         $i = 0;
-        foreach ($lineas as $linea_num => $linea) { 
-            if($i != 0) { 
-                $datos = explode(",",$linea);
-				$hash = password_hash($datos[4], PASSWORD_BCRYPT);
-				$pvd->persona_id = $datos[4];
-                $pvd->persona_nombres = utf8_encode($datos[0]);
-                $pvd->persona_apellido1 = utf8_encode($datos[1]);
-                $pvd->persona_apellido2 = utf8_encode($datos[2]);
+        foreach ($lineas as $linea_num => $linea) {
+            if($i != 0) {
+                $datos = explode(";",$linea);
+				$hash = password_hash($datos[2], PASSWORD_BCRYPT);
+                $pvd->persona_id = $datos[2];
+                $pvd->persona_nombres = utf8_encode($datos[1]);
+                $pvd->persona_apellido1 = "";
+                $pvd->persona_apellido2 = "";
+				$pvd->persona_prestamo=0;
                 $pvd->persona_tipo_id = 3;
-                $pvd->persona_dni = $datos[4];
-                $pvd->persona_direccion = utf8_encode($datos[5]);
-                $pvd->persona_email = utf8_encode($datos[6]);
-                $pvd->persona_telefono = $datos[7];
-                $pvd->persona_estado = $datos[8];
-        $pc2->usuario_cuenta = $datos[4];
-        $pc2->usuario_password = $hash;
-        $pc2->usuario_rol_id = 3;
-		$pc2->usuario_persona_id = $datos[4];
-        $pc2->usuario_estado = $datos[8];
-        				$pvd->persona_prestamo=0;
-
+                $pvd->persona_dni = $datos[2];
+                //$pvd->persona_direccion = utf8_encode($datos[5]);
+                $pvd->persona_email = utf8_encode($datos[3]);
+                //$pvd->persona_telefono = $datos[7];
+                $pvd->persona_estado = 0;
+				$pc2->usuario_cuenta = $datos[2];
+				$pc2->usuario_password = $hash;
+				$pc2->usuario_rol_id = 3;
+				$pc2->usuario_persona_id = $datos[2];
+				$pc2->usuario_estado = 0;
                 $this->model->Registrar($pvd);
-						$this->model->RegistrarU($pc2);
+				$this->model->RegistrarU($pc2);
+
             }
-                $i++;
+            $i++;
         }
 
     }

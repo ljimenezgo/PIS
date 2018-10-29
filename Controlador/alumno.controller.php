@@ -81,6 +81,7 @@ class AlumnoController{
         $pvd->persona_apellido2 = "";
 		$pvd->persona_tipo_id = $_REQUEST['persona_tipo_id'];
         $pvd->persona_cui = $_REQUEST['persona_cui'];
+        $pvd->persona_dni = $_REQUEST['persona_dni'];
         $pvd->persona_direccion = $_REQUEST['persona_direccion'];
         $pvd->persona_email = $_REQUEST['persona_email'];
         $pvd->persona_telefono = $_REQUEST['persona_telefono'];
@@ -110,10 +111,11 @@ class AlumnoController{
 
         $pvd->persona_id = $_REQUEST['persona_id'];
         $pvd->persona_nombres = strtoupper($_REQUEST['persona_nombres']);
-        $pvd->persona_apellido1 = strtoupper($_REQUEST['persona_apellido1']);
-        $pvd->persona_apellido2 = strtoupper($_REQUEST['persona_apellido2']);
+        $pvd->persona_apellido1 = "";
+        $pvd->persona_apellido2 = "";
 		$pvd->persona_tipo_id = $_REQUEST['persona_tipo_id'];
         $pvd->persona_cui = $_REQUEST['persona_cui'];
+        $pvd->persona_dni = $_REQUEST['persona_cui'];
         $pvd->persona_direccion = $_REQUEST['persona_direccion'];
         $pvd->persona_email = $_REQUEST['persona_email'];
         $pvd->persona_telefono = $_REQUEST['persona_telefono'];
@@ -151,6 +153,7 @@ class AlumnoController{
 				$pvd->persona_prestamo=0;
                 $pvd->persona_tipo_id = 2;
                 $pvd->persona_cui = $datos[1];
+                $pvd->persona_dni = $datos[3];
                 //$pvd->persona_direccion = utf8_encode($datos[5]);
                 $pvd->persona_email = utf8_encode($datos[5]);
                 //$pvd->persona_telefono = $datos[7];

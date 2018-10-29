@@ -15,6 +15,7 @@ class profesor
 	public $persona_estado;
 	public $persona_egresado;
 	public $persona_tipo_libro_prestado;
+	public $persona_tutor;
 	public function __CONSTRUCT()
 	{
 		try
@@ -41,6 +42,21 @@ class profesor
 			die($e->getMessage());
 		}
 	}
+	
+	public function ListarAlumnos($persona_id)
+	{
+		try
+		{
+			$result = array();
+			$stm = $this->pdo->prepare("SELECT * FROM persona WHERE (persona_tutor = ?) AND (persona_estado = 0)");
+			$stm->execute(array($persona_id));
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 
 	public function Obtener($persona_id)
 	{
@@ -54,6 +70,8 @@ class profesor
 			die($e->getMessage());
 		}
 	}
+	
+	
 
 	public function Eliminar($persona_id)
 	{
@@ -69,6 +87,24 @@ class profesor
 		}
 	}
 
+	public function Matricular($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_tutor = ? WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+                        $data->persona_tutor,
+						$data->persona_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	
 	public function Actualizar($data)
 	{
 		try

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2018 a las 05:45:21
+-- Tiempo de generación: 29-10-2018 a las 04:14:54
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 5.6.38
 
@@ -95,17 +95,14 @@ CREATE TABLE `libro` (
   `libro_nombre` varchar(80) NOT NULL,
   `libro_autor` varchar(50) NOT NULL,
   `libro_tipo` int(11) NOT NULL,
-  `libro_pdf` longblob,
-  `libro_enlace` varchar(100) DEFAULT NULL,
+  `libro_pdf` varchar(200) DEFAULT '',
+  `libro_enlace` varchar(200) DEFAULT NULL,
   `libro_estado` int(11) DEFAULT NULL,
   `libro_cantidad_disponible` int(11) DEFAULT NULL,
   `libro_cantidad` int(11) DEFAULT '0',
   `libro_anio` varchar(20) NOT NULL,
   `libro_editorial` varchar(100) NOT NULL,
-  `libro_caracteristica` int(1) DEFAULT NULL,
-  `tamanio` int(255) UNSIGNED DEFAULT NULL,
-  `tipo` varchar(150) DEFAULT NULL,
-  `nombre_archivo` varchar(255) DEFAULT NULL
+  `libro_caracteristica` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -126,6 +123,23 @@ CREATE TABLE `malla_curricular` (
 
 INSERT INTO `malla_curricular` (`malla_curricular_id`, `malla_curricular_dsc`, `malla_curricular_anio`) VALUES
 (1, 'ehdc2004', 2004);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `matricula`
+--
+
+CREATE TABLE `matricula` (
+  `matricula_id` int(11) NOT NULL,
+  `matricula_anio` int(4) NOT NULL,
+  `matricula_semestre` varchar(20) NOT NULL,
+  `matricula_tipo` varchar(20) NOT NULL,
+  `matricula_descripcion` varchar(200) NOT NULL,
+  `matricula_fecha_inicio` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `matricula_fecha_fin` timestamp NULL DEFAULT NULL,
+  `matricula_estado` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -165,16 +179,17 @@ CREATE TABLE `persona` (
   `persona_prestamo_deuda` int(11) DEFAULT '0',
   `persona_colaborador` int(11) DEFAULT '0',
   `persona_egresado` varchar(20) DEFAULT NULL,
-  `persona_tipo_libro_prestado` varchar(100) DEFAULT NULL
+  `persona_tipo_libro_prestado` varchar(100) DEFAULT NULL,
+  `persona_tutor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`persona_id`, `persona_nombres`, `persona_apellido1`, `persona_apellido2`, `persona_tipo_id`, `persona_dni`, `persona_cui`, `persona_direccion`, `persona_email`, `persona_telefono`, `persona_malla`, `persona_seccion`, `persona_estado`, `persona_prestamo`, `persona_prestamo_total`, `persona_prestamo_deuda`, `persona_colaborador`, `persona_egresado`, `persona_tipo_libro_prestado`) VALUES
-(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL),
-(72034062, 'Luis', 'Jimenez', 'Gonzales', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL);
+INSERT INTO `persona` (`persona_id`, `persona_nombres`, `persona_apellido1`, `persona_apellido2`, `persona_tipo_id`, `persona_dni`, `persona_cui`, `persona_direccion`, `persona_email`, `persona_telefono`, `persona_malla`, `persona_seccion`, `persona_estado`, `persona_prestamo`, `persona_prestamo_total`, `persona_prestamo_deuda`, `persona_colaborador`, `persona_egresado`, `persona_tipo_libro_prestado`, `persona_tutor`) VALUES
+(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0),
+(72034062, 'Luis', 'Jimenez', 'Gonzales', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -337,6 +352,12 @@ ALTER TABLE `malla_curricular`
   ADD UNIQUE KEY `malla_curricular_id_UNIQUE` (`malla_curricular_id`);
 
 --
+-- Indices de la tabla `matricula`
+--
+ALTER TABLE `matricula`
+  ADD PRIMARY KEY (`matricula_id`);
+
+--
 -- Indices de la tabla `nota_promedio`
 --
 ALTER TABLE `nota_promedio`
@@ -422,13 +443,19 @@ ALTER TABLE `docente_curso`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `malla_curricular`
 --
 ALTER TABLE `malla_curricular`
   MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `matricula`
+--
+ALTER TABLE `matricula`
+  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_promedio`
@@ -440,7 +467,7 @@ ALTER TABLE `nota_promedio`
 -- AUTO_INCREMENT de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
-  MODIFY `prestamo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `prestamo_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -464,7 +491,7 @@ ALTER TABLE `tipo_persona`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=452;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Restricciones para tablas volcadas

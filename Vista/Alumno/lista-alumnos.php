@@ -46,6 +46,7 @@
                                                 if($_SESSION['rol']==3){
                                             ?>
                                             <th>Comentar</th>
+                                            <th>Matricular</th>
                                             <?php
                                                 }
                                             ?>
@@ -71,6 +72,7 @@
                                                 if($_SESSION['rol']==3){
                                             ?>
                                             <td class="center"><a href="../Vista/Accion.php?c=comentar&a=comentario&persona_id=<?php echo $r->persona_id; ?>">Comentar</a></td>
+                                            <td class="center"><a href="../Vista/Accion.php?c=profesor&a=matricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Matricular</a></td>
                                             <?php
                                             }
                                             ?>

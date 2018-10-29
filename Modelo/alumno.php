@@ -12,6 +12,7 @@ class alumno
 	public $persona_tipo_id;
 	public $persona_prestamo;
 	public $persona_cui;
+	public $persona_dni;
 	public $persona_direccion;
 	public $persona_email;
 	public $persona_telefono;
@@ -128,6 +129,7 @@ class alumno
 						persona_apellido2        = ?,
 						persona_tipo_id			 = ?,
 						persona_cui				 = ?,
+						persona_dni			 	 = ?,
 						persona_direccion		 = ?,
 						persona_email			 = ?,
 						persona_prestamo		 = ?,
@@ -143,6 +145,7 @@ class alumno
                         $data->persona_apellido2,
                         $data->persona_tipo_id,
 						$data->persona_cui,
+						$data->persona_dni,
                         $data->persona_direccion,
                         $data->persona_email,
                         $data->persona_telefono,
@@ -170,8 +173,8 @@ class alumno
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO persona (persona_id, persona_nombres,persona_apellido1,persona_apellido2,persona_tipo_id,persona_cui,persona_direccion,persona_email,persona_telefono, persona_estado, persona_prestamo)
-		        VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+			$sql = "INSERT INTO persona (persona_id, persona_nombres,persona_apellido1,persona_apellido2,persona_tipo_id,persona_cui,persona_dni,persona_direccion,persona_email,persona_telefono, persona_estado, persona_prestamo)
+		        VALUES (?,?, ?, ?,?, ?, ?, ?, ?, ?, ?,?)";
 
 			$this->pdo->prepare($sql)
 		     ->execute(
@@ -182,6 +185,7 @@ class alumno
                         $data->persona_apellido2,
                         $data->persona_tipo_id,
 						$data->persona_cui,
+						$data->persona_dni,
                         $data->persona_direccion,
                         $data->persona_email,
                         $data->persona_telefono,

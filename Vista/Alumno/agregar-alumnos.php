@@ -26,7 +26,8 @@
                             <ul class="nav nav-pills">
                                 <li class="active"><a href="#Formulario" data-toggle="tab">Formulario</a>
                                 </li>
-                                
+                                <li><a href="#Archivo" data-toggle="tab">Archivo</a>
+                                </li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -59,6 +60,12 @@
                                         <div class="form-group col-lg-6">
                                             <label for="persona_cui" class="control-label" >CUI</label>
                                             <input class="form-control"  name="persona_cui" value="<?php echo $pvd->persona_cui; ?>"  placeholder="Ingrese CUI" pattern="^\d{8}$" data-error="Debe de tener 8 dígitos" required>
+											<div class="help-block with-errors"></div>
+										</div>
+										
+										<div class="form-group col-lg-6">
+                                            <label for="persona_dni" class="control-label" >DNI</label>
+                                            <input class="form-control"  name="persona_dni" value="<?php echo $pvd->persona_dni; ?>"  placeholder="Ingrese DNI" pattern="^\d{8}$" data-error="Debe de tener 8 dígitos" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
