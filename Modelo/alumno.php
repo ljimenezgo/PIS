@@ -168,8 +168,8 @@ class alumno
 						$data->persona_dni,
                         $data->persona_direccion,
                         $data->persona_email,
-                        $data->persona_telefono,
                         $data->persona_prestamo,
+                        $data->persona_telefono,
 						$data->persona_id
 
 					)

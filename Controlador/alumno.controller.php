@@ -123,7 +123,7 @@ class AlumnoController{
 
         $this->model->Actualizar($pvd);
 
-        header('Location: ../Vista/Accion.php?c=alumno');
+        header('Location: ../Vista/Accion.php?c=alumno&a=Perfil&persona_id='.$_REQUEST['persona_id']);
     }
 
     //Método que elimina la tupla proveedor con el nit dado.
