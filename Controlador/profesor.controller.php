@@ -38,19 +38,41 @@ class ProfesorController{
 		$pvd->persona_id = $_REQUEST['persona_id'];
         $pvd->persona_tutor = $_REQUEST['persona_tutor'];
         //Se obtienen los datos del comentar a editar.
-        $pvd = $this->model->Matricular($pvd);
+        $this->model->Matricular($pvd);
+        $this->model->MatricularP($pvd);
         header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
         //Llamado de las vistas.
 	}
+
+    public function solicitar(){
+        $pvd = new profesor();
+        $pvd->persona_id = $_REQUEST['persona_id'];
+        $pvd->persona_solicitar = $_REQUEST['persona_solicitar'];
+        //Se obtienen los datos del comentar a editar.
+        $pvd = $this->model->Solicitar($pvd);
+        header('Location: ../Vista/Accion.php?c=alumno');
+        //Llamado de las vistas.
+    }
+
 	public function desmatricular(){
         $pvd = new profesor();
 		$pvd->persona_id = $_REQUEST['persona_id'];
         $pvd->persona_tutor = $_REQUEST['persona_tutor'];
         //Se obtienen los datos del comentar a editar.
-        $pvd = $this->model->desmatricular($pvd);
+        $this->model->desmatricular($pvd);
+        $this->model->desmatricularP($pvd);
         header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
         //Llamado de las vistas.
 	}
+
+    public function cancelarSolicitud(){
+        $pvd = new profesor();
+        $pvd->persona_id = $_REQUEST['persona_id'];
+        //Se obtienen los datos del comentar a editar.
+        $pvd = $this->model->cancelarSolicitud($pvd);
+        header('Location: ../Vista/Accion.php?c=alumno');
+        //Llamado de las vistas.
+    }
 
     public function Nuevo(){
         $pvd = new profesor();
@@ -58,7 +80,11 @@ class ProfesorController{
         require_once '../Vista/Profesor/agregar-profesores.php';
 
     }
+    public function Solicitudes(){
+        $pvd = new profesor();
 
+        require_once '../Vista/Profesor/lista-solicitudes.php';
+    }
     public function Guardar(){
         $pvd = new profesor();
 		$pc2 = new usuario();

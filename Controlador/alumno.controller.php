@@ -30,6 +30,12 @@ class AlumnoController{
         require_once '../Vista/Alumno/lista-alumnos.php';
 
     }
+
+    public function ProfesoresDisponibles(){
+        require_once '../Vista/Alumno/lista-profesores-disponibles.php';
+
+    }
+
 	public function error(){
         require_once '../Vista/error.php';
 

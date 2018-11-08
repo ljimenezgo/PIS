@@ -16,6 +16,8 @@ class profesor
 	public $persona_egresado;
 	public $persona_tipo_libro_prestado;
 	public $persona_tutor;
+	public $persona_solicitar;
+	public $persona_alumnos;
 	public function __CONSTRUCT()
 	{
 		try
@@ -57,7 +59,21 @@ class profesor
 			die($e->getMessage());
 		}
 	}
-
+	public function Solicitudes()
+	{
+		try
+		{
+			$result = array();
+			$sesioniniciada = $_SESSION['persona_id'];
+			$stm = $this->pdo->prepare("SELECT * FROM persona WHERE persona_solicitar = ?  AND (persona_estado = 0) AND (persona_tutor = '')");
+			$stm->execute(array($sesioniniciada));
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 	public function Obtener($persona_id)
 	{
 		try
@@ -91,7 +107,7 @@ class profesor
 	{
 		try
 		{
-			$sql = "UPDATE persona SET persona_tutor = ? WHERE persona_id = ?";
+			$sql = "UPDATE persona SET persona_tutor = ?,persona_solicitar=0 WHERE persona_id = ?";
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
@@ -104,6 +120,41 @@ class profesor
 			die($e->getMessage());
 		}
 	}
+	public function MatricularP($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_alumnos=persona_alumnos+1 WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+                        $data->persona_tutor
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	public function Solicitar($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_solicitar = ? WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+                        $data->persona_solicitar, 						
+                        $data->persona_id
+
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
 	public function desmatricular($data)
 	{
 		try
@@ -119,7 +170,40 @@ class profesor
 		{
 			die($e->getMessage());
 		}
+	}
+	public function desmatricularP($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_alumnos=persona_alumnos-1 WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->persona_tutor
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
 	}	
+
+		public function cancelarSolicitud($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_solicitar = '' WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->persona_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 	public function Actualizar($data)
 	{
 		try

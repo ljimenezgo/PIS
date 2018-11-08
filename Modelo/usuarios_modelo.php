@@ -22,6 +22,7 @@ class usuarios_modelo{
 			 if (password_verify($password, $row['usuario_password'])) { 
 	  		 	 $_SESSION['loggedin'] = true;
 				 $_SESSION['rol']= $row['usuario_rol_id'];
+				 $_SESSION['solicitud']= $row['persona_solicitar'];
 	   			 $_SESSION['usuario_cuenta'] = $username;
 	   			 $_SESSION['persona_id'] = $row['usuario_persona_id'];
 	   			 $_SESSION['nombre_persona'] = $row['persona_nombres'];
@@ -30,7 +31,6 @@ class usuarios_modelo{
 	   			 $_SESSION['start'] = time();
 	  			 $_SESSION['expire'] = $_SESSION['start'] + (50 * 60);
 	  			 header('Location: Vista/bienvenida.php');
-	  			
 			 }
 
 			 else { 

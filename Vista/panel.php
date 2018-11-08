@@ -248,7 +248,10 @@ if($_SESSION['rol']==2){
 						</li>
 						<li>
                             <a href="../Vista/Accion.php?c=matricula"><i class="fa fa-wrench fa-fw"></i> Matriculas</a>
-						</li>						
+						</li>
+                        <li>
+                            <a href="../Vista/Accion.php?c=alumno"><i class="fa fa-wrench fa-fw"></i> Tutoría</a>
+                        </li>						
 						
 						<!-- /Relaciones públicas y dirección -->                       
 								
@@ -312,6 +315,34 @@ if($_SESSION['rol']==3){
 				<?php
 					}
 				?>
+
+                <li class="dropdown">
+                    <?php
+                        $pdo = Conectar::conexion();
+                        $sesioniniciada = $_SESSION['persona_id'];
+                        $sql = $pdo->prepare("SELECT * FROM persona WHERE persona_solicitar = $sesioniniciada ");
+                        $sql->execute();
+                        $num_rows = $sql->fetchColumn();
+                    ?>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <span class="badge bg-important"><?php echo $num_rows; ?></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> Tiene  <?php echo $num_rows; ?> solicitudes 
+                                    <span class="pull-right text-muted small"><a href="../Vista/Accion.php?c=profesor&a=Solicitudes">VER</a></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php

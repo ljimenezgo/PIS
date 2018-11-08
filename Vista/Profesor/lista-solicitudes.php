@@ -19,7 +19,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Alumnos registrados en tutoría para el docente
+                            Alumnos que quieren su tutoría
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -28,11 +28,8 @@
                                     <thead>
                                         <tr>
                                             <th>Apellidos y Nombres</th>
-                                            <th>CUI</th>
-                                            <th>Email</th>
+                                            <th>DNI</th>
                                             <th>Ver</th>
-											<th>Editar</th>
-											<th>Comentar</th>
                                             <th>Desmatricular</th>
                                             
 											
@@ -40,15 +37,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-									<?php foreach($this->model->ListarAlumnos($_SESSION['persona_id']) as $r): ?>
+									<?php foreach($this->model->Solicitudes() as $r): ?>
                                         <tr class="odd gradeX">
 											<td><?php echo $r->persona_apellido1; ?> <?php echo $r->persona_apellido2; ?> <?php echo $r->persona_nombres; ?></td>
-											<td><?php echo $r->persona_cui; ?></td>
-											<td><?php echo $r->persona_email; ?></td>
+											<td><?php echo $r->persona_dni; ?></td>
 											<td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
-											<td class="center"><a href="?c=alumno&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
-											<td class="center"><a href="../Vista/Accion.php?c=comentar&a=comentario&persona_id=<?php echo $r->persona_id; ?>">Comentar</a></td>
-											<td class="center"><a href="../Vista/Accion.php?c=profesor&a=desmatricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Desmatricular</a></td>
+											<td class="center"><a href="../Vista/Accion.php?c=profesor&a=matricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Matricular</a></td>
                                         </tr>                                        
                                     <?php endforeach; ?>    
                                     </tbody>
