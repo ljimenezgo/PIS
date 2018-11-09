@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2018 a las 04:14:54
+-- Tiempo de generación: 08-11-2018 a las 23:44:13
 -- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 5.6.38
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -62,15 +62,6 @@ CREATE TABLE `curso` (
   `curso_equivalencia_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `curso`
---
-
-INSERT INTO `curso` (`curso_id`, `curso_codigo`, `curso_descripcion`, `curso_malla_id`, `curso_equivalencia_id`) VALUES
-(1, '2012SS', 'SISTEMAS DE SEGURIDAD', 1, 0),
-(2, '2015SCC', 'SISTEMAS DE SEGURIDAD CRITICA', 1, 0),
-(3, '2015GES', 'GESTION DE EMPRENDIMIENTO DE SOFTWARE', 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -116,13 +107,6 @@ CREATE TABLE `malla_curricular` (
   `malla_curricular_dsc` varchar(10) NOT NULL,
   `malla_curricular_anio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `malla_curricular`
---
-
-INSERT INTO `malla_curricular` (`malla_curricular_id`, `malla_curricular_dsc`, `malla_curricular_anio`) VALUES
-(1, 'ehdc2004', 2004);
 
 -- --------------------------------------------------------
 
@@ -180,16 +164,18 @@ CREATE TABLE `persona` (
   `persona_colaborador` int(11) DEFAULT '0',
   `persona_egresado` varchar(20) DEFAULT NULL,
   `persona_tipo_libro_prestado` varchar(100) DEFAULT NULL,
-  `persona_tutor` int(11) NOT NULL
+  `persona_tutor` int(11) NOT NULL,
+  `persona_alumnos` int(20) NOT NULL DEFAULT '0',
+  `persona_solicitar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`persona_id`, `persona_nombres`, `persona_apellido1`, `persona_apellido2`, `persona_tipo_id`, `persona_dni`, `persona_cui`, `persona_direccion`, `persona_email`, `persona_telefono`, `persona_malla`, `persona_seccion`, `persona_estado`, `persona_prestamo`, `persona_prestamo_total`, `persona_prestamo_deuda`, `persona_colaborador`, `persona_egresado`, `persona_tipo_libro_prestado`, `persona_tutor`) VALUES
-(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0),
-(72034062, 'Luis', 'Jimenez', 'Gonzales', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0);
+INSERT INTO `persona` (`persona_id`, `persona_nombres`, `persona_apellido1`, `persona_apellido2`, `persona_tipo_id`, `persona_dni`, `persona_cui`, `persona_direccion`, `persona_email`, `persona_telefono`, `persona_malla`, `persona_seccion`, `persona_estado`, `persona_prestamo`, `persona_prestamo_total`, `persona_prestamo_deuda`, `persona_colaborador`, `persona_egresado`, `persona_tipo_libro_prestado`, `persona_tutor`, `persona_alumnos`, `persona_solicitar`) VALUES
+(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0),
+(72034062, 'Luis', 'Jimenez', 'Gonzales', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -431,7 +417,7 @@ ALTER TABLE `comentarios_docente`
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `curso_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `docente_curso`
@@ -443,19 +429,19 @@ ALTER TABLE `docente_curso`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `malla_curricular`
 --
 ALTER TABLE `malla_curricular`
-  MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_promedio`
@@ -491,7 +477,7 @@ ALTER TABLE `tipo_persona`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 
 --
 -- Restricciones para tablas volcadas
