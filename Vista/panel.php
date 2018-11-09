@@ -252,7 +252,19 @@ if($_SESSION['rol']==2){
                         <li>
                             <a href="../Vista/Accion.php?c=alumno"><i class="fa fa-wrench fa-fw"></i> Tutoría</a>
                         </li>						
-						
+						<li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Biblioteca<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=tesis">Lista de Tesis</a>
+                                </li>
+                                <li>
+                                    <a href="../Vista/Accion.php?c=libro">Lista de Libros</a>
+                                </li>
+                            </ul>
+                            
+                            <!-- /.nav-second-level -->
+                        </li>
 						<!-- /Relaciones públicas y dirección -->                       
 								
 					<?php
@@ -378,6 +390,19 @@ if($_SESSION['rol']==3){
 						<li>
                             <a href="../Vista/Accion.php?c=profesor&a=Tutor"><i class="fa fa-wrench fa-fw"></i> Lista de Alumnos</a>
 						</li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Biblioteca<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Vista/Accion.php?c=tesis">Lista de Tesis</a>
+                                </li>
+                                <li>
+                                    <a href="../Vista/Accion.php?c=libro">Lista de Libros</a>
+                                </li>
+                            </ul>
+                            
+                            <!-- /.nav-second-level -->
+                        </li>
 						<!-- /Malla Curricular -->		
 						<?php
 							if($_SESSION['persona_colaborador']==1){

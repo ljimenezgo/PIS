@@ -76,6 +76,27 @@ class comentar
 			die($e->getMessage());
 		}
 	}
+	public function ListaTutoria($tutoria_alumno)
+	{
+		try
+		{
+			$result = array();
+			//Sentencia SQL para selección de datos.
+			$stm = $this->pdo->prepare("SELECT * from  tutoria 
+										JOIN persona on tutoria.tutoria_alumno = persona.persona_id
+										WHERE tutoria.tutoria_alumno={$tutoria_alumno}");
+			//Ejecución de la sentencia SQL.
+			$stm->execute();
+			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
+			//de resultados
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			//Obtener mensaje de error.
+			die($e->getMessage());
+		}
+	}
 	//Este método obtiene los datos del comentar a partir del nit
 	//utilizando SQL.
 	public function Obtener($persona_id)

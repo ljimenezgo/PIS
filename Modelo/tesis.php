@@ -87,6 +87,25 @@ class tesis
 			die($e->getMessage());
 		}
 	}
+		public function ListarTesisVirtual()
+	{
+		try
+		{
+			$result = array();
+			//Sentencia SQL para selección de datos.
+			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0 AND libro_caracteristica = 2 AND libro_tipo = 1");
+			//Ejecución de la sentencia SQL.
+			$stm->execute();
+			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
+			//de resultados
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			//Obtener mensaje de error.
+			die($e->getMessage());
+		}
+	}
 	public function Actualizar($data)
 	{
 		try

@@ -44,29 +44,29 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                            <td class="center"><a href="?c=alumno&a=Tutoria&id_alumno=<?php echo $pvd->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">FICHA DE SEGUIMIENTO: TUTORIA - AGREGAR</a></td>
 							<div >
 							<canvas id="chart1" width="400" height="100"></canvas>
 							</div>
 							<div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            FICHA DE SEGUIMIENTO - Tutoría
+                            Comentarios de los docentes
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
                             <div class="panel-group" id="accordion">
-                                <?php foreach($this->modeloo->ListaTutoria($pvd->persona_id) as $r): ?>
+                                <?php foreach($this->modeloo->Listare($pvd->persona_id) as $r): ?>
 								<div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><?php echo $r->persona_nombres; ?> <?php echo $r->persona_apellido1; ?></a>
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><?php echo $r->tutoria_fecha; ?></a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><?php echo $r->comentarios_docente_fecha; ?></a>
                                         </h4>
                                     </div>
                                     <div id="collapseOne" class="panel-collapse collapse in">
                                         <div class="panel-body">
-                                           <?php echo $r->tutoria_observacion; ?> 
+                                           <?php echo $r->comentarios_docente_comentario; ?> 
 										</div>
                                     </div>
                                 </div>
