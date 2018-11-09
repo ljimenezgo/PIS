@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2018 a las 23:44:13
+-- Tiempo de generación: 09-11-2018 a las 08:52:39
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -263,6 +263,21 @@ INSERT INTO `tipo_persona` (`tipo_persona_id`, `tipo_persona_dsc`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tutoria`
+--
+
+CREATE TABLE `tutoria` (
+  `tutoria_id` int(11) NOT NULL,
+  `tutoria_docente` int(11) NOT NULL,
+  `tutoria_alumno` int(11) NOT NULL,
+  `tutoria_observacion` varchar(200) NOT NULL,
+  `tutoria_fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tutoria_asunto` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -390,6 +405,14 @@ ALTER TABLE `tipo_persona`
   ADD UNIQUE KEY `docente_id_UNIQUE` (`tipo_persona_id`);
 
 --
+-- Indices de la tabla `tutoria`
+--
+ALTER TABLE `tutoria`
+  ADD PRIMARY KEY (`tutoria_id`),
+  ADD KEY `tutoria_docente` (`tutoria_docente`,`tutoria_alumno`),
+  ADD KEY `tutoria_alumno` (`tutoria_alumno`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -429,7 +452,7 @@ ALTER TABLE `docente_curso`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `malla_curricular`
@@ -474,10 +497,16 @@ ALTER TABLE `tipo_persona`
   MODIFY `tipo_persona_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `tutoria`
+--
+ALTER TABLE `tutoria`
+  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=907;
 
 --
 -- Restricciones para tablas volcadas
@@ -529,6 +558,13 @@ ALTER TABLE `persona`
 ALTER TABLE `prestamo`
   ADD CONSTRAINT `fk_prestamo_libro` FOREIGN KEY (`prestamo_libro_id`) REFERENCES `libro` (`libro_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_prestamo_persona` FOREIGN KEY (`prestamo_persona_id`) REFERENCES `persona` (`persona_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `tutoria`
+--
+ALTER TABLE `tutoria`
+  ADD CONSTRAINT `tutoria_ibfk_1` FOREIGN KEY (`tutoria_docente`) REFERENCES `persona` (`persona_id`),
+  ADD CONSTRAINT `tutoria_ibfk_2` FOREIGN KEY (`tutoria_alumno`) REFERENCES `persona` (`persona_id`);
 
 --
 -- Filtros para la tabla `usuario`
