@@ -54,7 +54,7 @@
 												if($_SESSION['rol']==1){
 											?>
 											<td class="center"><a href="?c=profesor&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
-											<td class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=profesor&a=Eliminar&persona_id=<?php echo $r->persona_id; ?>">Eliminar</a></td>
+											<td class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=profesor&a=Eliminar&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
 											<?php
 												}
 											?>

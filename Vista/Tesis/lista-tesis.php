@@ -47,7 +47,7 @@
                                     if($_SESSION['rol']==4){
                                         foreach($this->model->ListarTesis() as $r): ?>
                                         <tr class="odd gradeX">
-											<?php if($r->libro_cantidad_disponible!=0 or $r->libro_tipo==1){ ?>
+											<?php if($r->libro_cantidad_disponible!=0){ ?>
                                             <td><?php echo $r->libro_codigo; ?></td>
                                             <td><?php echo $r->libro_nombre; ?></td>
                                             <td><?php echo $r->libro_autor; ?></td>
@@ -77,7 +77,11 @@
                                             <td><?php echo $r->libro_codigo; ?></td>
                                             <td><?php echo $r->libro_nombre; ?></td>
                                             <td><?php echo $r->libro_autor; ?></td>
-                                            <td>Virtual</td>
+                                            <?php if($r->libro_tipo == 1){ ?>
+												<td style="text-align: center">Virtual</td>
+											     <?php }else{ ?>
+											    <td style="text-align: center">Fisico</td>
+											<?php } ?>
                                             
                                             <td style="text-align: center" class="center"><a href="?c=tesis&a=Perfil&tesis_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             <?php } ?>

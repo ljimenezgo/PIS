@@ -96,7 +96,7 @@ class libro
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0 AND libro_caracteristica = 1 AND libro_tipo = 1");
+			$stm = $this->pdo->prepare("SELECT * FROM libro WHERE libro_estado = 0 AND libro_caracteristica = 1 ");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto

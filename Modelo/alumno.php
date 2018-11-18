@@ -146,7 +146,7 @@ class alumno
 			//Sentencia SQL para selección de datos.
 			$stm = $this->pdo->prepare("SELECT * from  tutoria 
 										JOIN persona on tutoria.tutoria_alumno = persona.persona_id
-										WHERE tutoria.tutoria_alumno={$tutoria_alumno}");
+										WHERE tutoria.tutoria_alumno={$tutoria_alumno} AND tutoria.tutoria_estado=0");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
@@ -177,7 +177,61 @@ class alumno
 			die($e->getMessage());
 		}
 	}
+public function citarCancelar($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_citado_tutoria=0 WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->persona_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	
+	public function citarAceptar($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_citado_tutoria=1 WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->persona_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	
+		function citarAceptarT(tutoria $data)
+	{
+		try
+		{
+			//Sentencia SQL.
+			$sql = "INSERT INTO tutoria (tutoria_alumno,tutoria_docente,tutoria_fecha)
+		        VALUES (?, ?, ?)";
 
+			$this->pdo->prepare($sql)
+		     ->execute(
+				array(
+						$data->tutoria_alumno,
+                        $data->tutoria_docente,
+                        $data->tutoria_fecha
+                )
+			);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 	//Este método elimina la tupla alumno dado un id.
 	public function Eliminar($persona_id)
 	{

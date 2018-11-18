@@ -1,6 +1,7 @@
 <?php
 
 require_once '../Modelo/profesor.php';
+require_once '../Modelo/tutoria.php';
 require_once '../Modelo/usuario.php';
 
 class ProfesorController{
@@ -56,24 +57,40 @@ class ProfesorController{
 
 	public function desmatricular(){
         $pvd = new profesor();
+		$estado  = new tutoria ();
 		$pvd->persona_id = $_REQUEST['persona_id'];
         $pvd->persona_tutor = $_REQUEST['persona_tutor'];
+		$estado->tutoria_alumno = $_REQUEST['persona_id'];
         //Se obtienen los datos del comentar a editar.
-        $this->model->desmatricular($pvd);
-        $this->model->desmatricularP($pvd);
+        $pvd = $this->model->desmatricular($pvd);
+        $pvd = $this->model->desmatricularP($pvd);
+		$pvd = $this->model->cancelarSolicitud($pvd);
+		$estado = $this->model->cancelarSolicitudT($estado);
         header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
         //Llamado de las vistas.
-	}
+	}	
+	
+
 
     public function cancelarSolicitud(){
         $pvd = new profesor();
+		$estado  = new tutoria ();
         $pvd->persona_id = $_REQUEST['persona_id'];
+        $estado->tutoria_alumno = $_REQUEST['persona_id'];
         //Se obtienen los datos del comentar a editar.
         $pvd = $this->model->cancelarSolicitud($pvd);
-        header('Location: ../Vista/Accion.php?c=alumno');
+        $estado = $this->model->cancelarSolicitudT($estado);
+        header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
         //Llamado de las vistas.
     }
-
+    public function cancelarSolicitudTutor(){
+        $pvd = new profesor();
+        $pvd->persona_id = $_REQUEST['persona_id'];
+        //Se obtienen los datos del comentar a editar.
+        $pvd = $this->model->cancelarSolicitudTutor($pvd);
+        header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
+        //Llamado de las vistas.
+    }
     public function Nuevo(){
         $pvd = new profesor();
 

@@ -78,13 +78,15 @@
                                        
                                      foreach($this->model->ListarLibroVirtual() as $r): ?>
                                         <tr class="odd gradeX">
-                                            <?php if($r->libro_cantidad_disponible!=0 or $r->libro_tipo==1){ ?>
                                             <td><?php echo $r->libro_codigo; ?></td>
                                             <td><?php echo $r->libro_nombre; ?></td>
                                             <td><?php echo $r->libro_autor; ?></td>
-                                            <td style="text-align: center">Virtual</td>
+											<?php if($r->libro_tipo == 1){ ?>
+												<td style="text-align: center">Virtual</td>
+											     <?php }else{ ?>
+											    <td style="text-align: center">Fisico</td>
+											<?php } ?>
                                             <td style="text-align: center" class="center"><a href="?c=libro&a=Perfil&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                            <?php } ?>
                                         </tr>                                        
                                     <?php endforeach; 
                                     } ?>

@@ -1,6 +1,7 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
 require_once '../Modelo/alumno.php';
+require_once '../Modelo/tutoria.php';
 require_once '../Modelo/usuario.php';
 require_once '../Modelo/database.php';
 require_once '../Modelo/comentar.php';
@@ -24,7 +25,30 @@ class AlumnoController{
         $this->model = new alumno();
         $this->modeloo = new comentar();
     }
-
+	public function citarCancelar(){
+        $pvd = new alumno();
+		$pvd->persona_id = $_REQUEST['persona_id'];
+		
+        //Se obtienen los datos del comentar a editar.
+        $this->model->citarCancelar($pvd);
+        header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
+        //Llamado de las vistas.
+	}
+	
+		public function citarAceptar(){
+        $pvd = new alumno();
+		$tut = new tutoria();
+		$pvd->persona_id = $_REQUEST['tutoria_alumno'];
+        $pvd->persona_citado_tutoria = $_REQUEST['persona_citado_tutoria'];
+        $tut->tutoria_fecha = $_REQUEST['tutoria_fecha'];
+        $tut->tutoria_docente = $_REQUEST['tutoria_docente'];
+        $tut->tutoria_alumno = $_REQUEST['tutoria_alumno'];
+        //Se obtienen los datos del comentar a editar.
+        $this->model->citarAceptar($pvd);
+        $this->model->citarAceptarT($tut);
+        header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
+        //Llamado de las vistas.
+	}
     //Llamado plantilla principal
     public function Index(){
         require_once '../Vista/Alumno/lista-alumnos.php';

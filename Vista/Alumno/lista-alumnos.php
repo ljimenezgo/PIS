@@ -124,7 +124,7 @@
                                 </table>
                                 <?php }elseif($rr->persona_solicitar!=0 AND $rr->persona_tutor==0 AND $rr->persona_tipo_id==2) {?>
                                     <p>Usted ya envió una solicitud de tutoría.</p>
-                                    <p>Haga clic <a href="../Vista/Accion.php?c=profesor&a=cancelarSolicitud&persona_id=<?php echo $_SESSION['persona_id'] ?>">aqui</a> si desea cancelarla</p>
+                                    <p>Haga clic <a href="../Vista/Accion.php?c=profesor&a=cancelarSolicitudTutor&persona_id=<?php echo $_SESSION['persona_id'] ?>">aqui</a> si desea cancelarla</p>
                                 <?php }elseif($rr->persona_tutor!=0 AND $rr->persona_tipo_id==2){
                                     ?>
                                      <p>Usted ya tiene tutor</p>   

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2018 a las 08:52:39
+-- Tiempo de generación: 18-11-2018 a las 02:55:07
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -166,16 +166,17 @@ CREATE TABLE `persona` (
   `persona_tipo_libro_prestado` varchar(100) DEFAULT NULL,
   `persona_tutor` int(11) NOT NULL,
   `persona_alumnos` int(20) NOT NULL DEFAULT '0',
-  `persona_solicitar` int(11) NOT NULL
+  `persona_solicitar` int(11) NOT NULL,
+  `persona_citado_tutoria` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`persona_id`, `persona_nombres`, `persona_apellido1`, `persona_apellido2`, `persona_tipo_id`, `persona_dni`, `persona_cui`, `persona_direccion`, `persona_email`, `persona_telefono`, `persona_malla`, `persona_seccion`, `persona_estado`, `persona_prestamo`, `persona_prestamo_total`, `persona_prestamo_deuda`, `persona_colaborador`, `persona_egresado`, `persona_tipo_libro_prestado`, `persona_tutor`, `persona_alumnos`, `persona_solicitar`) VALUES
-(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0),
-(72034062, 'Luis', 'Jimenez', 'Gonzales', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0);
+INSERT INTO `persona` (`persona_id`, `persona_nombres`, `persona_apellido1`, `persona_apellido2`, `persona_tipo_id`, `persona_dni`, `persona_cui`, `persona_direccion`, `persona_email`, `persona_telefono`, `persona_malla`, `persona_seccion`, `persona_estado`, `persona_prestamo`, `persona_prestamo_total`, `persona_prestamo_deuda`, `persona_colaborador`, `persona_egresado`, `persona_tipo_libro_prestado`, `persona_tutor`, `persona_alumnos`, `persona_solicitar`, `persona_citado_tutoria`) VALUES
+(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 0),
+(72034062, 'Luis', 'Jimenez', 'Gonzales', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -270,9 +271,13 @@ CREATE TABLE `tutoria` (
   `tutoria_id` int(11) NOT NULL,
   `tutoria_docente` int(11) NOT NULL,
   `tutoria_alumno` int(11) NOT NULL,
-  `tutoria_observacion` varchar(200) NOT NULL,
+  `tutoria_observacion` varchar(200) DEFAULT NULL,
   `tutoria_fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `tutoria_asunto` varchar(200) NOT NULL
+  `tutoria_asunto` varchar(200) DEFAULT NULL,
+  `tutoria_estado` int(11) NOT NULL DEFAULT '0',
+  `tutoria_medico` int(11) NOT NULL DEFAULT '0',
+  `tutoria_social` int(11) NOT NULL DEFAULT '0',
+  `tutoria_piscologia` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -452,7 +457,7 @@ ALTER TABLE `docente_curso`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `malla_curricular`
@@ -464,7 +469,7 @@ ALTER TABLE `malla_curricular`
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_promedio`
@@ -500,13 +505,13 @@ ALTER TABLE `tipo_persona`
 -- AUTO_INCREMENT de la tabla `tutoria`
 --
 ALTER TABLE `tutoria`
-  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=907;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- Restricciones para tablas volcadas

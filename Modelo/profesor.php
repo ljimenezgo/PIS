@@ -120,6 +120,8 @@ class profesor
 			die($e->getMessage());
 		}
 	}
+	
+		
 	public function MatricularP($data)
 	{
 		try
@@ -192,11 +194,44 @@ class profesor
 	{
 		try
 		{
-			$sql = "UPDATE persona SET persona_solicitar = '' WHERE persona_id = ?";
+			$sql = "UPDATE persona SET persona_citado_tutoria = '0' WHERE persona_id = ?";
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
 						$data->persona_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+		public function cancelarSolicitudTutor($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_solicitar = '0' WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->persona_id
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}	
+
+	public function cancelarSolicitudT($data)
+	{
+		try
+		{
+			$sql = "UPDATE tutoria SET tutoria_estado = 1 WHERE tutoria_alumno = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->tutoria_alumno
 					)
 				);
 		} catch (Exception $e)

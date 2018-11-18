@@ -79,15 +79,51 @@ class TutoriaController{
         //Llamado de las vistas.
         require_once '../Vista/tutoria/agregar-tutoria.php';
     }
+	    public function Ver(){
+        $tut = new tutoria();
+        $alm = new usuario();
+        $dct = new usuario();
+        //Se obtienen los datos del tutoria.
+        if(isset($_REQUEST['id_alumno'])){
+            $tut = $this->model->Obtenert($_REQUEST['id_alumno']);
+        }
+        if(isset($_REQUEST['id_alumno'])){
+            $alm = $this->modell->Obtener($_REQUEST['id_alumno']);
+        }
+        if(isset($_REQUEST['id_docente'])){
+            $dct = $this->modell->Obtener($_REQUEST['id_docente']);
+        }
+        //Llamado de las vistas.
+        require_once '../Vista/tutoria/ver-tutoria.php';
+    }
+	
+	    public function Citar(){
+        $tut = new tutoria();
+        $alm = new usuario();
+        $dct = new usuario();
+        //Se obtienen los datos del tutoria.
+        if(isset($_REQUEST['persona_id'])){
+            $tut = $this->model->Obtener($_REQUEST['persona_id']);
+        }
+        if(isset($_REQUEST['id_alumno'])){
+            $alm = $this->modell->Obtener($_REQUEST['id_alumno']);
+        }
+        if(isset($_REQUEST['id_docente'])){
+            $dct = $this->modell->Obtener($_REQUEST['id_docente']);
+        }
+        //Llamado de las vistas.
+        require_once '../Vista/tutoria/citar-tutoria.php';
+    }
 
 
     //Método que registrar al modelo un nuevo proveedor.
     public function Guardar(){
         $pvd = new tutoria();
-        $pvd->tutoria_docente = $_REQUEST['tutoria_docente'];
-		$pvd->tutoria_alumno = $_REQUEST['tutoria_alumno'];
-        $pvd->tutoria_fecha = $_REQUEST['tutoria_fecha'];
         $pvd->tutoria_observacion = $_REQUEST['tutoria_observacion'];
+        $pvd->tutoria_medico = $_REQUEST['tutoria_medico'];
+        $pvd->tutoria_social = $_REQUEST['tutoria_social'];
+        $pvd->tutoria_piscologia = $_REQUEST['tutoria_piscologia'];
+        $pvd->tutoria_id = $_REQUEST['tutoria_id'];
         $pvd->tutoria_asunto = $_REQUEST['tutoria_asunto'];
 
         //Registro al modelo tutoria.
@@ -99,6 +135,24 @@ class TutoriaController{
         //también devuelve el código de status (302) REDIRECT al
         //navegador
     }
+	
+	    public function Asistido(){
+        $pvd = new tutoria();
+        $pvd->tutoria_medico = $_REQUEST['tutoria_medico'];
+        $pvd->tutoria_social = $_REQUEST['tutoria_social'];
+        $pvd->tutoria_piscologia = $_REQUEST['tutoria_piscologia'];
+        $pvd->tutoria_id = $_REQUEST['tutoria_id'];
+
+        //Registro al modelo tutoria.
+        $this->model->Asistido($pvd);
+        header('Location: ../Vista/Accion.php?c=alumno&a=Perfil&persona_id='.$_REQUEST['tutoria_alumno']);
+
+        //header() es usado para enviar encabezados HTTP sin formato.
+        //"Location:" No solamente envía el encabezado al navegador, sino que
+        //también devuelve el código de status (302) REDIRECT al
+        //navegador
+    }
+    //Método que registrar al modelo un nuevo proveedor.
 
     //Método que modifica el modelo de un proveedor.
     public function Editar(){

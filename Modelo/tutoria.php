@@ -11,6 +11,9 @@ class Tutoria
     public $tutoria_fecha;
 	public $tutoria_observacion;
 	public $tutoria_asunto;
+	public $tutoria_piscologia;
+	public $tutoria_social;
+	public $tutoria_medico;
 
 	//Método de conexión a SGBD.
 	public function __CONSTRUCT()
@@ -65,7 +68,22 @@ class Tutoria
 			die($e->getMessage());
 		}
 	}
+	public function Obtenert($tutoria_id)
+	{
+		try
+		{
+			//Sentencia SQL para selección de datos utilizando
+			//la clausula Where para especificar el id del alumno.
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria WHERE tutoria_alumno = ? AND tutoria_estado=0");
+			//Ejecución de la sentencia SQL utilizando el parámetro id.
+			$stm->execute(array($tutoria_id));
+			return $stm->fetch(PDO::FETCH_OBJ);
 
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 	//Este método elimina la tupla alumno dado un id.
 	public function Eliminar($tutoria_id)
 	{
@@ -120,31 +138,39 @@ class Tutoria
 	}
 
 	//Método que registra un nuevo alumno a la tabla.
-	public function Registrar(tutoria $data)
+	public function Registrar($data)
 	{
+
 		try
 		{
-			//Sentencia SQL.
-			$sql = "INSERT INTO tutoria (tutoria_id, tutoria_docente,tutoria_alumno,tutoria_fecha,tutoria_observacion,tutoria_asunto)
-		        VALUES (?,?, ?, ?,?, ?)";
-
+			//Sentencia SQL para actualizar los datos.
+			$sql = "UPDATE tutoria SET
+						tutoria_observacion			 = ?,
+						tutoria_medico =?,
+						tutoria_piscologia =?,
+						tutoria_social =?,
+						tutoria_asunto		 = ?
+						
+				    WHERE tutoria_id = ?";
+			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
-		     ->execute(
-				array(
-						$data->tutoria_id,
-						$data->tutoria_docente,
-                        $data->tutoria_alumno,
-                        $data->tutoria_fecha,
+			     ->execute(
+				    array(
                         $data->tutoria_observacion,
-						$data->tutoria_asunto
-                )
-			);
-        header('Location: ../Vista/Accion.php?c=alumno');
+						$data->tutoria_medico,
+						$data->tutoria_piscologia,
+						$data->tutoria_social,
+						
+                        $data->tutoria_asunto,
+						$data->tutoria_id
+
+					)
+				);
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
 		}
-
+		
 	}
 	
 	

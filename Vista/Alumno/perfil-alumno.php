@@ -56,7 +56,10 @@
                         <!-- .panel-heading -->
                         <div class="panel-body">
                             <div class="panel-group" id="accordion">
-                                <?php foreach($this->modeloo->ListaTutoria($pvd->persona_id) as $r): ?>
+                                <?php foreach($this->modeloo->ListaTutoria($pvd->persona_id) as $r): 
+									if($r->tutoria_estado==0){
+								?>
+
 								<div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
@@ -69,8 +72,32 @@
                                            <?php echo $r->tutoria_observacion; ?> 
 										</div>
                                     </div>
+									
+									<div class="alert alert-success">
+										<?php 
+										if($r->tutoria_medico == 1 || $r->tutoria_piscologia == 1 || $r->tutoria_social == 1){ ?>
+										<form data-toggle="validator" role="form" id="frm-alumno" action="?c=tutoria&a=Asistido" method="post" >
+										<input type="hidden" name="tutoria_alumno" value="<?php echo $pvd->persona_id; ?>" />
+                                        <input type="hidden" name="tutoria_id" value="<?php echo $r->tutoria_id; ?>" />
+										<?php if($r->tutoria_medico == 1){ ?>
+										Derivado a <a href="#" class="alert-link"> asistencia medica</a>.<br>
+										<?php } if($r->tutoria_social == 1){?>
+										Derivado a <a href="#" class="alert-link"> Bienestar Social</a>.<br>
+										<?php } if($r->tutoria_piscologia == 1){?>
+										Derivado a <a href="#" class="alert-link"> Psicología</a>.
+										
+										<?php } ?>
+										<br>
+										<div class="col-lg-12">
+											<button type="submit" class="btn btn-default ">Asistido</button>
+										</div>
+										</form>
+										<?php } ?>
+									</div>
                                 </div>
-                                <?php endforeach; ?>
+                                <?php 
+									}
+								endforeach; ?>
                             </div>
                         </div>
                         <!-- .panel-body -->

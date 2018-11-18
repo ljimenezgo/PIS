@@ -44,7 +44,7 @@ if($_SESSION['rol']==1){
                             </a>
                         </li>
                         <li class="divider"></li>
-                        
+
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -99,7 +99,7 @@ if($_SESSION['rol']==1){
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						<!-- /Alumnos -->						
+						<!-- /Alumnos -->
 						<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Administrador<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -112,7 +112,7 @@ if($_SESSION['rol']==1){
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						<!-- /Relaciones públicas y dirección -->                       
+						<!-- /Relaciones públicas y dirección -->
 						<li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Malla Curricular<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -126,7 +126,7 @@ if($_SESSION['rol']==1){
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						
+
 						<li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Matriculas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -173,12 +173,12 @@ if($_SESSION['rol']==1){
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						
+
 <?php
 }}
 if($_SESSION['rol']==2){
 ?>
-        
+
                 <a class="navbar-brand" href="bienvenida.php">Tutoria</a>
             </div>
             <!-- /.navbar-header -->
@@ -208,7 +208,7 @@ if($_SESSION['rol']==2){
                             </a>
                         </li>
                         <li class="divider"></li>
-                        
+
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -251,7 +251,7 @@ if($_SESSION['rol']==2){
 						</li>
                         <li>
                             <a href="../Vista/Accion.php?c=alumno"><i class="fa fa-wrench fa-fw"></i> Tutoría</a>
-                        </li>						
+                        </li>
 						<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Biblioteca<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -262,11 +262,11 @@ if($_SESSION['rol']==2){
                                     <a href="../Vista/Accion.php?c=libro">Lista de Libros</a>
                                 </li>
                             </ul>
-                            
+
                             <!-- /.nav-second-level -->
                         </li>
-						<!-- /Relaciones públicas y dirección -->                       
-								
+						<!-- /Relaciones públicas y dirección -->
+
 					<?php
 							if($_SESSION['persona_colaborador']==1){
 						?>
@@ -290,7 +290,7 @@ if($_SESSION['rol']==2){
 }}
 if($_SESSION['rol']==3){
 ?>
-        
+
                 <a class="navbar-brand" href="bienvenida.php">Tutoria</a>
             </div>
             <!-- /.navbar-header -->
@@ -320,7 +320,7 @@ if($_SESSION['rol']==3){
                             </a>
                         </li>
                         <li class="divider"></li>
-                        
+
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -332,7 +332,7 @@ if($_SESSION['rol']==3){
                     <?php
                         $pdo = Conectar::conexion();
                         $sesioniniciada = $_SESSION['persona_id'];
-                        $sql = $pdo->prepare("SELECT * FROM persona WHERE persona_solicitar = $sesioniniciada ");
+                        $sql = $pdo->prepare("SELECT count(*) FROM persona WHERE persona_solicitar = $sesioniniciada ");
                         $sql->execute();
                         $num_rows = $sql->fetchColumn();
                     ?>
@@ -344,17 +344,17 @@ if($_SESSION['rol']==3){
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> Tiene  <?php echo $num_rows; ?> solicitudes 
+                                    <i class="fa fa-comment fa-fw"></i> Tiene  <?php echo $num_rows; ?> solicitudes
                                     <span class="pull-right text-muted small"><a href="../Vista/Accion.php?c=profesor&a=Solicitudes">VER</a></span>
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
-                        
+
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
-                
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php
@@ -382,8 +382,8 @@ if($_SESSION['rol']==3){
 						<li>
                             <a href="../Vista/Accion.php?c=alumno"><i class="fa fa-wrench fa-fw"></i> Alumnos</a>
                         </li>
-						
-						<!-- /Relaciones públicas y dirección -->                       
+
+						<!-- /Relaciones públicas y dirección -->
 						<li>
                             <a href="../Vista/Accion.php?c=malla"><i class="fa fa-wrench fa-fw"></i> Malla Curricular</a>
 						</li>
@@ -400,10 +400,10 @@ if($_SESSION['rol']==3){
                                     <a href="../Vista/Accion.php?c=libro">Lista de Libros</a>
                                 </li>
                             </ul>
-                            
+
                             <!-- /.nav-second-level -->
                         </li>
-						<!-- /Malla Curricular -->		
+						<!-- /Malla Curricular -->
 						<?php
 							if($_SESSION['persona_colaborador']==1){
 						?>
@@ -428,10 +428,10 @@ if($_SESSION['rol']==3){
 }}
 if($_SESSION['rol']==4){
 ?>
-        
+
                 <a class="navbar-brand" href="bienvenida.php">Biblioteca</a>
             </div>
-            <!-- /.navbar-header -->						
+            <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
 					<?php
@@ -454,7 +454,7 @@ if($_SESSION['rol']==4){
                             </a>
                         </li>
                         <li class="divider"></li>
-                        
+
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -482,7 +482,7 @@ if($_SESSION['rol']==4){
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-						
+
 						<!-- /Alumnos -->
 						<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Libros<span class="fa arrow"></span></a>
@@ -494,7 +494,7 @@ if($_SESSION['rol']==4){
                                     <a href="../Vista/Accion.php?c=libro">Lista de Libros</a>
                                 </li>
                             </ul>
-							
+
                             <!-- /.nav-second-level -->
                         </li>
 						<li>
@@ -507,11 +507,11 @@ if($_SESSION['rol']==4){
                                     <a href="../Vista/Accion.php?c=tesis">Lista de Tesis</a>
                                 </li>
                             </ul>
-							
+
                             <!-- /.nav-second-level -->
                         </li>
-						
-						
+
+
 						<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Informes de Trabajo<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -522,7 +522,7 @@ if($_SESSION['rol']==4){
                                     <a href="../Vista/Accion.php?c=trabajo">Lista de Informes</a>
                                 </li>
                             </ul>
-							
+
                             <!-- /.nav-second-level -->
                         </li>
 						<li>
@@ -540,7 +540,7 @@ if($_SESSION['rol']==4){
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						<!-- /Colaborador -->						
+						<!-- /Colaborador -->
 						<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Colaboradores<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -553,17 +553,17 @@ if($_SESSION['rol']==4){
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						
+
 
 
 <?php
 }
 if($_SESSION['rol']==5){
 ?>
-        
+
                 <a class="navbar-brand" href="bienvenida.php">Biblioteca</a>
             </div>
-            <!-- /.navbar-header -->						
+            <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
 					<?php
@@ -586,7 +586,7 @@ if($_SESSION['rol']==5){
                             </a>
                         </li>
                         <li class="divider"></li>
-                        
+
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -614,8 +614,8 @@ if($_SESSION['rol']==5){
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-						
-						
+
+
 						<li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>Préstamo<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
@@ -631,9 +631,9 @@ if($_SESSION['rol']==5){
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						<!-- /Colaborador -->						
-					
-						
+						<!-- /Colaborador -->
+
+
 
 
 <?php

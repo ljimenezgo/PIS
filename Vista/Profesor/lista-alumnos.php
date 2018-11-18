@@ -32,7 +32,7 @@
                                             <th>Email</th>
                                             <th style="text-align: center">Ver</th>
 											<th style="text-align: center">Editar</th>
-                                            <th style="text-align: center">Ficha Tutoria</th>
+                                            <th style="text-align: center">Tutoría</th>
                                             <!--<th style="text-align: center">Ficha Personal</th>-->
                                             <th style="text-align: center">Quitar</th>
                                             
@@ -48,7 +48,12 @@
 											<td><?php echo $r->persona_email; ?></td>
 											<td style="text-align: center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
 											<td style="text-align: center"><a href="?c=alumno&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
-                                            <td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Nuevo&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Llenar</a></td>
+											<?php if($r->persona_citado_tutoria == 0){ ?>
+                                            <td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Citar&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Citar</a></td>
+                                            <?php }else{ ?>
+                                            <td style="text-align: center"><a href="../Vista/Accion.php?c=profesor&a=cancelarSolicitud&persona_id=<?php echo $r->persona_id; ?>">Cancelar Cita</a> | <a href="../Vista/Accion.php?c=tutoria&a=ver&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Ver</a></td>
+											<?php } ?>
+											<!--<td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Nuevo&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Llenar</a></td>-->
                                             <!--<td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Nuevo&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Llenar</a></td>-->
 											<td style="text-align: center"><a href="../Vista/Accion.php?c=profesor&a=desmatricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Quitar</a></td>
                                         </tr>                                        

@@ -22,6 +22,7 @@ class usuarios_modelo{
 			 if (password_verify($password, $row['usuario_password'])) { 
 	  		 	 $_SESSION['loggedin'] = true;
 				 $_SESSION['rol']= $row['usuario_rol_id'];
+				 $_SESSION['usuario_dni']= $row['usuario_cuenta'];
 				 $_SESSION['solicitud']= $row['persona_solicitar'];
 	   			 $_SESSION['usuario_cuenta'] = $username;
 	   			 $_SESSION['persona_id'] = $row['usuario_persona_id'];
