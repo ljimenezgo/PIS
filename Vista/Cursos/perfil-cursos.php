@@ -34,20 +34,14 @@
                                                     <td>Telefono</td>
                                                     <td><?php echo $pvd->persona_telefono; ?></td>
                                                 </tr>
-                                                <?php if($_SESSION['rol']==3){ ?>
-                                                <tr>
-                                                    <td><a class="btn btn-primary" href="../Vista/Accion.php?c=alumnoCurso&a=ListaCursos&alumno=<?php echo $pvd->persona_id; ?>" role="button">Matricular a cursos</a></td>
-
-                                                    <td></td>
-                                                </tr>
-                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                             
-							
+							<div >
+							</div>
 							<div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">

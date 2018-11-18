@@ -65,7 +65,7 @@ class ProfesorController{
         $pvd = $this->model->desmatricular($pvd);
         $pvd = $this->model->desmatricularP($pvd);
 		$pvd = $this->model->cancelarSolicitud($pvd);
-		$estado = $this->model->cancelarSolicitudT($estado);
+		$estado = $this->model->cancelarSolicitudQuitar($estado);
         header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
         //Llamado de las vistas.
 	}	

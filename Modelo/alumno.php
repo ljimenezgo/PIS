@@ -211,7 +211,7 @@ public function citarCancelar($data)
 		}
 	}
 	
-		function citarAceptarT(tutoria $data)
+	function citarAceptarT(tutoria $data)
 	{
 		try
 		{

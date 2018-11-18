@@ -81,7 +81,6 @@
                                             
                                             <td class="center"><a href="?c=alumno&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
                                             <td class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=alumno&a=Eliminar&persona_id=<?php echo $r->persona_id; ?>">Eliminar</a></td>
-                                            
                                             <td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
 											
                                         </tr>                                        

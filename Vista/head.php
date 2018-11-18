@@ -20,6 +20,8 @@
 
     <!-- Custom CSS -->
     <link href="../plugins/dist/css/sb-admin-2.css" rel="stylesheet">
+		<!-- multi-select CSS -->
+		<link href="../plugins/vendors/bower_components/multiselect/css/multi-select.css" rel="stylesheet" type="text/css"/>
 
 	<!-- DataTables CSS -->
     <link href="../plugins/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
