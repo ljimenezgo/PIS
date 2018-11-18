@@ -227,7 +227,7 @@ class profesor
 	{
 		try
 		{
-			$sql = "UPDATE tutoria SET tutoria_estado = 1 WHERE tutoria_alumno = ?";
+			$sql = "UPDATE tutoria SET tutoria_estado = 1 WHERE tutoria_alumno = ? ORDER BY tutoria_id DESC LIMIT 1";
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(

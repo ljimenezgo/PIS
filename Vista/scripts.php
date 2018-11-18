@@ -1,6 +1,15 @@
     <!-- jQuery -->
     <script src="../plugins/jquery/dist/jquery.min.js"></script>
-
+	<!-- Flot Charts JavaScript -->
+	<script src="../plugins/vendors/bower_components/Flot/excanvas.min.js"></script>
+	<script src="../plugins/vendors/bower_components/Flot/jquery.flot.js"></script>
+	<script src="../plugins/vendors/bower_components/Flot/jquery.flot.pie.js"></script>
+	<script src="../plugins/vendors/bower_components/Flot/jquery.flot.resize.js"></script>
+	<script src="../plugins/vendors/bower_components/Flot/jquery.flot.time.js"></script>
+	<script src="../plugins/vendors/bower_components/Flot/jquery.flot.stack.js"></script>
+	<script src="../plugins/vendors/bower_components/Flot/jquery.flot.crosshair.js"></script>
+	<script src="../plugins/vendors/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+	<script src="../plugins/dist/js/flot-data.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
 

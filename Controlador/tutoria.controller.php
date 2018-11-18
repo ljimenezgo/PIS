@@ -1,6 +1,7 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
 require_once '../Modelo/alumno.php';
+require_once '../Modelo/profesor.php';
 require_once '../Modelo/tutoria.php';
 require_once '../Modelo/usuario.php';
 require_once '../Modelo/database.php';
@@ -125,9 +126,11 @@ class TutoriaController{
         $pvd->tutoria_piscologia = $_REQUEST['tutoria_piscologia'];
         $pvd->tutoria_id = $_REQUEST['tutoria_id'];
         $pvd->tutoria_asunto = $_REQUEST['tutoria_asunto'];
+        $pvd->tutoria_alumno = $_REQUEST['tutoria_alumno'];
 
         //Registro al modelo tutoria.
         $this->model->Registrar($pvd);
+        $this->model->cancelarSolicitud($pvd);
         header('Location: ../Vista/Accion.php?c=alumno&a=Perfil&persona_id='.$_REQUEST['tutoria_alumno']);
 
         //header() es usado para enviar encabezados HTTP sin formato.
@@ -136,12 +139,13 @@ class TutoriaController{
         //navegador
     }
 	
-	    public function Asistido(){
+	public function Asistido(){
         $pvd = new tutoria();
-        $pvd->tutoria_medico = $_REQUEST['tutoria_medico'];
-        $pvd->tutoria_social = $_REQUEST['tutoria_social'];
-        $pvd->tutoria_piscologia = $_REQUEST['tutoria_piscologia'];
+        $pvd->tutoria_medico_aceptado = $_REQUEST['tutoria_medico_aceptado'];
+        $pvd->tutoria_social_aceptado = $_REQUEST['tutoria_social_aceptado'];
+        $pvd->tutoria_piscologia_aceptado = $_REQUEST['tutoria_piscologia_aceptado'];
         $pvd->tutoria_id = $_REQUEST['tutoria_id'];
+        $pvd->tutoria_alumno = $_REQUEST['tutoria_alumno'];
 
         //Registro al modelo tutoria.
         $this->model->Asistido($pvd);

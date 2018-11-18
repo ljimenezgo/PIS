@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2018 a las 02:55:07
+-- Tiempo de generación: 18-11-2018 a las 10:24:49
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -277,7 +277,10 @@ CREATE TABLE `tutoria` (
   `tutoria_estado` int(11) NOT NULL DEFAULT '0',
   `tutoria_medico` int(11) NOT NULL DEFAULT '0',
   `tutoria_social` int(11) NOT NULL DEFAULT '0',
-  `tutoria_piscologia` int(11) NOT NULL DEFAULT '0'
+  `tutoria_piscologia` int(11) NOT NULL DEFAULT '0',
+  `tutoria_medico_aceptado` int(11) NOT NULL DEFAULT '0',
+  `tutoria_social_aceptado` int(11) NOT NULL DEFAULT '0',
+  `tutoria_piscologia_aceptado` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -445,7 +448,7 @@ ALTER TABLE `comentarios_docente`
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `curso_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `docente_curso`
@@ -463,7 +466,7 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `malla_curricular`
 --
 ALTER TABLE `malla_curricular`
-  MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `matricula`
@@ -505,13 +508,13 @@ ALTER TABLE `tipo_persona`
 -- AUTO_INCREMENT de la tabla `tutoria`
 --
 ALTER TABLE `tutoria`
-  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- Restricciones para tablas volcadas

@@ -13,7 +13,10 @@ class Tutoria
 	public $tutoria_asunto;
 	public $tutoria_piscologia;
 	public $tutoria_social;
-	public $tutoria_medico;
+	public $tutoria_medico;	
+	public $tutoria_piscologia_aceptado;
+	public $tutoria_social_aceptado;
+	public $tutoria_medico_aceptado;
 
 	//Método de conexión a SGBD.
 	public function __CONSTRUCT()
@@ -136,7 +139,22 @@ class Tutoria
 		}
 		
 	}
-
+	public function cancelarSolicitud($data)
+	{
+		try
+		{
+			$sql = "UPDATE persona SET persona_citado_tutoria = '0' WHERE persona_id = ?";
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->tutoria_alumno
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 	//Método que registra un nuevo alumno a la tabla.
 	public function Registrar($data)
 	{
@@ -149,6 +167,7 @@ class Tutoria
 						tutoria_medico =?,
 						tutoria_piscologia =?,
 						tutoria_social =?,
+						tutoria_estado =2,
 						tutoria_asunto		 = ?
 						
 				    WHERE tutoria_id = ?";
@@ -174,7 +193,35 @@ class Tutoria
 	}
 	
 	
-	
+	public function Asistido($data)
+	{
+
+		try
+		{
+			//Sentencia SQL para actualizar los datos.
+			$sql = "UPDATE tutoria SET
+						tutoria_medico_aceptado =?,
+						tutoria_piscologia_aceptado =?,
+						tutoria_social_aceptado =?
+						
+				    WHERE tutoria_id = ?";
+			//Ejecución de la sentencia a partir de un arreglo.
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->tutoria_medico_aceptado,
+						$data->tutoria_piscologia_aceptado,
+						$data->tutoria_social_aceptado,
+						$data->tutoria_id
+
+					)
+				);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+		
+	}
 	//Método que registra un nuevo alumno a la tabla.
 	 function RegistrarU(usuario $data)
 	{
