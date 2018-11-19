@@ -28,7 +28,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Correo</td>
-                                                    <td><a href="mailto:info@support.com"><?php echo $pvd->persona_email; ?></a></td>
+                                                    <td><?php echo $pvd->persona_email; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Telefono</td>
@@ -36,9 +36,8 @@
                                                 </tr>
                                                 <?php if($_SESSION['rol']==3){ ?>
                                                 <tr>
-                                                    <td><a class="btn btn-primary" href="../Vista/Accion.php?c=alumnoCurso&a=ListaCursos&alumno=<?php echo $pvd->persona_id; ?>" role="button">Matricular a cursos</a></td>
-
-                                                    <td></td>
+                                                    <td><a class="btn btn-warning btn-sm" href="../Vista/Accion.php?c=alumnoCurso&a=ListaCursos&alumno=<?php echo $pvd->persona_id; ?>" role="button">Matricular a cursos</a> </td>
+                                                    <td><a class="btn btn-warning btn-sm" href="../Vista/Accion.php?c=alumnoCurso&a=ListaCursosDeAlumno&alumno=<?php echo $pvd->persona_id; ?>" role="button">Ver cursos</a></td>
                                                 </tr>
                                                 <?php } ?>
                                             </tbody>

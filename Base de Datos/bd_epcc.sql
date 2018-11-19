@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2018 a las 10:24:49
+-- Tiempo de generación: 19-11-2018 a las 03:22:48
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -31,7 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `alumno_curso` (
   `alumno_curso_id` int(11) NOT NULL,
   `alumno_cursoc_alumno_id` int(11) NOT NULL,
-  `alumno_curso_curso_id` int(11) NOT NULL
+  `alumno_curso_curso_id` int(11) NOT NULL,
+  `alumno_curso_estado` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -436,7 +437,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alumno_curso`
 --
 ALTER TABLE `alumno_curso`
-  MODIFY `alumno_curso_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `alumno_curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_docente`
@@ -460,7 +461,7 @@ ALTER TABLE `docente_curso`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `libro_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `malla_curricular`
@@ -472,7 +473,7 @@ ALTER TABLE `malla_curricular`
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_promedio`
@@ -508,13 +509,13 @@ ALTER TABLE `tipo_persona`
 -- AUTO_INCREMENT de la tabla `tutoria`
 --
 ALTER TABLE `tutoria`
-  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- Restricciones para tablas volcadas

@@ -63,6 +63,7 @@ class alumnoCursoController{
         $pvd->alumno_curso_id = $_REQUEST['aa'];
         //Se obtienen los datos del comentar a editar.
         $this->model->DesmatricularCurso($pvd);
+        $this->model->SinRevisar($pvd);
         header('Location: ../Vista/Accion.php?c=alumnoCurso&a=ListaCursos&alumno='.$_REQUEST['b']);
         //Llamado de las vistas.
     }
@@ -78,6 +79,40 @@ class alumnoCursoController{
         }
         require_once '../Vista/Cursos/lista-cursos.php';
     }
+
+    public function ListaCursosDeAlumno(){
+        $pvd = new alumno();
+        //Se obtienen los datos del alumno a editar.
+        if(isset($_REQUEST['alumno'])){
+            $pvd = $this->model->ObtenerCursos($_REQUEST['alumno']);
+        }
+        require_once '../Vista/Cursos/lista-cursosAlumno.php';
+    }
+    public function Bueno(){
+        $pvd = new alumnoCurso();
+        $pvd->alumno_curso_id = $_REQUEST['aa'];
+        //Se obtienen los datos del comentar a editar.
+        $this->model->Bueno($pvd);
+        header('Location: ../Vista/Accion.php?c=alumnoCurso&a=ListaCursosDeAlumno&alumno='.$_REQUEST['b']);
+        //Llamado de las vistas.
+    }
+    public function Malo(){
+        $pvd = new alumnoCurso();
+        $pvd->alumno_curso_id = $_REQUEST['aa'];
+        //Se obtienen los datos del comentar a editar.
+        $this->model->Malo($pvd);
+        header('Location: ../Vista/Accion.php?c=alumnoCurso&a=ListaCursosDeAlumno&alumno='.$_REQUEST['b']);
+        //Llamado de las vistas.
+    }
+    public function Regular(){
+        $pvd = new alumnoCurso();
+        $pvd->alumno_curso_id = $_REQUEST['aa'];
+        //Se obtienen los datos del comentar a editar.
+        $this->model->Regular($pvd);
+        header('Location: ../Vista/Accion.php?c=alumnoCurso&a=ListaCursosDeAlumno&alumno='.$_REQUEST['b']);
+        //Llamado de las vistas.
+    }
+
     public function ProfesoresDisponibles(){
         require_once '../Vista/Alumno/lista-profesores-disponibles.php';
 
