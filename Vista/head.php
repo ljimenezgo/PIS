@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bienestar Social</title>
+    <title></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,8 +20,6 @@
 
     <!-- Custom CSS -->
     <link href="../plugins/dist/css/sb-admin-2.css" rel="stylesheet">
-		<!-- multi-select CSS -->
-		<link href="../plugins/vendors/bower_components/multiselect/css/multi-select.css" rel="stylesheet" type="text/css"/>
 
 	<!-- DataTables CSS -->
     <link href="../plugins/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
@@ -37,6 +35,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <style type="text/css">
 ${demo.css}
         </style>
@@ -80,7 +79,5 @@ $(function () {
         }]
     });
 });
-
-
         </script>
 </head>

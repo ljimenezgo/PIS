@@ -1,4 +1,4 @@
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="../plugins/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -17,23 +17,6 @@
 	<script src="../plugins/dist/js/bootstrap-select.js"></script>
 	<script src="../plugins/bootstrap-validator-master/js/validator.js"></script>
 
-		<!-- Switchery JavaScript -->
-		<script src="../plugins/vendors/bower_components/switchery/dist/switchery.min.js"></script>
-		
-		<!-- Select2 JavaScript -->
-		<script src="../plugins/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
-		
-		<!-- Bootstrap Select JavaScript -->
-		<script src="../plugins/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-				
-		<!-- Bootstrap Touchspin JavaScript -->
-		<script src="../plugins/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-		
-		<!-- Multiselect JavaScript -->
-		<script src="../plugins/vendors/bower_components/multiselect/js/jquery.multi-select.js"></script>
-		
-		<!-- Form Advance Init JavaScript -->
-		<script src="../plugins/dist/js/form-advance-data.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
