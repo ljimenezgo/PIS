@@ -227,11 +227,13 @@ class profesor
 	{
 		try
 		{
-			$sql = "UPDATE tutoria SET tutoria_estado = 1 WHERE tutoria_alumno = ? ORDER BY tutoria_id DESC LIMIT 1";
+			$sql = "UPDATE tutoria SET tutoria_estado = 1 , tutoria_cancelacion_motivo = ? WHERE tutoria_alumno = ? ORDER BY tutoria_id DESC LIMIT 1";
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
+						$data->tutoria_cancelacion_motivo,
 						$data->tutoria_alumno
+
 					)
 				);
 		} catch (Exception $e)

@@ -77,6 +77,7 @@ class ProfesorController{
 		$estado  = new tutoria ();
         $pvd->persona_id = $_REQUEST['persona_id'];
         $estado->tutoria_alumno = $_REQUEST['persona_id'];
+        $estado->tutoria_cancelacion_motivo = $_REQUEST['tutoria_cancelacion_motivo'];
         //Se obtienen los datos del comentar a editar.
         $pvd = $this->model->cancelarSolicitud($pvd);
         $estado = $this->model->cancelarSolicitudT($estado);

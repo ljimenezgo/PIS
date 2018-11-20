@@ -184,6 +184,31 @@ if($_SESSION['rol']==2){
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <?php
+                        $pdo = Conectar::conexion();
+                        $idd = $_SESSION['persona_id'];
+                        $sql = $pdo->prepare("SELECT * FROM tutoria WHERE tutoria_alumno = $idd && tutoria_estado=0  ");
+                        $sql->execute();
+                        $row = $sql->fetch(PDO::FETCH_BOTH);
+                    ?>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-comment fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <span class="badge bg-important">1</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    Cita con su tutor el <?php echo $row['tutoria_fecha'] ?>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
 			<?php
 					if($_SESSION['persona_colaborador']==1){
 				?>
@@ -390,6 +415,9 @@ if($_SESSION['rol']==3){
 						<li>
                             <a href="../Vista/Accion.php?c=profesor&a=Tutor"><i class="fa fa-wrench fa-fw"></i> Lista de Alumnos</a>
 						</li>
+                        <li>
+                            <a href="../Vista/Accion.php?c=tutoria&a=ListaCitas"><i class="fa fa-wrench fa-fw"></i> Citas Tutoria</a>
+                        </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Biblioteca<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -636,6 +664,43 @@ if($_SESSION['rol']==5){
 
 
 
+<?php
+//Si la sesion es para Bienestar Social
+}if($_SESSION['rol']==7){
+?>
+
+                <a class="navbar-brand" href="bienvenida.php">Bienestar Social</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <?php
+                            echo "<i>" . $_SESSION['nombre_persona']."</i>";
+                        ?>
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="../Vista/Accion.php?c=contrasena&a=CambiarContrasena"><i class="fa fa-gear fa-fw"></i> Cambiar Contraseña</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="../Vista/Accion.php?c=tutoria&a=ListarAlumnosDerivadoPsicologia"><i class="fa fa-wrench fa-fw"></i> Alumnos derivados</a>
+                        </li>
 <?php
 }
 ?>

@@ -29,10 +29,14 @@ class TutoriaController{
     //Llamado plantilla principal
     public function Index(){
         require_once '../Vista/tutoria/lista-tutorias.php';
-
     }
-
-
+    //Llamado plantilla principal
+    public function ListarAlumnosDerivadoPsicologia(){
+        require_once '../Vista/tutoria/lista-AlumnosDerivadoPsicologia.php';
+    }
+    public function ListaCitas(){
+        require_once '../Vista/Tutoria/ListaCitas-tutoria.php';
+    }
 	public function error(){
         require_once '../Vista/error.php';
 
@@ -97,6 +101,24 @@ class TutoriaController{
         //Llamado de las vistas.
         require_once '../Vista/tutoria/ver-tutoria.php';
     }
+
+            public function cancelar(){
+        $tut = new tutoria();
+        $alm = new usuario();
+        $dct = new usuario();
+        //Se obtienen los datos del tutoria.
+        if(isset($_REQUEST['id_alumno'])){
+            $tut = $this->model->Obtenert($_REQUEST['id_alumno']);
+        }
+        if(isset($_REQUEST['id_alumno'])){
+            $alm = $this->modell->Obtener($_REQUEST['id_alumno']);
+        }
+        if(isset($_REQUEST['id_docente'])){
+            $dct = $this->modell->Obtener($_REQUEST['id_docente']);
+        }
+        //Llamado de las vistas.
+        require_once '../Vista/tutoria/cancelar-tutoria.php';
+    }
 	
 	    public function Citar(){
         $tut = new tutoria();
@@ -115,6 +137,7 @@ class TutoriaController{
         //Llamado de las vistas.
         require_once '../Vista/tutoria/citar-tutoria.php';
     }
+
 
 
     //Método que registrar al modelo un nuevo proveedor.

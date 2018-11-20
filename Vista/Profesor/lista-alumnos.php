@@ -51,7 +51,7 @@
 											<?php if($r->persona_citado_tutoria == 0){ ?>
                                             <td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Citar&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Citar</a></td>
                                             <?php }else{ ?>
-                                            <td style="text-align: center"><a href="../Vista/Accion.php?c=profesor&a=cancelarSolicitud&persona_id=<?php echo $r->persona_id; ?>">Cancelar Cita</a> | <a href="../Vista/Accion.php?c=tutoria&a=ver&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Ver</a></td>
+                                            <td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=cancelar&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Cancelar Cita</a> | <a href="../Vista/Accion.php?c=tutoria&a=ver&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Ver</a></td>
 											<?php } ?>
 											<!--<td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Nuevo&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Llenar</a></td>-->
                                             <!--<td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Nuevo&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Llenar</a></td>-->

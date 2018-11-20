@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2018 a las 03:22:48
+-- Tiempo de generación: 20-11-2018 a las 17:38:54
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -176,8 +176,11 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`persona_id`, `persona_nombres`, `persona_apellido1`, `persona_apellido2`, `persona_tipo_id`, `persona_dni`, `persona_cui`, `persona_direccion`, `persona_email`, `persona_telefono`, `persona_malla`, `persona_seccion`, `persona_estado`, `persona_prestamo`, `persona_prestamo_total`, `persona_prestamo_deuda`, `persona_colaborador`, `persona_egresado`, `persona_tipo_libro_prestado`, `persona_tutor`, `persona_alumnos`, `persona_solicitar`, `persona_citado_tutoria`) VALUES
-(72034061, 'ADMINISTRADOR', 'ADMINISTRADOR', 'ADMINISTRADOR', 1, '72034061', NULL, '', '', '', NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 0),
-(72034062, 'Luis', 'Jimenez', 'Gonzales', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 0);
+(72034061, 'ADMINISTRADOR', '', '', 1, '72034061', NULL, '', '', '', NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 0),
+(72034062, 'BIBLIOTECA', '', '', 4, '72034062', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 0),
+(72034063, 'PSICOLOGIA', '', '', 8, '72034063', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 0, 0, 0),
+(72034064, 'BIENESTAR', '', '', 7, '72034064', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 0, 0, 0),
+(72034065, 'MEDICO', '', '', 9, '72034065', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -218,7 +221,10 @@ INSERT INTO `rol` (`rol_id`, `rol_descripcion`) VALUES
 (3, 'Profesor'),
 (4, 'Biblioteca'),
 (5, 'Colaborador'),
-(6, 'ExAlumno');
+(6, 'ExAlumno'),
+(7, 'Social'),
+(8, 'Picologia'),
+(9, 'Medico');
 
 -- --------------------------------------------------------
 
@@ -260,7 +266,10 @@ INSERT INTO `tipo_persona` (`tipo_persona_id`, `tipo_persona_dsc`) VALUES
 (3, 'Profesor'),
 (4, 'Biblioteca'),
 (5, 'Colaborador'),
-(6, 'ExAlumno');
+(6, 'ExAlumno'),
+(7, 'Social'),
+(8, 'Psicologia'),
+(9, 'Medico');
 
 -- --------------------------------------------------------
 
@@ -281,7 +290,8 @@ CREATE TABLE `tutoria` (
   `tutoria_piscologia` int(11) NOT NULL DEFAULT '0',
   `tutoria_medico_aceptado` int(11) NOT NULL DEFAULT '0',
   `tutoria_social_aceptado` int(11) NOT NULL DEFAULT '0',
-  `tutoria_piscologia_aceptado` int(11) NOT NULL DEFAULT '0'
+  `tutoria_piscologia_aceptado` int(11) NOT NULL DEFAULT '0',
+  `tutoria_cancelacion_motivo` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -305,7 +315,10 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`usuario_id`, `usuario_cuenta`, `usuario_password`, `usuario_rol_id`, `usuario_persona_id`, `usuario_estado`) VALUES
 (36, '72034061', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 1, 72034061, 0),
-(53, '72034062', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 4, 72034062, 0);
+(53, '72034062', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 4, 72034062, 0),
+(54, '72034063', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 8, 72034063, 0),
+(55, '72034064', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 7, 72034064, 0),
+(56, '72034065', '$2y$10$AIJr66Tvp8gPkRDexwkuoOmlGaOh1.Yi5P34cj63g4qYEblLuINBe', 9, 72034065, 0);
 
 --
 -- Índices para tablas volcadas
@@ -437,7 +450,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alumno_curso`
 --
 ALTER TABLE `alumno_curso`
-  MODIFY `alumno_curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `alumno_curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_docente`
@@ -491,7 +504,7 @@ ALTER TABLE `prestamo`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_libro`
@@ -503,19 +516,19 @@ ALTER TABLE `tipo_libro`
 -- AUTO_INCREMENT de la tabla `tipo_persona`
 --
 ALTER TABLE `tipo_persona`
-  MODIFY `tipo_persona_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `tipo_persona_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tutoria`
 --
 ALTER TABLE `tutoria`
-  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Restricciones para tablas volcadas

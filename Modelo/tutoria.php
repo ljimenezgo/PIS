@@ -17,6 +17,7 @@ class Tutoria
 	public $tutoria_piscologia_aceptado;
 	public $tutoria_social_aceptado;
 	public $tutoria_medico_aceptado;
+	public $tutoria_cancelacion_motivo;
 
 	//Método de conexión a SGBD.
 	public function __CONSTRUCT()
@@ -53,6 +54,44 @@ class Tutoria
 		}
 	}
 	
+		public function ListarAlumnosDerivadoPsicologia()
+	{
+		try
+		{
+			$result = array();
+			//Sentencia SQL para selección de datos.
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria ");
+			//Ejecución de la sentencia SQL.
+			$stm->execute();
+			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
+			//de resultados
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			//Obtener mensaje de error.
+			die($e->getMessage());
+		}
+	}
+	public function ListaCitas($id_profesor)
+	{
+		try
+		{
+			$result = array();
+			//Sentencia SQL para selección de datos.
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria JOIN persona ON tutoria.tutoria_alumno= persona.persona_id WHERE tutoria.tutoria_docente=$id_profesor");
+			//Ejecución de la sentencia SQL.
+			$stm->execute();
+			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
+			//de resultados
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			//Obtener mensaje de error.
+			die($e->getMessage());
+		}
+	}
 	//Este método obtiene los datos del alumno a partir del nit
 	//utilizando SQL.
 	public function Obtener($tutoria_id)

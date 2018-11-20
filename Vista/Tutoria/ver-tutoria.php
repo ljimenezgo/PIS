@@ -18,7 +18,7 @@
 				<div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Registro de Tutoria
+                            FICHA DE SEGUIMIENTO
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -29,7 +29,6 @@
                                         <input type="hidden" name="tutoria_docente" value="<?php echo $dct->persona_id; ?>" />
                                         <input type="hidden" name="tutoria_alumno" value="<?php echo $alm->persona_id; ?>" />
                                         <input type="hidden" name="tutoria_id" value="<?php echo $tut->tutoria_id; ?>" />
-                                        <p style="text-align: center">FICHA DE SEGUIMIENTO</p>
                                         <p style="text-align: center">Tutoría</p>
                                         <p>Docente: <?php echo $dct->persona_nombres; ?></p>    
                                         <p>Alumno: <?php echo $alm->persona_nombres; ?></p>    
