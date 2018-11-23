@@ -13,11 +13,15 @@ class Tutoria
 	public $tutoria_asunto;
 	public $tutoria_piscologia;
 	public $tutoria_social;
-	public $tutoria_medico;	
+	public $tutoria_medico;
 	public $tutoria_piscologia_aceptado;
 	public $tutoria_social_aceptado;
 	public $tutoria_medico_aceptado;
 	public $tutoria_cancelacion_motivo;
+	public $tutoria_medico_fecha;
+	public $tutoria_social_fecha;
+	public $tutoria_piscologia_fecha;
+	public $p2;
 
 	//Método de conexión a SGBD.
 	public function __CONSTRUCT()
@@ -53,14 +57,14 @@ class Tutoria
 			die($e->getMessage());
 		}
 	}
-	
+
 		public function ListarAlumnosDerivadoPsicologia()
 	{
 		try
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM tutoria ");
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria JOIN persona ON tutoria.tutoria_alumno= persona.persona_id left join persona as p2 on tutoria.tutoria_docente = p2.persona_id");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
@@ -157,7 +161,7 @@ class Tutoria
 						tutoria_fecha        = ?,
 						tutoria_observacion			 = ?,
 						tutoria_asunto		 = ?
-						
+
 				    WHERE tutoria_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
@@ -176,7 +180,7 @@ class Tutoria
 		{
 			die($e->getMessage());
 		}
-		
+
 	}
 	public function cancelarSolicitud($data)
 	{
@@ -206,9 +210,12 @@ class Tutoria
 						tutoria_medico =?,
 						tutoria_piscologia =?,
 						tutoria_social =?,
+						tutoria_piscologia_fecha =?,
+						tutoria_social_fecha =?,
+						tutoria_medico_fecha	 =?,
 						tutoria_estado =2,
 						tutoria_asunto		 = ?
-						
+
 				    WHERE tutoria_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
@@ -218,7 +225,10 @@ class Tutoria
 						$data->tutoria_medico,
 						$data->tutoria_piscologia,
 						$data->tutoria_social,
-						
+						$data->tutoria_piscologia_fecha,
+						$data->tutoria_social_fecha,
+						$data->tutoria_medico_fecha	,
+
                         $data->tutoria_asunto,
 						$data->tutoria_id
 
@@ -228,10 +238,10 @@ class Tutoria
 		{
 			die($e->getMessage());
 		}
-		
+
 	}
-	
-	
+
+
 	public function Asistido($data)
 	{
 
@@ -242,7 +252,7 @@ class Tutoria
 						tutoria_medico_aceptado =?,
 						tutoria_piscologia_aceptado =?,
 						tutoria_social_aceptado =?
-						
+
 				    WHERE tutoria_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
@@ -259,7 +269,7 @@ class Tutoria
 		{
 			die($e->getMessage());
 		}
-		
+
 	}
 	//Método que registra un nuevo alumno a la tabla.
 	 function RegistrarU(usuario $data)

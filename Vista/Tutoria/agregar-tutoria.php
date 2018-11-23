@@ -5,7 +5,7 @@
 <body>
 
     <div id="wrapper">
-	<?php include("panel.php"); ?>		
+	<?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -30,15 +30,15 @@
                                         <input type="hidden" name="tutoria_alumno" value="<?php echo $alm->persona_id; ?>" />
                                         <input type="hidden" name="tutoria_fecha" value="<?php echo date("Y-m-d");?>"  />
                                         <p style="text-align: center">Tutoría</p>
-                                        <p>Docente: <?php echo $dct->persona_nombres; ?></p>    
-                                        <p>Alumno: <?php echo $alm->persona_nombres; ?></p>    
-                                        <p>Fecha: <?php echo date("Y-m-d");?></p>    
+                                        <p>Docente: <?php echo $dct->persona_nombres; ?></p>
+                                        <p>Alumno: <?php echo $alm->persona_nombres; ?></p>
+                                        <p>Fecha: <?php echo date("Y-m-d");?></p>
 										<div class="form-group col-lg-12">
                                             <label for="tutoria_observacion" class="control-label">Observacion</label>
-											<input type="text" name="tutoria_observacion" value="<?php echo $tut->tutoria_observacion; ?>" class="form-control" placeholder="Ingrese Obervacion" data-error="Este campo es obligatorio" required>                                        
+											<input type="text" name="tutoria_observacion" value="<?php echo $tut->tutoria_observacion; ?>" class="form-control" placeholder="Ingrese Obervacion" data-error="Este campo es obligatorio" required>
 											<div class="help-block with-errors"></div>
 										</div>
-                                        
+
 										<div class="form-group col-lg-8" >
                                             <label>Asunto</label>
                                             <select name= "tutoria_asunto" id="tutoria_asunto" class="selectpicker col-lg-3" data-live-search="true" required>
@@ -56,8 +56,8 @@
 										</div>
                                     </form>
 								</div>
-                                
-                                
+
+
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -65,7 +65,7 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.Registro -->
-                
+
             </div>
             <!-- /.row -->
         </div>

@@ -665,11 +665,18 @@ if($_SESSION['rol']==5){
 
 
 <?php
-//Si la sesion es para Bienestar Social
-}if($_SESSION['rol']==7){
+//Si la sesion es para Psicología
+}if($_SESSION['rol']==8 || $_SESSION['rol']==7 || $_SESSION['rol']==9){
 ?>
-
-                <a class="navbar-brand" href="bienvenida.php">Bienestar Social</a>
+                <?php if($_SESSION['rol']==8){ ?>
+                <a class="navbar-brand" href="bienvenida.php">PSICOLOGIA</a>
+                <?php } ?>
+                <?php if($_SESSION['rol']==7){ ?>
+                <a class="navbar-brand" href="bienvenida.php">BIENESTAR SOCIAL</a>
+                <?php } ?>
+                <?php if($_SESSION['rol']==9){ ?>
+                <a class="navbar-brand" href="bienvenida.php">MEDICO</a>
+                <?php } ?>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">

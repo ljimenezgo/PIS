@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2018 a las 17:38:54
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 23-11-2018 a las 04:59:06
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -291,7 +291,10 @@ CREATE TABLE `tutoria` (
   `tutoria_medico_aceptado` int(11) NOT NULL DEFAULT '0',
   `tutoria_social_aceptado` int(11) NOT NULL DEFAULT '0',
   `tutoria_piscologia_aceptado` int(11) NOT NULL DEFAULT '0',
-  `tutoria_cancelacion_motivo` varchar(200) DEFAULT NULL
+  `tutoria_cancelacion_motivo` varchar(200) DEFAULT NULL,
+  `tutoria_medico_fecha` timestamp NULL DEFAULT NULL,
+  `tutoria_social_fecha` timestamp NULL DEFAULT NULL,
+  `tutoria_piscologia_fecha` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -450,7 +453,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alumno_curso`
 --
 ALTER TABLE `alumno_curso`
-  MODIFY `alumno_curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `alumno_curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_docente`
@@ -522,13 +525,13 @@ ALTER TABLE `tipo_persona`
 -- AUTO_INCREMENT de la tabla `tutoria`
 --
 ALTER TABLE `tutoria`
-  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- Restricciones para tablas volcadas

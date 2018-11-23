@@ -5,7 +5,7 @@
 <body>
 
     <div id="wrapper">
-	<?php include("panel.php"); ?>		
+	<?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -37,12 +37,12 @@
                                         <input type="hidden" name="libro_caracteristica" value="1" />
 										<div class="form-group col-lg-12">
                                             <label>Codigo</label>
-											<input type="text" name="libro_codigo" value="<?php echo $pvd->libro_codigo; ?>" class="form-control" placeholder="Ingrese Codigo" data-error="Llene este campo" required>                                        
+											<input type="text" name="libro_codigo" value="<?php echo $pvd->libro_codigo; ?>" class="form-control" placeholder="Ingrese Codigo" data-error="Llene este campo" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
                                             <label>Titulo</label>
-                                            <input class="form-control" name="libro_nombre" value="<?php echo $pvd->libro_nombre; ?>"  placeholder="Ingrese Nombre"data-error="Llene este campo" required>                                        
+                                            <input class="form-control" name="libro_nombre" value="<?php echo $pvd->libro_nombre; ?>"  placeholder="Ingrese Nombre"data-error="Llene este campo" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
@@ -86,20 +86,20 @@
 								</div>
                                 <div class="tab-pane fade" id="Archivo">
                                     <form data-toggle="validator" role="form" id="frm-libro-archivo" enctype="multipart/form-data" action="?c=libro&a=GuardarArchivo" method="post">
-                                        
+
                                         <div class="form-group">
                                             <label>Subir Archivo</label>
-                                            <input id="archivo" accept=".csv" name="archivo" type="file" data-error="Selecciona un archivo" required> 
+                                            <input id="archivo" accept=".csv" name="archivo" type="file" data-error="Selecciona un archivo" required>
 											<div class="help-block with-errors"></div>
 											<label><p>Solo para libros físicos<p></label>
 
                                         </div>
-                                  
+
                                         <button type="submit" class="btn btn-default">Registrar</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
 								</div>
-                                
+
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -107,7 +107,7 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.Registro -->
-                
+
             </div>
             <!-- /.row -->
         </div>
@@ -116,20 +116,20 @@
     </div>
     <!-- /#wrapper -->
 	<?php include("scripts.php"); ?>
-	<script type="text/javascript"> 
-		function habilitar(obj) { 
+	<script type="text/javascript">
+		function habilitar(obj) {
 			var hab;
 			frm=obj.form; 
-			num=obj.selectedIndex; 
+			num=obj.selectedIndex;
 			if (num==1){
 				hab=true;
-			}else if (num==2){ 
+			}else if (num==2){
 				hab=false;
-			} 
+			}
 			frm.archivo.disabled=!hab;
-			frm.libro_cantidad.disabled=hab;	
-			frm.nombre.disabled=hab; 
-		} 
+			frm.libro_cantidad.disabled=hab;
+			frm.nombre.disabled=hab;
+		}
 	</script>
 
 </body>

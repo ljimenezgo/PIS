@@ -5,7 +5,7 @@
 <body>
 
     <div id="wrapper">
-	<?php include("panel.php"); ?>		
+	<?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -32,13 +32,13 @@
                                         <div class="form-group col-lg-12">
                                             <p>Docente: <?php echo $dct->persona_nombres; ?></p>
                                         </div>
-                                        <div class="form-group col-lg-12"> 
+                                        <div class="form-group col-lg-12">
                                             <p>Alumno: <?php echo $alm->persona_nombres; ?></p>
-                                        </div>  
+                                        </div>
 										<div class="form-group col-lg-3">
                                             <?php $fecha=date("Y-m-d") ?>
                                             <label for="tutoria_fecha" class="control-label">Fecha y Hora de Cita</label>
-                                            <input type="datetime-local" min="<?php echo $fecha ?>T22:22" max="2050-11-20T21:25" name="tutoria_fecha" value="<?php echo $tut->tutoria_fecha; ?>" class="form-control" placeholder="Ingrese Fecha" data-error="La fecha no puede ser hoy o antes de hoy" required>                                        
+                                            <input type="datetime-local" min="<?php echo $fecha ?>T00:00" max="2050-11-20T21:25" name="tutoria_fecha" value="<?php echo $tut->tutoria_fecha; ?>" class="form-control" placeholder="Ingrese Fecha" data-error="La fecha no puede ser hoy o antes de hoy" required>                                        
 											<div class="help-block with-errors"></div>
 										</div>
 										<br>
@@ -48,8 +48,8 @@
 										</div>
                                     </form>
 								</div>
-                                
-                                
+
+
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -57,7 +57,7 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.Registro -->
-                
+
             </div>
             <!-- /.row -->
         </div>

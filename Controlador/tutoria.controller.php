@@ -1,6 +1,7 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
 require_once '../Modelo/alumno.php';
+require_once '../Modelo/alumnoCurso.php';
 require_once '../Modelo/profesor.php';
 require_once '../Modelo/tutoria.php';
 require_once '../Modelo/usuario.php';
@@ -24,6 +25,7 @@ class TutoriaController{
     public function __CONSTRUCT(){
         $this->model = new tutoria();
         $this->modell = new alumno();
+        $this->modeloCurso = new alumnoCurso();
     }
 
     //Llamado plantilla principal
@@ -102,6 +104,36 @@ class TutoriaController{
         require_once '../Vista/tutoria/ver-tutoria.php';
     }
 
+    public function EstadoCurso(){
+      $tut = new tutoria();
+      $alm = new usuario();
+      $dct = new usuario();
+      $pvd = new alumnoCurso();
+      $pvd->alumno_curso_id = $_REQUEST['aa'];
+      //Se obtienen los datos del tutoria.
+      if($_REQUEST['id_tipo']==0){
+        $this->modeloCurso->Bueno($pvd);
+      }
+      if($_REQUEST['id_tipo']==1){
+        $this->modeloCurso->Regular($pvd);
+      }
+      if($_REQUEST['id_tipo']==2){
+        $this->modeloCurso->Malo($pvd);
+      }
+      if(isset($_REQUEST['id_alumno'])){
+          $tut = $this->model->Obtenert($_REQUEST['id_alumno']);
+      }
+      if(isset($_REQUEST['id_alumno'])){
+          $alm = $this->modell->Obtener($_REQUEST['id_alumno']);
+      }
+      if(isset($_REQUEST['id_docente'])){
+          $dct = $this->modell->Obtener($_REQUEST['id_docente']);
+      }
+      //Llamado de las vistas.
+      require_once '../Vista/tutoria/ver-tutoria.php';
+  }
+
+
             public function cancelar(){
         $tut = new tutoria();
         $alm = new usuario();
@@ -119,7 +151,7 @@ class TutoriaController{
         //Llamado de las vistas.
         require_once '../Vista/tutoria/cancelar-tutoria.php';
     }
-	
+
 	    public function Citar(){
         $tut = new tutoria();
         $alm = new usuario();
@@ -150,6 +182,9 @@ class TutoriaController{
         $pvd->tutoria_id = $_REQUEST['tutoria_id'];
         $pvd->tutoria_asunto = $_REQUEST['tutoria_asunto'];
         $pvd->tutoria_alumno = $_REQUEST['tutoria_alumno'];
+        $pvd->tutoria_piscologia_fecha = $_REQUEST['tutoria_piscologia_fecha'];
+        $pvd->tutoria_social_fecha = $_REQUEST['tutoria_social_fecha'];
+        $pvd->tutoria_medico_fecha = $_REQUEST['tutoria_medico_fecha'];
 
         //Registro al modelo tutoria.
         $this->model->Registrar($pvd);
@@ -161,7 +196,7 @@ class TutoriaController{
         //también devuelve el código de status (302) REDIRECT al
         //navegador
     }
-	
+
 	public function Asistido(){
         $pvd = new tutoria();
         $pvd->tutoria_medico_aceptado = $_REQUEST['tutoria_medico_aceptado'];
@@ -172,7 +207,7 @@ class TutoriaController{
 
         //Registro al modelo tutoria.
         $this->model->Asistido($pvd);
-        header('Location: ../Vista/Accion.php?c=alumno&a=Perfil&persona_id='.$_REQUEST['tutoria_alumno']);
+        header('Location: ../Vista/Accion.php?c=tutoria&a=ListarAlumnosDerivadoPsicologia');
 
         //header() es usado para enviar encabezados HTTP sin formato.
         //"Location:" No solamente envía el encabezado al navegador, sino que

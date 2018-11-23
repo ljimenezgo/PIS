@@ -7,7 +7,7 @@
 
     <div id="wrapper">
 
-        <?php include("panel.php"); ?>      
+        <?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -34,31 +34,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php 
+                                    <?php
                                         foreach($this->model->ListaCitas($_SESSION['persona_id']) as $r): ?>
                                             <tr class="odd gradeX">
-											
+
                                                 <td><?php echo $r->persona_nombres; ?></td>
                                                 <td><?php echo $r->tutoria_fecha; ?></td>
                                                 <?php if($r->tutoria_estado==0){ ?>
                                                     <td style="text-align: center">PENDIENTE</td>
                                                 <?php } ?>
                                                 <?php if($r->tutoria_estado==1){ ?>
-                                                    <td style="text-align: center">CANCELADO</td>
+                                                    <td style="text-align: center">CANCELADO (<a onclick="javascript:return confirm('<?php echo $r->tutoria_cancelacion_motivo; ?>');" href="#">Motivo</a>)</td>
                                                 <?php } ?>
                                                 <?php if($r->tutoria_estado==2){ ?>
                                                     <td style="text-align: center">REALIZADO</td>
                                                 <?php } ?>
 
-												
-                                        </tr>                                        
-                                    <?php endforeach; 
+
+                                        </tr>
+                                    <?php endforeach;
                                     ?>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
-                            
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -67,7 +67,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
+
         </div>
         <!-- /#page-wrapper -->
 
