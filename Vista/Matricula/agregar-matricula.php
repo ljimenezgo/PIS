@@ -5,7 +5,7 @@
 <body>
 
     <div id="wrapper">
-	<?php include("panel.php"); ?>		
+	<?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -22,7 +22,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            
+
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="Formulario">
@@ -46,15 +46,16 @@
 													<option value="3" >Verano</option>
 											</select>
 										</div>
-                                        
+
 										<div class="form-group col-lg-6">
                                             <label class="control-label">Fecha Inicio</label>
-											<input type="date" name="matricula_fecha_inicio" value="<?php echo $pvd->matricula_fecha_inicio; ?>" class="form-control" data-error="Ingrese una fecha de inicio" required>                                        
+                                            <?php $fecha=date("Y-m-d") ?>
+											<input type="date" name="matricula_fecha_inicio" min="<?php echo $fecha ?>" max="2050-11-20" value="<?php echo $pvd->matricula_fecha_inicio; ?>" class="form-control" data-error="La fecha no puede ser hoy o antes de hoy" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
                                             <label class="control-label">Fecha Final</label>
-											<input type="date" name="matricula_fecha_fin" value="<?php echo $pvd->matricula_fecha_fin; ?>" class="form-control" >                                        
+											<input type="date" name="matricula_fecha_fin" min="<?php echo $fecha ?>" max="2050-11-20" value="<?php echo $pvd->matricula_fecha_fin; ?>" class="form-control" >
 											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-12">
@@ -66,11 +67,11 @@
 											<button type="submit" class="btn btn-default ">Registrar</button>
 											<button type="reset" class="btn btn-default">Reset</button>
 										</div>
-										
+
                                     </form>
 								</div>
-                                
-                                
+
+
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -78,7 +79,7 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.Registro -->
-                
+
             </div>
             <!-- /.row -->
         </div>
@@ -87,20 +88,20 @@
     </div>
     <!-- /#wrapper -->
 	<?php include("scripts.php"); ?>
-	<script type="text/javascript"> 
-		function habilitar(obj) { 
+	<script type="text/javascript">
+		function habilitar(obj) {
 			var hab;
-			frm=obj.form; 
-			num=obj.selectedIndex; 
+			frm=obj.form;
+			num=obj.selectedIndex;
 			if (num==1){
 				hab=true;
-			}else if (num==2){ 
+			}else if (num==2){
 				hab=false;
-			} 
+			}
 			frm.archivo.disabled=!hab;
-			frm.matricula_cantidad.disabled=hab;	
-			frm.nombre.disabled=hab; 
-		} 
+			frm.matricula_cantidad.disabled=hab;
+			frm.nombre.disabled=hab;
+		}
 	</script>
 
 </body>
