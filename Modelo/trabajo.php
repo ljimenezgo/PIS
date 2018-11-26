@@ -15,15 +15,17 @@ class trabajo
     public $trabajo_cantidad;
     public $trabajo_anio;
     public $trabajo_editorial;
-    public $trabajo_caracteristica;
-	
+		public $trabajo_caracteristica;
+		public $trabajo_titulo;
+		public $trabajo_cargo;
+
 	public $trabajo_error;
 	public $trabajo_size;
 	public $trabajo_name;
 	public $trabajo_type;
 	public $trabajo_tmp_name;
-	
-	
+
+
 	public function __CONSTRUCT()
 	{
 		try
@@ -99,6 +101,8 @@ class trabajo
 						libro_codigo          = ?,
 						libro_nombre        = ?,
 						libro_autor        = ?,
+						trabajo_titulo        = ?,
+						trabajo_cargo        = ?,
 						libro_tipo			 = ?,
 						libro_pdf				 = ?,
 						libro_estado			 = ?,
@@ -107,41 +111,41 @@ class trabajo
 						libro_anio		 = ?,
 						libro_editorial		 = ?,
 						libro_caracteristica = ?
-						
+
 				    WHERE libro_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
 			$id_insert = $data->trabajo_id;
 			if($data->trabajo_error>0){
-				echo "Error al cargar archivo";	
+				echo "Error al cargar archivo";
 			} else {
-				
+
 				$permitidos = array("image/gif","image/png","application/pdf");
 				$limite_kb = 2000000;
-				
+
 				if(in_array($data->trabajo_type, $permitidos) && $data->trabajo_size <= $limite_kb * 1024){
 					$ruta = '../files/'.$id_insert.'/';
 					$archivo = $ruta.$data->trabajo_name;
-					
+
 					if(!file_exists($ruta)){
 						mkdir($ruta);
 					}
 					if(!file_exists($archivo)){
-						
+
 						$resultado = @move_uploaded_file($_FILES["archivo"]["tmp_name"], $archivo);
-						
+
 						if($resultado){
 							echo "Archivo Guardado";
 						} else {
 							echo "Error al guardar archivo";
 						}
-						
+
 					} else {
 						echo "Archivo ya existe";
 					}
 				} else {
 					echo "Archivo no permitido o excede el tamaño";
 				}
-				
+
 			}
 			$this->pdo->prepare($sql)
 			     ->execute(
@@ -149,6 +153,8 @@ class trabajo
                         $data->trabajo_codigo,
 						$data->trabajo_nombre,
 						$data->trabajo_autor,
+						$data->trabajo_titulo,
+						$data->trabajo_cargo,
 						$data->trabajo_tipo,
 						$data->trabajo_pdf,
 						$data->trabajo_estado,
@@ -180,24 +186,26 @@ class trabajo
 			die($e->getMessage());
 		}
 	}
-	
+
 	public function Registrar(trabajo $data)
 	{
 		$consulta = "select count(*) as total from libro where libro_id = ?";
 		$result = $this->pdo->prepare($consulta);
 		$result->bindParam(1,$data->persona_cui,PDO::PARAM_STR);
 		$result->execute();
-		
+
 		if($result->fetchColumn()==0){ //si no existe el dato lo inserto
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO libro (libro_codigo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_cantidad,libro_anio,libro_editorial,libro_caracteristica) VALUES ( ?,?,?, ?, ?, ?, ?, ?, ?,?,?,?)";
-			
+			$sql = "INSERT INTO libro (libro_codigo,trabajo_titulo,trabajo_cargo, libro_nombre, libro_autor, libro_tipo, libro_pdf, libro_enlace, libro_estado, libro_cantidad_disponible,libro_cantidad,libro_anio,libro_editorial,libro_caracteristica) VALUES ( ?,?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?)";
+
 			$this->pdo->prepare($sql)
 		     ->execute(
 				array(
-						$data->trabajo_codigo,
+					$data->trabajo_codigo,
+					$data->trabajo_titulo,
+					$data->trabajo_cargo,
 						$data->trabajo_nombre,
 						$data->trabajo_autor,
 						$data->trabajo_tipo,
@@ -217,31 +225,31 @@ class trabajo
 			} else {
 				$permitidos = array("image/gif","image/png","application/pdf");
 				$limite_kb = 2000000;
-				
+
 				if(in_array($data->trabajo_type, $permitidos) && $data->trabajo_size <= $limite_kb * 1024){
 					$ruta = '../files/'.$id_insert.'/';
 					$archivo = $ruta.$data->trabajo_name;
-					
+
 					if(!file_exists($ruta)){
 						mkdir($ruta);
 					}
 					if(!file_exists($archivo)){
-						
+
 						$resultado = @move_uploaded_file($_FILES["archivo"]["tmp_name"], $archivo);
-						
+
 						if($resultado){
 							echo "Archivo Guardado";
 						} else {
 							echo "Error al guardar archivo";
 						}
-						
+
 					} else {
 						echo "Archivo ya existe";
 					}
 				} else {
 					echo "Archivo no permitido o excede el tamaño";
 				}
-				
+
 			}
 			header('Location: ../Vista/Accion.php?c=trabajo');
 		} catch (Exception $e)

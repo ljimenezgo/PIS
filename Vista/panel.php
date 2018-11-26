@@ -191,10 +191,11 @@ if($_SESSION['rol']==2){
                         $sql = $pdo->prepare("SELECT * FROM tutoria WHERE tutoria_alumno = $idd && tutoria_estado=0  ");
                         $sql->execute();
                         $row = $sql->fetch(PDO::FETCH_BOTH);
+                        $num_rows = $sql->fetchColumn();
                     ?>
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-comment fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                        <span class="badge bg-important">1</span>
+                        <span class="badge bg-important"><?php echo $num_rows; ?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>

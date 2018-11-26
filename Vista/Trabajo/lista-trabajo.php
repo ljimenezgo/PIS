@@ -7,7 +7,7 @@
 
     <div id="wrapper">
 
-        <?php include("panel.php"); ?>      
+        <?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -35,8 +35,8 @@
                                             <th style="text-align: center" >Editar</th>
                                             <th style="text-align: center" >Eliminar</th>
                                             <th style="text-align: center" >Ver</th>
-											
-                                            
+
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,9 +51,9 @@
 											<?php }else{ ?>
 											    <td><?php echo $r->libro_cantidad_disponible; ?></td>
 											<?php } ?>
-                                            <td style="text-align: center" class="center"><a href="?c=libro&a=Crud&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-pencil"></a></td>
-                                            <td style="text-align: center" class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=libro&a=Eliminar&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
-                                            <td style="text-align: center" class="center"><a href="?c=libro&a=Perfil&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                            <td style="text-align: center" class="center"><a href="?c=trabajo&a=Crud&trabajo_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-pencil"></a></td>
+                                            <td style="text-align: center" class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=trabajo&a=Eliminar&trabajo_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                            <td style="text-align: center" class="center"><a href="?c=trabajo&a=Perfil&trabajo_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             <?php }else{ ?>
 											<td bgcolor="red"><?php echo $r->libro_codigo; ?></td>
                                             <td bgcolor="red"><?php echo $r->libro_nombre; ?></td>
@@ -63,13 +63,13 @@
                                             <td style="text-align: center" bgcolor="red" class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=libro&a=Eliminar&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
                                             <td style="text-align: center" bgcolor="red" class="center"><a href="?c=libro&a=Perfil&libro_id=<?php echo $r->libro_id; ?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
 											<?php } ?>
-                                        </tr>                                        
-                                    <?php endforeach; ?>    
+                                        </tr>
+                                    <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
-                            
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -78,7 +78,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
+
         </div>
         <!-- /#page-wrapper -->
 

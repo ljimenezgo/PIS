@@ -6,7 +6,7 @@
 <body>
 
     <div id="wrapper">
-	<?php include("panel.php"); ?>		
+	<?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -19,40 +19,46 @@
 				<div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Edicion de Alumnos
+                            Edicion de trabajo
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="Formulario">
-									<form role="form" id="frm-libro" action="?c=libro&a=Editar" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="libro_tipo" value="<?php echo $pvd->libro_tipo; ?>" />
-                                        <input type="hidden" name="libro_id" value="<?php echo $pvd->libro_id; ?>" />
-                                        <input type="hidden" name="libro_caracteristica" value="1" />
+									<form role="form" id="frm-trabajo" action="?c=trabajo&a=Editar" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="trabajo_tipo" value="<?php echo $pvd->libro_tipo; ?>" />
+                                        <input type="hidden" name="trabajo_id" value="<?php echo $pvd->libro_id; ?>" />
+                                        <input type="hidden" name="trabajo_caracteristica" value="<?php echo $pvd->libro_caracteristica; ?>" />
 										<div class="form-group col-lg-12">
                                             <label>Codigo</label>
-											<input type="text" name="libro_codigo" value="<?php echo $pvd->libro_codigo; ?>" class="form-control" placeholder="Ingrese Codigo" data-error="Llene este campo" required>                                        
+											<input type="text" name="trabajo_codigo" value="<?php echo $pvd->libro_codigo; ?>" class="form-control" placeholder="Ingrese Codigo" data-error="Llene este campo" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
+                                            <label>Empresa</label>
+                                            <input class="form-control" name="trabajo_nombre" value="<?php echo $pvd->libro_nombre; ?>"  placeholder="Ingrese Empresa"data-error="Llene este campo" required>
+											<div class="help-block with-errors"></div>
+										</div>
+                    <div class="form-group col-lg-6">
                                             <label>Titulo</label>
-                                            <input class="form-control" name="libro_nombre" value="<?php echo $pvd->libro_nombre; ?>"  placeholder="Ingrese Nombre"data-error="Llene este campo" required>                                        
+                                            <input class="form-control" name="trabajo_titulo" value="<?php echo $pvd->trabajo_titulo; ?>"  placeholder="Ingrese Titulo"data-error="Llene este campo" required>
+											<div class="help-block with-errors"></div>
+										</div>
+
+                    <div class="form-group col-lg-6">
+                                            <label>Cargo</label>
+                                            <input class="form-control" name="trabajo_cargo" value="<?php echo $pvd->trabajo_cargo; ?>"  placeholder="Ingrese Cargo"data-error="Llene este campo" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
                                             <label>Autor</label>
-                                            <input class="form-control" name="libro_autor" value="<?php echo $pvd->libro_autor; ?>"  placeholder="Ingrese Autor"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
+                                            <input class="form-control" name="trabajo_autor" value="<?php echo $pvd->libro_autor; ?>"  placeholder="Ingrese Autor"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-3">
                                             <label>Año Publicacion</label>
-                                            <input class="form-control" name="libro_anio" value="<?php echo $pvd->libro_anio; ?>"  placeholder="Ingrese Año de Publicacion"pattern="^[0-9]+$" data-error="Debe de contener solo numeros" required>
-											<div class="help-block with-errors"></div>
-										</div>
-										<div class="form-group col-lg-6">
-                                            <label>Editorial</label>
-                                            <input class="form-control" name="libro_editorial" value="<?php echo $pvd->libro_editorial; ?>"  placeholder="Ingrese Editorial"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
+                                            <input class="form-control" name="trabajo_anio" value="<?php echo $pvd->libro_anio; ?>"  placeholder="Ingrese Año de Publicacion"pattern="^[0-9]+$" data-error="Debe de contener solo numeros" required>
 											<div class="help-block with-errors"></div>
 										</div>
                                         <?php
@@ -60,20 +66,20 @@
 										?>
 										<div class="form-group col-lg-6">
                                             <label>Actualmente tiene <?php echo $pvd->libro_cantidad_disponible; ?> unidades. Ingrese nuevo valor</label>
-                                            <input class="form-control" name="libro_cantidad" value="<?php echo $pvd->libro_cantidad_disponible; ?>"  placeholder="Ingrese Cantidad"pattern="^[0-9]+$" data-error="Debe de contener solo numeros" >
+                                            <input class="form-control" name="trabajo_cantidad" value="<?php echo $pvd->libro_cantidad_disponible; ?>"  placeholder="Ingrese Cantidad"pattern="^[0-9]+$" data-error="Debe de contener solo numeros" >
 											<div class="help-block with-errors"></div>
 										</div>
 
 										<?php
 											}else{
 										?>
-										<input type="hidden" name="libro_cantidad" value="0" />
+										<input type="hidden" name="trabajo_cantidad" value="0" />
 										<div class="form-group">
 											<div class="col-sm-12">
 												<label for="archivo" class="col-sm-2 control-label">Archivo</label>
 												<input type="file" class="form-control" id="archivo" name="archivo">
-												
-												<?php 
+
+												<?php
 													$path = "../files/".$pvd->libro_id;
 													if(file_exists($path)){
 														$directorio = opendir($path);
@@ -83,17 +89,17 @@
 														while ($archivo = readdir($directorio))
 														{
 															if (!is_dir($archivo)){
-																
+
 																echo "<div data='".$path."/".$archivo."'><a href='".$path."/".$archivo."' title='Ver Archivo Adjunto'><span class='glyphicon glyphicon-file'></span>$archivo</a>";
-																
+
 																echo " <a href='#' class='delete' title='Ver Archivo Adjunto' ><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a></div>";
-																
+
 															}
 														}
 													}
-													
+
 												?>
-												
+
 											</div>
 										</div>
 										<?php
@@ -102,12 +108,12 @@
 										<br><br><br>
 										<div class="col-lg-12">
 											<button type="submit" class="btn btn-default ">Editar</button>
-											<a href="../Vista/Accion.php?c=libro" class="btn btn-default">Regresar</a>
+											<a href="../Vista/Accion.php?c=trabajo" class="btn btn-default">Regresar</a>
 										</div>
                                     </form>
 								</div>
-                                
-                                
+
+
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -115,7 +121,7 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.Registro -->
-                
+
             </div>
             <!-- /.row -->
         </div>
@@ -130,17 +136,17 @@
 					var parent = $(this).parent().attr('id');
 					var service = $(this).parent().attr('data');
 					var dataString = 'id='+service;
-					
+
 					$.ajax({
 						type: "POST",
 						url: "../Vista/del_file.php",
 						data: dataString,
-						success: function() {			
+						success: function() {
 							location.reload();
 						}
 					});
-				});                 
-			});    
+				});
+			});
 	</script>
 </body>
 

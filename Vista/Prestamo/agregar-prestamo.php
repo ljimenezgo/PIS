@@ -14,7 +14,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 <body>
 
     <div id="wrapper">
-	<?php include("panel.php"); ?>		
+	<?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -25,18 +25,18 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
             <!-- /.row -->
             <div class="row">
 				<div class="col-lg-12">
-				
-				
-				
+
+
+
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Prestamo
                         </div>
                         <!-- /.panel-heading -->
-						
-						
-						
+
+
+
                         <div class="panel-body">
 							<p>SOLO APARECERAN LOS LIBROS FISICOS</p>
                             <div class="tab-content">
@@ -49,7 +49,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 											<div class="form-group">
 												<select name="persona" id= "persona" class="form-control" required>
 												  <option value='' selected>-- SELECCIONE TIPO DE PERSONA--</option>
-												  <option value="2">Alumno</option> 
+												  <option value="2">Alumno</option>
 												  <option value="3">Profesor</option>
 												  <option value="6">Ex Alumno</option>
 												</select>
@@ -70,7 +70,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 											<div class="form-group">
 												<select name="select" id= "select" class="form-control" required>
 												  <option value='' selected>-- SELECCIONE TIPO DE ARCHIVO--</option>
-												  <option value="1" >Libro</option> 
+												  <option value="1" >Libro</option>
 												  <option value="2">Tesis</option>
 												  <option value="3">Trabajo</option>
 												</select>
@@ -86,16 +86,16 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <input class="form-control" pattern="^[0-9]+$" name="prestamo_telefono" placeholder="Ingrese Numero de Telefono" data-error="Debe llenar este campo"required>
                                         	<div class="help-block with-errors"></div>
 										</div>
-										
+
 											<div class="form-group col-lg-3">
 												<label>Devolución</label>
 												<p>¿Cuántos días se prestará el libro?</p>
 												<input class="form-control" type="number" name="libro_cantidad" value="<?php echo $pvd->libro_cantidad; ?>"  placeholder="Ingrese dias" pattern="^[0-9]+$" data-error="Debe de contener solo números" required>
 												<div class="help-block with-errors"></div>
 											</div>
-											
-										
-										
+
+
+
 										<br>
 										<div class="col-lg-12">
 											<button type="submit" class="btn btn-default ">Prestar</button>
@@ -106,12 +106,12 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                             </div>
                         </div>
                         <!-- /.panel-body -->
-								
+
                     </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.Registro -->
-                
+
             </div>
             <!-- /.row -->
         </div>

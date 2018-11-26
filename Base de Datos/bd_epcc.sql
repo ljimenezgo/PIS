@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2018 a las 04:59:06
+-- Tiempo de generación: 26-11-2018 a las 05:17:01
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -94,7 +94,9 @@ CREATE TABLE `libro` (
   `libro_cantidad` int(11) DEFAULT '0',
   `libro_anio` varchar(20) NOT NULL,
   `libro_editorial` varchar(100) NOT NULL,
-  `libro_caracteristica` int(1) DEFAULT NULL
+  `libro_caracteristica` int(1) DEFAULT NULL,
+  `trabajo_titulo` varchar(200) DEFAULT NULL,
+  `trabajo_cargo` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

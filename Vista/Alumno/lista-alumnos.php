@@ -7,7 +7,7 @@
 
     <div id="wrapper">
 
-        <?php include("panel.php"); ?>      
+        <?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -25,9 +25,9 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                                <?php 
+                                <?php
                                 foreach($this->model->SesionActual() as $rr):
-                                if($rr->persona_solicitar==0 AND $rr->persona_tutor==0 AND $rr->persona_alumnos <20){          
+                                if($rr->persona_solicitar==0 AND $rr->persona_tutor==0 AND $rr->persona_alumnos <20){
                                 ?>
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
@@ -44,7 +44,7 @@
                                             ?>
                                             <th>Telefono</th>
                                             <th>Email</th>
-                                            
+
                                             <?php
                                                 if($_SESSION['rol']==1){
                                             ?>
@@ -78,45 +78,45 @@
                                             <td><?php echo $r->persona_cui; ?></td>
                                             <td><?php echo $r->persona_telefono; ?></td>
                                             <td><?php echo $r->persona_email; ?></td>
-                                            
+
                                             <td class="center"><a href="?c=alumno&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
                                             <td class="center"><a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=alumno&a=Eliminar&persona_id=<?php echo $r->persona_id; ?>">Eliminar</a></td>
                                             <td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
-											
-                                        </tr>                                        
+
+                                        </tr>
                                     <?php endforeach;}
-									
+
 										if($_SESSION['rol']==3){
-									    
+
 											foreach($this->model->ListarTuto() as $r): ?>
                                         <tr class="odd gradeX">
                                             <td><?php echo $r->persona_apellido1; ?> <?php echo $r->persona_apellido2; ?> <?php echo $r->persona_nombres; ?></td>
                                             <td><?php echo $r->persona_cui; ?></td>
                                             <td><?php echo $r->persona_telefono; ?></td>
                                             <td><?php echo $r->persona_email; ?></td>
-                                            
+
                                             <td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
-											
+
                                             <td class="center"><a href="../Vista/Accion.php?c=profesor&a=matricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Matricular</a></td>
-                                            
-                                        </tr>                                        
-										<?php endforeach; }	
+
+                                        </tr>
+										<?php endforeach; }
 
 
                                         if($_SESSION['rol']==2){
-                                            
+
                                             foreach($this->model->ListarProfesoresDisponibles() as $r): ?>
                                         <tr class="odd gradeX">
                                             <td><?php echo $r->persona_apellido1; ?> <?php echo $r->persona_apellido2; ?> <?php echo $r->persona_nombres; ?></td>
                                             <td><?php echo $r->persona_dni; ?></td>
                                             <td><?php echo $r->persona_telefono; ?></td>
                                             <td><?php echo $r->persona_email; ?></td>
-                                            
+
                                             <td class="center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
-                                            
+
                                             <td class="center"><a href="../Vista/Accion.php?c=profesor&a=solicitar&persona_solicitar=<?php echo $r->persona_id; ?>&persona_id=<?php echo $_SESSION['persona_id'] ?>">Solicitar</a></td>
-                                            
-                                        </tr>                                        
+
+                                        </tr>
                                         <?php endforeach; }?>
 
                                     </tbody>
@@ -126,19 +126,19 @@
                                     <p>Haga clic <a href="../Vista/Accion.php?c=profesor&a=cancelarSolicitudTutor&persona_id=<?php echo $_SESSION['persona_id'] ?>">aqui</a> si desea cancelarla</p>
                                 <?php }elseif($rr->persona_tutor!=0 AND $rr->persona_tipo_id==2){
                                     ?>
-                                     <p>Usted ya tiene tutor</p>   
-                                <?php    
+                                     <p>Usted ya tiene tutor</p> 
+                                <?php
                                 } elseif ($rr->persona_alumnos >=20 AND $rr->persona_tipo_id==3 ){
                                 ?>
-                                     <p>Ya superó el limite de inscripciones</p>   
-                                <?php 
+                                     <p>Ya superó el limite de inscripciones</p>
+                                <?php
                                 }
-                                endforeach;    
+                                endforeach;
                                 ?>
 
                             </div>
                             <!-- /.table-responsive -->
-                            
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -147,7 +147,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
+
         </div>
         <!-- /#page-wrapper -->
 

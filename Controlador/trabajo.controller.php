@@ -70,10 +70,12 @@ class trabajoController{
 		$pvd->trabajo_name=$_FILES['archivo']['name'];
 		$pvd->trabajo_type=$_FILES['archivo']['type'];
 		$pvd->trabajo_tmp_name=$_FILES['archivo']['tmp_name'];
-		
+
         $pvd->trabajo_codigo = $_REQUEST['trabajo_codigo'];
         $pvd->trabajo_nombre = $_REQUEST['trabajo_nombre'];
         $pvd->trabajo_autor = $_REQUEST['trabajo_autor'];
+        $pvd->trabajo_cargo = $_REQUEST['trabajo_cargo'];
+        $pvd->trabajo_titulo = $_REQUEST['trabajo_titulo'];
 		$pvd->trabajo_tipo = $_REQUEST['trabajo_tipo'];
         $pvd->trabajo_pdf = "";
         $pvd->trabajo_caracteristica = $_REQUEST['trabajo_caracteristica'];
@@ -82,7 +84,7 @@ class trabajoController{
         $pvd->trabajo_estado = 0;
         $pvd->trabajo_cantidad = 0;
         $pvd->trabajo_cantidad_disponible = $_REQUEST['trabajo_cantidad'];
-		
+
         //Registro al modelo trabajo.
         $this->model->Registrar($pvd);
     }
@@ -95,7 +97,8 @@ class trabajoController{
 		$pvd->trabajo_name=$_FILES['archivo']['name'];
 		$pvd->trabajo_type=$_FILES['archivo']['type'];
 		$pvd->trabajo_tmp_name=$_FILES['archivo']['tmp_name'];
-		
+    $pvd->trabajo_cargo = $_REQUEST['trabajo_cargo'];
+    $pvd->trabajo_titulo = $_REQUEST['trabajo_titulo'];
         $pvd->trabajo_codigo = $_REQUEST['trabajo_codigo'];
         $pvd->trabajo_nombre = $_REQUEST['trabajo_nombre'];
         $pvd->trabajo_autor = $_REQUEST['trabajo_autor'];
