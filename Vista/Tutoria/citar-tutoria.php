@@ -38,7 +38,12 @@
 										<div class="form-group col-lg-3">
                                             <?php $fecha=date("Y-m-d") ?>
                                             <label for="tutoria_fecha" class="control-label">Fecha y Hora de Cita</label>
-                                            <input type="datetime-local" min="<?php echo $fecha ?>T00:00" max="2050-11-20T21:25" name="tutoria_fecha" value="<?php echo $tut->tutoria_fecha; ?>" class="form-control" placeholder="Ingrese Fecha" data-error="La fecha no puede ser hoy o antes de hoy" required>                                        
+                                            <input type="datetime-local" min="<?php echo $fecha ?>T00:00" max="2050-11-20T21:25" name="tutoria_fecha" value="<?php echo $tut->tutoria_fecha; ?>" class="form-control" placeholder="Ingrese Fecha" data-error="La fecha no puede ser hoy o antes de hoy" required>
+											<div class="help-block with-errors"></div>
+										</div>
+                    <div class="form-group col-lg-9">
+                                            <label for="tutoria_lugar" class="control-label">Lugar</label>
+											<input type="text" name="tutoria_lugar" value="<?php echo $tut->tutoria_lugar; ?>" class="form-control" placeholder="Ingrese Lugar" data-error="Este campo es obligatorio" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										<br>

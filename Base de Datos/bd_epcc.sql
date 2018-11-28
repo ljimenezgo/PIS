@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2018 a las 05:17:01
+-- Tiempo de generación: 28-11-2018 a las 10:16:45
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -231,6 +231,22 @@ INSERT INTO `rol` (`rol_id`, `rol_descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `seguimiento`
+--
+
+CREATE TABLE `seguimiento` (
+  `seguimiento_id` int(11) NOT NULL,
+  `seguimiento_docente` int(11) NOT NULL,
+  `seguimiento_asignatura` varchar(200) NOT NULL,
+  `seguimiento_fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `seguimiento_alumno` int(11) NOT NULL,
+  `seguimiento_tema` varchar(200) NOT NULL,
+  `seguimiento_asistencia` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_libro`
 --
 
@@ -296,7 +312,8 @@ CREATE TABLE `tutoria` (
   `tutoria_cancelacion_motivo` varchar(200) DEFAULT NULL,
   `tutoria_medico_fecha` timestamp NULL DEFAULT NULL,
   `tutoria_social_fecha` timestamp NULL DEFAULT NULL,
-  `tutoria_piscologia_fecha` timestamp NULL DEFAULT NULL
+  `tutoria_piscologia_fecha` timestamp NULL DEFAULT NULL,
+  `tutoria_lugar` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -418,6 +435,12 @@ ALTER TABLE `rol`
   ADD UNIQUE KEY `rol_id_UNIQUE` (`rol_id`);
 
 --
+-- Indices de la tabla `seguimiento`
+--
+ALTER TABLE `seguimiento`
+  ADD PRIMARY KEY (`seguimiento_id`);
+
+--
 -- Indices de la tabla `tipo_libro`
 --
 ALTER TABLE `tipo_libro`
@@ -455,7 +478,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alumno_curso`
 --
 ALTER TABLE `alumno_curso`
-  MODIFY `alumno_curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `alumno_curso_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_docente`
@@ -467,7 +490,7 @@ ALTER TABLE `comentarios_docente`
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `curso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `curso_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `docente_curso`
@@ -485,7 +508,7 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `malla_curricular`
 --
 ALTER TABLE `malla_curricular`
-  MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `malla_curricular_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `matricula`
@@ -512,6 +535,12 @@ ALTER TABLE `rol`
   MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de la tabla `seguimiento`
+--
+ALTER TABLE `seguimiento`
+  MODIFY `seguimiento_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `tipo_libro`
 --
 ALTER TABLE `tipo_libro`
@@ -527,13 +556,13 @@ ALTER TABLE `tipo_persona`
 -- AUTO_INCREMENT de la tabla `tutoria`
 --
 ALTER TABLE `tutoria`
-  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `tutoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Restricciones para tablas volcadas

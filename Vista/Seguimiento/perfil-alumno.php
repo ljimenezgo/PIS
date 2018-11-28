@@ -83,19 +83,11 @@
                                                 <label class="checkbox-inline">
                                                     <span class="btn btn-danger btn-sm">Psicología</span><br>
                                                 </label>
-																							<?php }else if($r->tutoria_piscologia_aceptado == 2){?>
-                                                <span class="btn btn-warning btn-sm">Psicología</span>
+                                                <?php }else{?>
+                                                <span class="btn btn-success btn-sm">Psicología</span>
+                                                <input type="hidden" name="tutoria_piscologia_aceptado" value="1" />
 
-																							<?php }else{?>
-																							<span class="btn btn-success btn-sm">Psicología</span>
-																							<input type="hidden" name="tutoria_piscologia_aceptado" value="1" />
-
-																						<?php
-
-
-																							}
-
-																							}
+                                                <?php }}
 
 																								if($r->tutoria_social == 1){
                                                         if($r->tutoria_social_aceptado == 0){
@@ -103,42 +95,22 @@
                                                 <label class="checkbox-inline">
                                                     <span class="btn btn-danger btn-sm">Bienestar Social</span><br>
                                                 </label>
-																							<?php }else if($r->tutoria_social_aceptado == 2){ ?>
-                                                <span class="btn btn-warning btn-sm">Bienestar Social</span>
-                                                <input type="hidden" name="tutoria_social_aceptado" value="1" />
-
-																							<?php }else{ ?>
+                                                <?php }else{ ?>
                                                 <span class="btn btn-success btn-sm">Bienestar Social</span>
                                                 <input type="hidden" name="tutoria_social_aceptado" value="1" />
 
-																							<?php
-
-
-																							}
-
-
-																							} if($r->tutoria_medico == 1){
+                                                <?php }} if($r->tutoria_medico == 1){
                                                         if($r->tutoria_medico_aceptado == 0){
                                                     ?>
 
                                                 <label class="checkbox-inline">
                                                     <span class="btn btn-danger btn-sm">Atención Médica</span><br>
                                                 </label>
-																							<?php }else if($r->tutoria_medico_aceptado == 2){ ?>
+                                                <?php }else{ ?>
                                                 <span class="btn btn-success btn-sm">Atención Médica</span>
                                                 <input type="hidden" name="tutoria_medico_aceptado" value="1" />
 
-																							<?php }else{ ?>
-                                                <span class="btn btn-danger btn-sm">Atención Médica</span>
-                                                <input type="hidden" name="tutoria_medico_aceptado" value="1" />
-
-																							<?php
-
-
-																							}
-
-
-																							} ?>
+                                                <?php }} ?>
                                                 <?php
                                                 if($_SESSION['rol']==3){
                                                 if(($r->tutoria_medico == $r->tutoria_medico_aceptado) && ($r->tutoria_social == $r->tutoria_social_aceptado) && ($r->tutoria_piscologia == $r->tutoria_piscologia_aceptado)){ ?>

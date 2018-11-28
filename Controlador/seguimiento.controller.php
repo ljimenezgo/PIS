@@ -1,7 +1,7 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
 require_once '../Modelo/alumno.php';
-require_once '../Modelo/alumnoCurso.php';
+require_once '../Modelo/seguimiento.php';
 require_once '../Modelo/profesor.php';
 require_once '../Modelo/tutoria.php';
 require_once '../Modelo/usuario.php';
@@ -175,21 +175,15 @@ class TutoriaController{
     //Método que registrar al modelo un nuevo proveedor.
     public function Guardar(){
         $pvd = new tutoria();
-        $pvd->tutoria_observacion = $_REQUEST['tutoria_observacion'];
-        $pvd->tutoria_medico = $_REQUEST['tutoria_medico'];
-        $pvd->tutoria_social = $_REQUEST['tutoria_social'];
-        $pvd->tutoria_piscologia = $_REQUEST['tutoria_piscologia'];
-        $pvd->tutoria_id = $_REQUEST['tutoria_id'];
-        $pvd->tutoria_asunto = $_REQUEST['tutoria_asunto'];
-        $pvd->tutoria_alumno = $_REQUEST['tutoria_alumno'];
-        $pvd->tutoria_piscologia_fecha = $_REQUEST['tutoria_piscologia_fecha'];
-        $pvd->tutoria_social_fecha = $_REQUEST['tutoria_social_fecha'];
-        $pvd->tutoria_medico_fecha = $_REQUEST['tutoria_medico_fecha'];
-        $pvd->tutoria_lugar = $_REQUEST['tutoria_lugar'];
+        $pvd->seguimiento_alumno = $_REQUEST['seguimiento_alumno'];
+        $pvd->seguimiento_docente = $_REQUEST['seguimiento_docente'];
+        $pvd->seguimiento_asistencia = $_REQUEST['seguimiento_asistencia'];
+        $pvd->seguimiento_asignatura = $_REQUEST['seguimiento_asignatura'];
+        $pvd->seguimiento_fecha = $_REQUEST['seguimiento_fecha'];
+        $pvd->seguimiento_tema = $_REQUEST['seguimiento_tema'];
 
         //Registro al modelo tutoria.
         $this->model->Registrar($pvd);
-        $this->model->cancelarSolicitud($pvd);
         header('Location: ../Vista/Accion.php?c=alumno&a=Perfil&persona_id='.$_REQUEST['tutoria_alumno']);
 
         //header() es usado para enviar encabezados HTTP sin formato.
@@ -215,8 +209,6 @@ class TutoriaController{
         //también devuelve el código de status (302) REDIRECT al
         //navegador
     }
-
-    
     //Método que registrar al modelo un nuevo proveedor.
 
     //Método que modifica el modelo de un proveedor.

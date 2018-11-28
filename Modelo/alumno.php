@@ -21,8 +21,8 @@ class alumno
 	public $comentarios_docente_docente_id;
 	public $comentarios_docente_comentario;
 	public $comentarios_docente_fecha;
-	
-	
+
+
 
 	//Método de conexión a SGBD.
 	public function __CONSTRUCT()
@@ -144,7 +144,7 @@ class alumno
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * from  tutoria 
+			$stm = $this->pdo->prepare("SELECT * from  tutoria
 										JOIN persona on tutoria.tutoria_alumno = persona.persona_id
 										WHERE tutoria.tutoria_alumno={$tutoria_alumno} AND tutoria.tutoria_estado=0");
 			//Ejecución de la sentencia SQL.
@@ -193,7 +193,7 @@ public function citarCancelar($data)
 			die($e->getMessage());
 		}
 	}
-	
+
 	public function citarAceptar($data)
 	{
 		try
@@ -210,21 +210,22 @@ public function citarCancelar($data)
 			die($e->getMessage());
 		}
 	}
-	
+
 	function citarAceptarT(tutoria $data)
 	{
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO tutoria (tutoria_alumno,tutoria_docente,tutoria_fecha)
-		        VALUES (?, ?, ?)";
+			$sql = "INSERT INTO tutoria (tutoria_alumno,tutoria_docente,tutoria_fecha,tutoria_lugar)
+		        VALUES (?, ?, ?, ?)";
 
 			$this->pdo->prepare($sql)
 		     ->execute(
 				array(
 						$data->tutoria_alumno,
                         $data->tutoria_docente,
-                        $data->tutoria_fecha
+												$data->tutoria_fecha,
+												$data->tutoria_lugar
                 )
 			);
 		} catch (Exception $e)
@@ -268,7 +269,7 @@ public function citarCancelar($data)
 						persona_email			 = ?,
 						persona_prestamo		 = ?,
 						persona_telefono		 = ?
-						
+
 				    WHERE persona_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
@@ -292,7 +293,7 @@ public function citarCancelar($data)
 		{
 			die($e->getMessage());
 		}
-		
+
 	}
 
 	//Método que registra un nuevo alumno a la tabla.
@@ -302,7 +303,7 @@ public function citarCancelar($data)
 		$result = $this->pdo->prepare($consulta);
 		$result->bindParam(1,$data->persona_cui,PDO::PARAM_STR);
 		$result->execute();
-		
+
 		if($result->fetchColumn()==0){ //si no existe el dato lo inserto
 		try
 		{
@@ -336,9 +337,9 @@ public function citarCancelar($data)
 			header("Location: ../Vista/Accion.php?c=alumno&a=error");
 		}
 	}
-	
-	
-	
+
+
+
 	//Método que registra un nuevo alumno a la tabla.
 	 function RegistrarU(usuario $data)
 	{

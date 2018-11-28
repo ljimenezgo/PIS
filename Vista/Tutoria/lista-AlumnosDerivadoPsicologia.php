@@ -45,10 +45,17 @@
                                                         if($r->tutoria_piscologia_aceptado == 0){
                                                     ?>
                                                 <label class="">
-                                                  <a class="btn btn-danger btn-sm" href="?c=tutoria&a=Asistido&tutoria_piscologia_aceptado=1&tutoria_alumno=<?php echo $r->tutoria_id; ?>&tutoria_medico_aceptado=<?php echo $r->tutoria_medico_aceptado; ?>&tutoria_social_aceptado=<?php echo $r->tutoria_social_aceptado; ?>&tutoria_id=<?php echo $r->tutoria_id; ?>" role="button">No Atendido</a>
+                                                  <a class="btn btn-danger btn-sm" href="?c=tutoria&a=Asistido&tutoria_piscologia_aceptado=1&tutoria_alumno=<?php echo $r->tutoria_id; ?>&tutoria_medico_aceptado=<?php echo $r->tutoria_medico_aceptado; ?>&tutoria_social_aceptado=<?php echo $r->tutoria_social_aceptado; ?>&tutoria_id=<?php echo $r->tutoria_id; ?>" role="button">Atender</a>
+                                                  <a class="btn btn-warning btn-sm" href="?c=tutoria&a=Asistido&tutoria_piscologia_aceptado=2&tutoria_alumno=<?php echo $r->tutoria_id; ?>&tutoria_medico_aceptado=<?php echo $r->tutoria_medico_aceptado; ?>&tutoria_social_aceptado=<?php echo $r->tutoria_social_aceptado; ?>&tutoria_id=<?php echo $r->tutoria_id; ?>" role="button">Seguimiento</a>
 
                                                 </label>
-                                                <?php }else{?>
+                                              <?php }else if($r->tutoria_piscologia_aceptado == 2){?>
+                                                <a class="btn btn-warning btn-sm" href="?c=tutoria&a=Asistido&tutoria_piscologia_aceptado=2&tutoria_alumno=<?php echo $r->tutoria_id; ?>&tutoria_medico_aceptado=<?php echo $r->tutoria_medico_aceptado; ?>&tutoria_social_aceptado=<?php echo $r->tutoria_social_aceptado; ?>&tutoria_id=<?php echo $r->tutoria_id; ?>" role="button">Está en seguimiento</a>
+                                                <a class="btn btn-danger btn-sm" href="?c=tutoria&a=Asistido&tutoria_piscologia_aceptado=1&tutoria_alumno=<?php echo $r->tutoria_id; ?>&tutoria_medico_aceptado=<?php echo $r->tutoria_medico_aceptado; ?>&tutoria_social_aceptado=<?php echo $r->tutoria_social_aceptado; ?>&tutoria_id=<?php echo $r->tutoria_id; ?>" role="button">Atender</a>
+
+                                                <input type="hidden" name="tutoria_piscologia_aceptado" value="2" />
+
+                                              <?php }else{?>
                                                 <span class="btn btn-success btn-sm">Atendido</span>
                                                 <input type="hidden" name="tutoria_piscologia_aceptado" value="1" />
 

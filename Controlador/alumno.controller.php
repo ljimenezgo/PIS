@@ -28,19 +28,20 @@ class AlumnoController{
 	public function citarCancelar(){
         $pvd = new alumno();
 		$pvd->persona_id = $_REQUEST['persona_id'];
-		
+
         //Se obtienen los datos del comentar a editar.
         $this->model->citarCancelar($pvd);
         header('Location: ../Vista/Accion.php?c=profesor&a=Tutor');
         //Llamado de las vistas.
 	}
-	
+
 		public function citarAceptar(){
         $pvd = new alumno();
 		$tut = new tutoria();
 		$pvd->persona_id = $_REQUEST['tutoria_alumno'];
         $pvd->persona_citado_tutoria = $_REQUEST['persona_citado_tutoria'];
         $tut->tutoria_fecha = $_REQUEST['tutoria_fecha'];
+        $tut->tutoria_lugar = $_REQUEST['tutoria_lugar'];
         $tut->tutoria_docente = $_REQUEST['tutoria_docente'];
         $tut->tutoria_alumno = $_REQUEST['tutoria_alumno'];
         //Se obtienen los datos del comentar a editar.
@@ -123,7 +124,7 @@ class AlumnoController{
         $pc2->usuario_rol_id = $_REQUEST['persona_tipo_id'];
 		$pc2->usuario_persona_id = $_REQUEST['persona_cui'];;
         $pc2->usuario_estado = $_REQUEST['persona_estado'];
-		
+
 
         //Registro al modelo alumno.
         $this->model->Registrar($pvd);

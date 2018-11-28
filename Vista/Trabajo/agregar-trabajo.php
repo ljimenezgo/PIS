@@ -39,18 +39,26 @@
                                             <label>Codigo</label>
 											<input type="text" name="trabajo_codigo" value="<?php echo $pvd->trabajo_codigo; ?>" class="form-control" placeholder="Ingrese Codigo" data-error="Llene este campo" required>
 											<div class="help-block with-errors"></div>
+										</div><div class="form-group col-lg-6">
+                                            <label>Titulo</label>
+                                            <input class="form-control" name="trabajo_titulo" value="<?php echo $pvd->trabajo_titulo; ?>"  placeholder="Ingrese Titulo"data-error="Llene este campo" required>
+											<div class="help-block with-errors"></div>
+										</div><div class="form-group col-lg-6">
+                                            <label>Autor</label>
+                                            <input class="form-control" name="trabajo_autor" value="<?php echo $pvd->trabajo_autor; ?>"  placeholder="Ingrese Autor"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
+											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group col-lg-6">
                                             <label>Empresa</label>
                                             <input class="form-control" name="trabajo_nombre" value="<?php echo $pvd->trabajo_nombre; ?>"  placeholder="Ingrese Empresa"data-error="Llene este campo" required>
 											<div class="help-block with-errors"></div>
 										</div>
-
                     <div class="form-group col-lg-6">
-                                            <label>Titulo</label>
-                                            <input class="form-control" name="trabajo_titulo" value="<?php echo $pvd->trabajo_titulo; ?>"  placeholder="Ingrese Titulo"data-error="Llene este campo" required>
-											<div class="help-block with-errors"></div>
-										</div>
+                                            <label>Area</label>
+                                            <input class="form-control" name="trabajo_editorial" value="<?php echo $pvd->trabajo_editorial; ?>"  placeholder="Ingrese Area"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
+                      <div class="help-block with-errors"></div>
+                    </div>
+
 
                     <div class="form-group col-lg-6">
                                             <label>Cargo</label>
@@ -60,21 +68,13 @@
 
 
 
-										<div class="form-group col-lg-6">
-                                            <label>Autor</label>
-                                            <input class="form-control" name="trabajo_autor" value="<?php echo $pvd->trabajo_autor; ?>"  placeholder="Ingrese Autor"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
-											<div class="help-block with-errors"></div>
-										</div>
+
 										<div class="form-group col-lg-3">
                                             <label>Año Publicacion</label>
                                             <input class="form-control" name="trabajo_anio" value="<?php echo $pvd->trabajo_anio; ?>"  placeholder="Ingrese Año de Publicacion"pattern="^[0-9]+$" data-error="Debe de contener solo numeros" required>
 											<div class="help-block with-errors"></div>
 										</div>
-										<div class="form-group col-lg-6">
-                                            <label>Area</label>
-                                            <input class="form-control" name="trabajo_editorial" value="<?php echo $pvd->trabajo_editorial; ?>"  placeholder="Ingrese Area"pattern="^[a-zA-Z\s]+$" data-error="Debe de contener solo letras" required>
-											<div class="help-block with-errors"></div>
-										</div>
+
 										<div class="form-group col-lg-12" >
 										<label>Tipo</label>
 											<select onchange="habilitar(this)" name= "trabajo_tipo" id="trabajo_tipo" class="selectpicker col-lg-3" data-live-search="true">

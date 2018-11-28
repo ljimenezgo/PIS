@@ -1,28 +1,18 @@
 <?php
-class Tutoria
+class Seguimiento
 {
 	//Atributo para conexión a SGBD
 	private $pdo;
 
 	//Atributos del objeto alumno
-    public $tutoria_id;
-    public $tutoria_docente;
-    public $tutoria_alumno;
-    public $tutoria_fecha;
-	public $tutoria_observacion;
-	public $tutoria_asunto;
-	public $tutoria_piscologia;
-	public $tutoria_social;
-	public $tutoria_medico;
-	public $tutoria_piscologia_aceptado;
-	public $tutoria_social_aceptado;
-	public $tutoria_medico_aceptado;
-	public $tutoria_cancelacion_motivo;
-	public $tutoria_medico_fecha;
-	public $tutoria_social_fecha;
-	public $tutoria_piscologia_fecha;
-	public $tutoria_lugar;
-	public $p2;
+    public $seguimiento_id;
+    public $seguimiento_docente;
+    public $seguimiento_asignatura;
+    public $seguimiento_fecha;
+	public $seguimiento_alumno;
+	public $seguimiento_tema;
+	public $seguimiento_asistencia;
+
 
 	//Método de conexión a SGBD.
 	public function __CONSTRUCT()
@@ -45,7 +35,7 @@ class Tutoria
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM tutoria WHERE (tutoria_observacion = 2) AND (tutoria_estado = 0)");
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria WHERE (seguimiento_alumno = 2) AND (tutoria_estado = 0)");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
@@ -65,7 +55,7 @@ class Tutoria
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM tutoria JOIN persona ON tutoria.tutoria_alumno= persona.persona_id left join persona as p2 on tutoria.tutoria_docente = p2.persona_id");
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria JOIN persona ON tutoria.seguimiento_asignatura= persona.persona_id left join persona as p2 on tutoria.seguimiento_docente = p2.persona_id");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
@@ -84,7 +74,7 @@ class Tutoria
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM tutoria JOIN persona ON tutoria.tutoria_alumno= persona.persona_id WHERE tutoria.tutoria_docente=$id_profesor");
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria JOIN persona ON tutoria.seguimiento_asignatura= persona.persona_id WHERE tutoria.seguimiento_docente=$id_profesor");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
@@ -99,15 +89,15 @@ class Tutoria
 	}
 	//Este método obtiene los datos del alumno a partir del nit
 	//utilizando SQL.
-	public function Obtener($tutoria_id)
+	public function Obtener($seguimiento_id)
 	{
 		try
 		{
 			//Sentencia SQL para selección de datos utilizando
 			//la clausula Where para especificar el id del alumno.
-			$stm = $this->pdo->prepare("SELECT * FROM tutoria WHERE tutoria_id = ?");
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria WHERE seguimiento_id = ?");
 			//Ejecución de la sentencia SQL utilizando el parámetro id.
-			$stm->execute(array($tutoria_id));
+			$stm->execute(array($seguimiento_id));
 			return $stm->fetch(PDO::FETCH_OBJ);
 
 		} catch (Exception $e)
@@ -115,15 +105,15 @@ class Tutoria
 			die($e->getMessage());
 		}
 	}
-	public function Obtenert($tutoria_id)
+	public function Obtenert($seguimiento_id)
 	{
 		try
 		{
 			//Sentencia SQL para selección de datos utilizando
 			//la clausula Where para especificar el id del alumno.
-			$stm = $this->pdo->prepare("SELECT * FROM tutoria WHERE tutoria_alumno = ? AND tutoria_estado=0");
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria WHERE seguimiento_asignatura = ? AND tutoria_estado=0");
 			//Ejecución de la sentencia SQL utilizando el parámetro id.
-			$stm->execute(array($tutoria_id));
+			$stm->execute(array($seguimiento_id));
 			return $stm->fetch(PDO::FETCH_OBJ);
 
 		} catch (Exception $e)
@@ -132,16 +122,16 @@ class Tutoria
 		}
 	}
 	//Este método elimina la tupla alumno dado un id.
-	public function Eliminar($tutoria_id)
+	public function Eliminar($seguimiento_id)
 	{
 		try
 		{
 			//Sentencia SQL para eliminar una tupla utilizando
 			//la clausula Where.
 			$stm = $this->pdo
-			            ->prepare("UPDATE tutoria SET tutoria_estado = 1 WHERE tutoria_id = ?");
+			            ->prepare("UPDATE tutoria SET tutoria_estado = 1 WHERE seguimiento_id = ?");
 
-			$stm->execute(array($tutoria_id));
+			$stm->execute(array($seguimiento_id));
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
@@ -157,23 +147,23 @@ class Tutoria
 		{
 			//Sentencia SQL para actualizar los datos.
 			$sql = "UPDATE tutoria SET
-						tutoria_docente          = ?,
-						tutoria_alumno        = ?,
-						tutoria_fecha        = ?,
-						tutoria_observacion			 = ?,
-						tutoria_asunto		 = ?
+						seguimiento_docente          = ?,
+						seguimiento_asignatura        = ?,
+						seguimiento_fecha        = ?,
+						seguimiento_alumno			 = ?,
+						seguimiento_tema		 = ?
 
-				    WHERE tutoria_id = ?";
+				    WHERE seguimiento_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
-                        $data->tutoria_docente,
-                        $data->tutoria_alumno,
-                        $data->tutoria_fecha,
-                        $data->tutoria_observacion,
-                        $data->tutoria_asunto,
-						$data->tutoria_id
+                        $data->seguimiento_docente,
+                        $data->seguimiento_asignatura,
+                        $data->seguimiento_fecha,
+                        $data->seguimiento_alumno,
+                        $data->seguimiento_tema,
+						$data->seguimiento_id
 
 					)
 				);
@@ -191,7 +181,7 @@ class Tutoria
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
-						$data->tutoria_alumno
+						$data->seguimiento_asignatura
 					)
 				);
 		} catch (Exception $e)
@@ -206,32 +196,27 @@ class Tutoria
 		try
 		{
 			//Sentencia SQL para actualizar los datos.
-			$sql = "UPDATE tutoria SET
-						tutoria_observacion			 = ?,
-						tutoria_medico =?,
-						tutoria_piscologia =?,
-						tutoria_social =?,
-						tutoria_piscologia_fecha =?,
-						tutoria_social_fecha =?,
-						tutoria_medico_fecha	 =?,
-						tutoria_estado =2,
-						tutoria_asunto		 = ?
+			$sql = "UPDATE seguimiento SET
+			seguimiento_alumno			 = ?,
+			seguimiento_docente		 = ?,
+						seguimiento_asistencia =?,
+						seguimiento_asignatura =?,
+						seguimiento_fecha =?,
+						seguimiento_tema		 = ?
 
-				    WHERE tutoria_id = ?";
+				    WHERE seguimiento_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
-                        $data->tutoria_observacion,
-						$data->tutoria_medico,
-						$data->tutoria_piscologia,
-						$data->tutoria_social,
-						$data->tutoria_piscologia_fecha,
-						$data->tutoria_social_fecha,
-						$data->tutoria_medico_fecha	,
+            $data->seguimiento_alumno,
+						$data->seguimiento_docente,
+						$data->seguimiento_asistencia,
+						$data->seguimiento_asignatura,
+						$data->seguimiento_fecha,
+						$data->seguimiento_tema,
 
-                        $data->tutoria_asunto,
-						$data->tutoria_id
+						$data->seguimiento_id
 
 					)
 				);
@@ -251,18 +236,18 @@ class Tutoria
 			//Sentencia SQL para actualizar los datos.
 			$sql = "UPDATE tutoria SET
 						tutoria_medico_aceptado =?,
-						tutoria_piscologia_aceptado =?,
+						seguimiento_asistencia_aceptado =?,
 						tutoria_social_aceptado =?
 
-				    WHERE tutoria_id = ?";
+				    WHERE seguimiento_id = ?";
 			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
 						$data->tutoria_medico_aceptado,
-						$data->tutoria_piscologia_aceptado,
+						$data->seguimiento_asistencia_aceptado,
 						$data->tutoria_social_aceptado,
-						$data->tutoria_id
+						$data->seguimiento_id
 
 					)
 				);
@@ -278,7 +263,7 @@ class Tutoria
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO usuario (usuario_cuenta,usuario_password,usuario_rol_id,usuario_tutoria_id,usuario_estado)
+			$sql = "INSERT INTO usuario (usuario_cuenta,usuario_password,usuario_rol_id,usuario_seguimiento_id,usuario_estado)
 		        VALUES (?, ?, ?, ?, ?)";
 
 			$this->pdo->prepare($sql)
@@ -287,7 +272,7 @@ class Tutoria
 						$data->usuario_cuenta,
                         $data->usuario_password,
                         $data->usuario_rol_id,
-                        $data->usuario_tutoria_id,
+                        $data->usuario_seguimiento_id,
 						$data->usuario_estado
                 )
 			);

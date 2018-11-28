@@ -9,10 +9,10 @@
             <div class="row">
                 <div class="col-lg-12">
 							<br>
-
+							
                             <div class="panel-heading">
                                 <h3 class="panel-title"><?php echo $pvd->persona_nombres; ?> <?php echo $pvd->persona_apellido1; ?>  <!-- <button type="button" class="btn btn-primary btn-xs">Generar Reporte</button>--></h3>
-
+								
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -45,17 +45,17 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            
+							
 							<div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            FICHA DE SEGUIMIENTO - Tutoría
+                            FICHA DE SEGUIMIENTO - Tutoría 
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
                             <div class="panel-group" id="accordion">
-                                <?php foreach($this->modeloo->ListaTutoria($pvd->persona_id) as $r):
+                                <?php foreach($this->modeloo->ListaTutoria($pvd->persona_id) as $r): 
 									if($r->tutoria_estado==2 ){
 								?>
 
@@ -63,16 +63,16 @@
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <?php echo $r->tutoria_docente; ?>
-                                            <?php echo $r->tutoria_fecha; ?>
+                                            <?php echo $r->tutoria_fecha; ?>                                            
                                         </h4>
                                     </div>
                                     <div id="collapseOne" class="panel-collapse collapse in">
                                         <div class="panel-body">
-                                           <?php echo $r->tutoria_observacion; ?>
+                                           <?php echo $r->tutoria_observacion; ?> 
 
                                            <div >
                                             <br>
-                                        <?php
+                                        <?php 
                                         if($r->tutoria_medico == 1 || $r->tutoria_piscologia == 1 || $r->tutoria_social == 1){ ?>
                                             <form data-toggle="validator" role="form" id="frm-alumno" action="?c=tutoria&a=Asistido" method="post" >
                                                 <input type="hidden" name="tutoria_alumno" value="<?php echo $pvd->persona_id; ?>" />
@@ -81,73 +81,43 @@
                                                         if($r->tutoria_piscologia_aceptado == 0){
                                                     ?>
                                                 <label class="checkbox-inline">
-                                                    <span class="btn btn-danger btn-sm">Psicología</span><br>
+                                                    <input class="alert-link " type="checkbox" name="tutoria_piscologia_aceptado" id="tutoria_piscologia_aceptado" value="1"><span class="btn btn-danger btn-sm">Psicología</span><br>
                                                 </label>
-																							<?php }else if($r->tutoria_piscologia_aceptado == 2){?>
-                                                <span class="btn btn-warning btn-sm">Psicología</span>
+                                                <?php }else{?>
+                                                <span class="btn btn-success btn-sm">Psicología</span>
+                                                <input type="hidden" name="tutoria_piscologia_aceptado" value="1" />
 
-																							<?php }else{?>
-																							<span class="btn btn-success btn-sm">Psicología</span>
-																							<input type="hidden" name="tutoria_piscologia_aceptado" value="1" />
-
-																						<?php
-
-
-																							}
-
-																							}
-
-																								if($r->tutoria_social == 1){
+                                                <?php }} if($r->tutoria_social == 1){
                                                         if($r->tutoria_social_aceptado == 0){
                                                     ?>
                                                 <label class="checkbox-inline">
-                                                    <span class="btn btn-danger btn-sm">Bienestar Social</span><br>
+                                                    <input class="alert-link" type="checkbox" name="tutoria_social_aceptado" id="tutoria_social_aceptado" value="1"><span class="btn btn-danger btn-sm">Bienestar Social</span><br>
                                                 </label>
-																							<?php }else if($r->tutoria_social_aceptado == 2){ ?>
-                                                <span class="btn btn-warning btn-sm">Bienestar Social</span>
-                                                <input type="hidden" name="tutoria_social_aceptado" value="1" />
-
-																							<?php }else{ ?>
+                                                <?php }else{ ?>
                                                 <span class="btn btn-success btn-sm">Bienestar Social</span>
                                                 <input type="hidden" name="tutoria_social_aceptado" value="1" />
 
-																							<?php
-
-
-																							}
-
-
-																							} if($r->tutoria_medico == 1){
+                                                <?php }} if($r->tutoria_medico == 1){
                                                         if($r->tutoria_medico_aceptado == 0){
                                                     ?>
 
                                                 <label class="checkbox-inline">
-                                                    <span class="btn btn-danger btn-sm">Atención Médica</span><br>
+                                                    <input  type="checkbox" name="tutoria_medico_aceptado" id="tutoria_medico_aceptado" value="1"><span class="btn btn-danger btn-sm">Atención Médica</span><br>
                                                 </label>
-																							<?php }else if($r->tutoria_medico_aceptado == 2){ ?>
+                                                <?php }else{ ?>
                                                 <span class="btn btn-success btn-sm">Atención Médica</span>
                                                 <input type="hidden" name="tutoria_medico_aceptado" value="1" />
-
-																							<?php }else{ ?>
-                                                <span class="btn btn-danger btn-sm">Atención Médica</span>
-                                                <input type="hidden" name="tutoria_medico_aceptado" value="1" />
-
-																							<?php
-
-
-																							}
-
-
-																							} ?>
-                                                <?php
+                                                
+                                                <?php }} ?>
+                                                <?php 
                                                 if($_SESSION['rol']==3){
                                                 if(($r->tutoria_medico == $r->tutoria_medico_aceptado) && ($r->tutoria_social == $r->tutoria_social_aceptado) && ($r->tutoria_piscologia == $r->tutoria_piscologia_aceptado)){ ?>
-
+                                                
                                                 <?php }else{ ?>
                                                 <br><br>
-                                                <!--<div >
+                                                <div >
                                                     <button type="submit" class="btn btn-primary">Confirmar Asistencia</button>
-                                                </div>-->
+                                                </div>
                                             <?php } }?>
                                             </form>
                                         <?php } ?>
@@ -155,7 +125,7 @@
 										</div>
                                     </div>
                                 </div>
-                                <?php
+                                <?php 
 									}
 								endforeach; ?>
                             </div>
@@ -165,7 +135,7 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-
+							
                 </div>
             </div>
             <!-- /.row -->

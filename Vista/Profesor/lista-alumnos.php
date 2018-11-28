@@ -6,7 +6,7 @@
 
     <div id="wrapper">
 
-		<?php include("panel.php"); ?>	
+		<?php include("panel.php"); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -35,9 +35,9 @@
                                             <th style="text-align: center">Tutoría</th>
                                             <!--<th style="text-align: center">Ficha Personal</th>-->
                                             <th style="text-align: center">Quitar</th>
-                                            
-											
-										
+
+
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,7 +46,8 @@
 											<td><?php echo $r->persona_apellido1; ?> <?php echo $r->persona_apellido2; ?> <?php echo $r->persona_nombres; ?></td>
 											<td><?php echo $r->persona_cui; ?></td>
 											<td><?php echo $r->persona_email; ?></td>
-											<td style="text-align: center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
+                      <td style="text-align: center"><a href="?c=alumno&a=Perfil&persona_id=<?php echo $r->persona_id; ?>">Ver</a></td>
+                    <!--  <td style="text-align: center"><a href="?c=alumnoCurso&a=ListaCursosDeAlumno&alumno==<?php #echo $r->persona_id; ?>">Seguimiento</a></td>-->
 											<td style="text-align: center"><a href="?c=alumno&a=Crud&persona_id=<?php echo $r->persona_id; ?>">Editar</a></td>
 											<?php if($r->persona_citado_tutoria == 0){ ?>
                                             <td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Citar&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Citar</a></td>
@@ -56,13 +57,13 @@
 											<!--<td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Nuevo&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Llenar</a></td>-->
                                             <!--<td style="text-align: center"><a href="../Vista/Accion.php?c=tutoria&a=Nuevo&id_alumno=<?php echo $r->persona_id; ?>&id_docente=<?php echo $_SESSION['persona_id'] ?>">Llenar</a></td>-->
 											<td style="text-align: center"><a href="../Vista/Accion.php?c=profesor&a=desmatricular&persona_id=<?php echo $r->persona_id; ?>&persona_tutor=<?php echo $_SESSION['persona_id'] ?>">Quitar</a></td>
-                                        </tr>                                        
-                                    <?php endforeach; ?>    
+                                        </tr>
+                                    <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
-                            
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -71,7 +72,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
+
         </div>
         <!-- /#page-wrapper -->
 

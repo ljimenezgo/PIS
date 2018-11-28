@@ -420,6 +420,9 @@ if($_SESSION['rol']==3){
                             <a href="../Vista/Accion.php?c=tutoria&a=ListaCitas"><i class="fa fa-wrench fa-fw"></i> Citas Tutoria</a>
                         </li>
                         <li>
+                            <a href="../Vista/Accion.php?c=tutoria&a=ListaCitas"><i class="fa fa-wrench fa-fw"></i> Asesoría Academica</a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Biblioteca<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
