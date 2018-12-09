@@ -337,6 +337,11 @@ class profesor
 	//Método que registra un nuevo alumno a la tabla.
 	 function RegistrarU(usuario $data)
 	{
+		$consulta = "select count(*) as total from usuario where usuario_cuenta = ?";
+		$result = $this->pdo->prepare($consulta);
+		$result->bindParam(1,$data->usuario_cuenta,PDO::PARAM_STR);
+		$result->execute();
+		if($result->fetchColumn()==0){ //si no existe el dato lo inserto
 		try
 		{
 			//Sentencia SQL.
@@ -356,6 +361,9 @@ class profesor
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
+		}
+		}else{
+			header("Location: ../Vista/Accion.php?c=profesor&a=error");
 		}
 	}
 }

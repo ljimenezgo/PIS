@@ -65,7 +65,7 @@ class Tutoria
 		{
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM tutoria JOIN persona ON tutoria.tutoria_alumno= persona.persona_id left join persona as p2 on tutoria.tutoria_docente = p2.persona_id");
+			$stm = $this->pdo->prepare("SELECT * FROM tutoria JOIN persona ON tutoria.tutoria_alumno= persona.persona_id");
 			//Ejecución de la sentencia SQL.
 			$stm->execute();
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto

@@ -41,7 +41,7 @@
 											                        <?php if($r->tutoria_piscologia==1){ ?>
                                                 <td><?php echo $r->persona_nombres; ?></td>
                                                 <td><?php echo $r->tutoria_piscologia_fecha; ?></td>
-											                          <td style="text-align: center" class="center"><?php if($r->tutoria_piscologia == 1){
+											    <td style="text-align: center" class="center"><?php if($r->tutoria_piscologia == 1){
                                                         if($r->tutoria_piscologia_aceptado == 0){
                                                     ?>
                                                 <label class="">
